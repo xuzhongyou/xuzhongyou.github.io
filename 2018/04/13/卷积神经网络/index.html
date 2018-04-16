@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/04/13/卷积神经网络/Filter.gif">
 <meta property="og:image" content="http://yoursite.com/2018/04/13/卷积神经网络/cnn.png">
 <meta property="og:image" content="http://yoursite.com/2018/04/13/卷积神经网络/result.png">
-<meta property="og:updated_time" content="2018-04-16T08:05:17.366Z">
+<meta property="og:updated_time" content="2018-04-16T08:08:49.415Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="卷积神经网络">
 <meta name="twitter:description" content="卷积神经网络卷积神经网络的模型有很多，从LeNet,AlexNet,GoogleNet,Inception到ResNet，牢牢把握卷积的核心，其他的网络结构只是加深了层数，和一些trick。本文用mxnet构造一个LeNet网络。 卷积网络的由来在说卷积神经网络的时候，先来想一下为什么会有卷积神经网络的出现，一定是之前的神经网络有一定的局限性和问题之前是用全连接神经网络，将一张图拉成一向量。局限性">
@@ -360,7 +360,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,291
+                  1,290
                 </span>
               
 
@@ -398,10 +398,10 @@
 
       
         <h2 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h2><p>卷积神经网络的模型有很多，从LeNet,AlexNet,GoogleNet,Inception到ResNet，牢牢把握卷积的核心，其他的网络结构只是加深了层数，和一些trick。本文用mxnet构造一个LeNet网络。</p>
-<h3 id="卷积网络的由来"><a href="#卷积网络的由来" class="headerlink" title="卷积网络的由来"></a>卷积网络的由来</h3><p>在说卷积神经网络的时候，先来想一下为什么会有卷积神经网络的出现，一定是之前的神经网络有一定的局限性和问题<br>之前是用全连接神经网络，将一张图拉成一向量。<br>局限性在：1.拉成向量丢失了列上的相关性。2.全连接神经网络的参数太多。</p>
+<h3 id="卷积网络的由来"><a href="#卷积网络的由来" class="headerlink" title="卷积网络的由来"></a>卷积网络的由来</h3><p>在说卷积神经网络的时候，先来想一下为什么会有卷积神经网络的出现，一定是之前的神经网络有一定的局限性和问题之前是用全连接神经网络，将一张图拉成一向量。<br>局限性：<br>1.拉成向量丢失了列上的相关性。<br>2.全连接神经网络的参数太多。</p>
 <h4 id="对卷积的理解是："><a href="#对卷积的理解是：" class="headerlink" title="对卷积的理解是："></a>对卷积的理解是：</h4><p>拿滤波器对图像进行扫描（对应元素相乘求和）。<br><img src="/2018/04/13/卷积神经网络/Filter.gif" alt=""><br>学习的时候一直有个疑问：例如：（3,3,2）被 （2,2）过滤，希望得到2层结果，我的理解是两次滤波(对应2层结果)，一次滤波过程中，几个滤波器是由输入图像的层数决定的(channel)，例如这里的(3,3,2)中的2，<br>有两个滤波器分别对不同层数(channel)卷积，再对两个卷积结果求和。</p>
 <h4 id="对池化的理解是："><a href="#对池化的理解是：" class="headerlink" title="对池化的理解是："></a>对池化的理解是：</h4><p>卷积过程作用在窗口上，对位置非常敏感，池化层能够缓解这个问题。也可以起到降维减少参数的作用。一般有两种池化方式，最大池化，和平均池化。</p>
-<h3 id="下载FashionMnist数据集，并做成数据迭代器"><a href="#下载FashionMnist数据集，并做成数据迭代器" class="headerlink" title="下载FashionMnist数据集，并做成数据迭代器"></a>下载FashionMnist数据集，并做成数据迭代器</h3><p>这边有一个地方特别的坑，要注意，一张图片的维度的是(28, 28, 1)<br>多张得到的张量是(batch_size,28,28,1),而在mxnet卷积网络中的输入维度是(batch_size,channel,height,weight),所以这里从FashionMnist中得到的结果需要transpose。可以在很多个地方进行转化，根据自己喜好，我选择在net中进行，并不是最好的方式。再这需要提醒的是权值的维度(output_channel,in_channel,height,weight),可以深入研究权值四个参数在计算中分别代表了什么以及如何计算，参考对上面对卷积的理解<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from mxnet import ndarray as nd</span><br><span class="line">from mxnet import autograd as ag</span><br><span class="line">from mxnet import gluon</span><br><span class="line"></span><br><span class="line">batch_size = 256</span><br><span class="line">def transform(data,label):</span><br><span class="line">    return data.astype(&apos;float32&apos;)/255,label.astype(&apos;float32&apos;)</span><br><span class="line">mnist_train = gluon.data.vision.FashionMNIST(train=True,transform=transform)</span><br><span class="line">mnist_test = gluon.data.vision.FashionMNIST(train=False,transform=transform)</span><br><span class="line">train_iter = gluon.data.DataLoader(mnist_train,batch_size,shuffle=True)</span><br><span class="line">test_iter = gluon.data.DataLoader(mnist_test,batch_size,shuffle=False)</span><br></pre></td></tr></table></figure></p>
+<h3 id="下载FashionMnist数据集，并做成数据迭代器"><a href="#下载FashionMnist数据集，并做成数据迭代器" class="headerlink" title="下载FashionMnist数据集，并做成数据迭代器"></a>下载FashionMnist数据集，并做成数据迭代器</h3><p>这边有一个地方特别的坑，要注意，一张图片的维度的是(28, 28, 1)多张得到的张量是(batch_size,28,28,1),而在mxnet卷积网络中的输入维度是(batch_size,channel,height,weight),所以这里从FashionMnist中得到的结果需要transpose。可以在很多个地方进行转化，根据自己喜好，我选择在net中进行，并不是最好的方式。再这需要提醒的是权值的维度(output_channel,in_channel,height,weight),可以深入研究权值四个参数在计算中分别代表了什么以及如何计算，参考对上面对卷积的理解<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from mxnet import ndarray as nd</span><br><span class="line">from mxnet import autograd as ag</span><br><span class="line">from mxnet import gluon</span><br><span class="line"></span><br><span class="line">batch_size = 256</span><br><span class="line">def transform(data,label):</span><br><span class="line">    return data.astype(&apos;float32&apos;)/255,label.astype(&apos;float32&apos;)</span><br><span class="line">mnist_train = gluon.data.vision.FashionMNIST(train=True,transform=transform)</span><br><span class="line">mnist_test = gluon.data.vision.FashionMNIST(train=False,transform=transform)</span><br><span class="line">train_iter = gluon.data.DataLoader(mnist_train,batch_size,shuffle=True)</span><br><span class="line">test_iter = gluon.data.DataLoader(mnist_test,batch_size,shuffle=False)</span><br></pre></td></tr></table></figure></p>
 <h3 id="给参数，为参数设定梯度空间"><a href="#给参数，为参数设定梯度空间" class="headerlink" title="给参数，为参数设定梯度空间"></a>给参数，为参数设定梯度空间</h3><p>这边也有一个非常坑的地方，可以尝试不给W初始化范围(weight_scale)，看看识别效果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">weight_scale= 0.01</span><br><span class="line"># output channels = 20, kernel = (5,5)</span><br><span class="line">W1 = nd.random_normal(shape=(20,1,5,5),scale=weight_scale)</span><br><span class="line">b1 = nd.zeros(W1.shape[0])</span><br><span class="line"># output channels = 50, kernel = (3,3)</span><br><span class="line">W2 = nd.random_normal(shape=(50,20,3,3),scale=weight_scale)</span><br><span class="line">b2 = nd.zeros(W2.shape[0])</span><br><span class="line"># output dim = 128 感受下W2 和W3的不同</span><br><span class="line">W3 = nd.random_normal(shape=(1250,128),scale=weight_scale)</span><br><span class="line">b3 = nd.zeros(W3.shape[1])</span><br><span class="line"># output dim = 10</span><br><span class="line">W4 =nd.random_normal(shape=(128,10),scale=weight_scale)</span><br><span class="line">b4 = nd.zeros(W4.shape[1])</span><br><span class="line">params = [W1, b1, W2, b2, W3, b3, W4, b4]</span><br><span class="line">for param in params:</span><br><span class="line">    param.attach_grad()</span><br></pre></td></tr></table></figure></p>
 <h3 id="构建LeNet网络"><a href="#构建LeNet网络" class="headerlink" title="构建LeNet网络"></a>构建LeNet网络</h3><p>我是在这了对输入维度进行transpose的<br>verbose参数是否打印每层的shape<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">def net(X,verbose):</span><br><span class="line">    # X = X.reshape(shape=(-1,1,28,28))</span><br><span class="line">    X = nd.transpose(X,(0,3,1,2))</span><br><span class="line">    h1 = nd.Convolution(data=X,weight=W1,bias=b1,kernel=W1.shape[2:],num_filter=W1.shape[0])</span><br><span class="line">    h1_activation = nd.relu(h1)</span><br><span class="line">    h1_pool = nd.Pooling(data = h1_activation,pool_type=&apos;max&apos;,kernel=(2,2),stride=(2,2))</span><br><span class="line">    h2 = nd.Convolution(data=h1_pool,weight=W2,bias=b2,kernel=W2.shape[2:],num_filter=W2.shape[0])</span><br><span class="line">    h2_activation = nd.relu(h2)</span><br><span class="line">    h2_pool = nd.Pooling(data=h2_activation,pool_type=&apos;max&apos;,kernel=(2,2),stride=(2,2))</span><br><span class="line">    # print(&apos;h2_pool&apos;,h2_pool.shape)</span><br><span class="line">    h2 = nd.flatten(h2_pool)</span><br><span class="line">    # print(&apos;h2&apos;,h2.shape)</span><br><span class="line">    #第一层全连接层</span><br><span class="line">    h3_liner = nd.dot(h2,W3)+b3</span><br><span class="line">    h3 = nd.relu(h3_liner)</span><br><span class="line">    # print(&apos;h3,W4&apos;,h3.shape,W4.shape)</span><br><span class="line">    #第二层全连接层</span><br><span class="line">    h4_linear = nd.dot(h3,W4)+b4</span><br><span class="line">    # print(&apos;h4&apos;,h4_linear.shape)</span><br><span class="line">    if verbose:</span><br><span class="line">        print(&apos;1st conv block:&apos;, h1_pool.shape)</span><br><span class="line">        print(&apos;2nd conv block:&apos;, h2.shape)</span><br><span class="line">        print(&apos;1st dense:&apos;, h3.shape)</span><br><span class="line">        print(&apos;2nd dense:&apos;, h4_linear.shape)</span><br><span class="line">        print(&apos;output:&apos;, h4_linear)</span><br><span class="line">    return h4_linear</span><br></pre></td></tr></table></figure></p>
 <h3 id="常规操作之SGD"><a href="#常规操作之SGD" class="headerlink" title="常规操作之SGD"></a>常规操作之SGD</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def SGD(params, lr):</span><br><span class="line">    for param in params:</span><br><span class="line">        param[:] = param - lr * param.grad</span><br></pre></td></tr></table></figure>
@@ -475,6 +475,11 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="gitalk-container"></div>
+    </div>
 
   
 
@@ -778,6 +783,30 @@
 
 
 
+
+﻿
+
+<!-- LOCAL: You can save these files to your site and update links -->
+  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<!-- END LOCAL -->
+    
+      <script type="text/javascript">
+      function renderGitalk(){
+        var gitalk = new Gitalk({
+            owner: 'xuzhongyou',
+            repo: 'xuzhongyou.github.io',
+            clientID: '2e141d666d3516838be5',
+            clientSecret: 'c4e98b165e55d77241ac9c9571c122b955e5f948',
+            admin: '',
+            
+            });
+        gitalk.render('gitalk-container');
+      }
+      renderGitalk();
+      </script>
+    
 
 
   
