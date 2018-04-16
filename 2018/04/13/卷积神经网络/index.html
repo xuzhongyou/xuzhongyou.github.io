@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script>
+	(function(){
+		if(''){
+			if (prompt('请输入文章密码','') !== ''){
+				alert('密码错误！');
+				history.back();
+			}
+		}
+	})();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="-mxnet," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="卷积神经网络卷积神经网络的模型有很多，从LeNet,AlexNet,GoogleNet,Inception到ResNet，牢牢把握卷积的核心，其他的网络结构只是加深了层数，和一些trick。本文用mxnet构造一个LeNet网络。 卷积网络的由来在说卷积神经网络的时候，先来想一下为什么会有卷积神经网络的出现，一定是之前的神经网络有一定的局限性和问题之前是用全连接神经网络，将一张图拉成一向量。局限性">
+<meta name="keywords" content="-mxnet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="卷积神经网络">
+<meta property="og:url" content="http://yoursite.com/2018/04/13/卷积神经网络/index.html">
+<meta property="og:site_name" content="from Demon import Angel">
+<meta property="og:description" content="卷积神经网络卷积神经网络的模型有很多，从LeNet,AlexNet,GoogleNet,Inception到ResNet，牢牢把握卷积的核心，其他的网络结构只是加深了层数，和一些trick。本文用mxnet构造一个LeNet网络。 卷积网络的由来在说卷积神经网络的时候，先来想一下为什么会有卷积神经网络的出现，一定是之前的神经网络有一定的局限性和问题之前是用全连接神经网络，将一张图拉成一向量。局限性">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/04/13/卷积神经网络/Filter.gif">
+<meta property="og:image" content="http://yoursite.com/2018/04/13/卷积神经网络/cnn.png">
+<meta property="og:image" content="http://yoursite.com/2018/04/13/卷积神经网络/result.png">
+<meta property="og:updated_time" content="2018-04-16T08:05:17.366Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="卷积神经网络">
+<meta name="twitter:description" content="卷积神经网络卷积神经网络的模型有很多，从LeNet,AlexNet,GoogleNet,Inception到ResNet，牢牢把握卷积的核心，其他的网络结构只是加深了层数，和一些trick。本文用mxnet构造一个LeNet网络。 卷积网络的由来在说卷积神经网络的时候，先来想一下为什么会有卷积神经网络的出现，一定是之前的神经网络有一定的局限性和问题之前是用全连接神经网络，将一张图拉成一向量。局限性">
+<meta name="twitter:image" content="http://yoursite.com/2018/04/13/卷积神经网络/Filter.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/13/卷积神经网络/"/>
+
+
+
+
+
+  <title>卷积神经网络 | from Demon import Angel</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">from Demon import Angel</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我哽咽道：你是赵默笙，可我不是何以琛啊。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/13/卷积神经网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaokehu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="from Demon import Angel">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">卷积神经网络</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-13T15:30:11+08:00">
+                2018-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DeepLearning/" itemprop="url" rel="index">
+                    <span itemprop="name">-DeepLearning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/04/13/卷积神经网络/" class="leancloud_visitors" data-flag-title="卷积神经网络">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,291
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h2><p>卷积神经网络的模型有很多，从LeNet,AlexNet,GoogleNet,Inception到ResNet，牢牢把握卷积的核心，其他的网络结构只是加深了层数，和一些trick。本文用mxnet构造一个LeNet网络。</p>
+<h3 id="卷积网络的由来"><a href="#卷积网络的由来" class="headerlink" title="卷积网络的由来"></a>卷积网络的由来</h3><p>在说卷积神经网络的时候，先来想一下为什么会有卷积神经网络的出现，一定是之前的神经网络有一定的局限性和问题<br>之前是用全连接神经网络，将一张图拉成一向量。<br>局限性在：1.拉成向量丢失了列上的相关性。2.全连接神经网络的参数太多。</p>
+<h4 id="对卷积的理解是："><a href="#对卷积的理解是：" class="headerlink" title="对卷积的理解是："></a>对卷积的理解是：</h4><p>拿滤波器对图像进行扫描（对应元素相乘求和）。<br><img src="/2018/04/13/卷积神经网络/Filter.gif" alt=""><br>学习的时候一直有个疑问：例如：（3,3,2）被 （2,2）过滤，希望得到2层结果，我的理解是两次滤波(对应2层结果)，一次滤波过程中，几个滤波器是由输入图像的层数决定的(channel)，例如这里的(3,3,2)中的2，<br>有两个滤波器分别对不同层数(channel)卷积，再对两个卷积结果求和。</p>
+<h4 id="对池化的理解是："><a href="#对池化的理解是：" class="headerlink" title="对池化的理解是："></a>对池化的理解是：</h4><p>卷积过程作用在窗口上，对位置非常敏感，池化层能够缓解这个问题。也可以起到降维减少参数的作用。一般有两种池化方式，最大池化，和平均池化。</p>
+<h3 id="下载FashionMnist数据集，并做成数据迭代器"><a href="#下载FashionMnist数据集，并做成数据迭代器" class="headerlink" title="下载FashionMnist数据集，并做成数据迭代器"></a>下载FashionMnist数据集，并做成数据迭代器</h3><p>这边有一个地方特别的坑，要注意，一张图片的维度的是(28, 28, 1)<br>多张得到的张量是(batch_size,28,28,1),而在mxnet卷积网络中的输入维度是(batch_size,channel,height,weight),所以这里从FashionMnist中得到的结果需要transpose。可以在很多个地方进行转化，根据自己喜好，我选择在net中进行，并不是最好的方式。再这需要提醒的是权值的维度(output_channel,in_channel,height,weight),可以深入研究权值四个参数在计算中分别代表了什么以及如何计算，参考对上面对卷积的理解<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from mxnet import ndarray as nd</span><br><span class="line">from mxnet import autograd as ag</span><br><span class="line">from mxnet import gluon</span><br><span class="line"></span><br><span class="line">batch_size = 256</span><br><span class="line">def transform(data,label):</span><br><span class="line">    return data.astype(&apos;float32&apos;)/255,label.astype(&apos;float32&apos;)</span><br><span class="line">mnist_train = gluon.data.vision.FashionMNIST(train=True,transform=transform)</span><br><span class="line">mnist_test = gluon.data.vision.FashionMNIST(train=False,transform=transform)</span><br><span class="line">train_iter = gluon.data.DataLoader(mnist_train,batch_size,shuffle=True)</span><br><span class="line">test_iter = gluon.data.DataLoader(mnist_test,batch_size,shuffle=False)</span><br></pre></td></tr></table></figure></p>
+<h3 id="给参数，为参数设定梯度空间"><a href="#给参数，为参数设定梯度空间" class="headerlink" title="给参数，为参数设定梯度空间"></a>给参数，为参数设定梯度空间</h3><p>这边也有一个非常坑的地方，可以尝试不给W初始化范围(weight_scale)，看看识别效果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">weight_scale= 0.01</span><br><span class="line"># output channels = 20, kernel = (5,5)</span><br><span class="line">W1 = nd.random_normal(shape=(20,1,5,5),scale=weight_scale)</span><br><span class="line">b1 = nd.zeros(W1.shape[0])</span><br><span class="line"># output channels = 50, kernel = (3,3)</span><br><span class="line">W2 = nd.random_normal(shape=(50,20,3,3),scale=weight_scale)</span><br><span class="line">b2 = nd.zeros(W2.shape[0])</span><br><span class="line"># output dim = 128 感受下W2 和W3的不同</span><br><span class="line">W3 = nd.random_normal(shape=(1250,128),scale=weight_scale)</span><br><span class="line">b3 = nd.zeros(W3.shape[1])</span><br><span class="line"># output dim = 10</span><br><span class="line">W4 =nd.random_normal(shape=(128,10),scale=weight_scale)</span><br><span class="line">b4 = nd.zeros(W4.shape[1])</span><br><span class="line">params = [W1, b1, W2, b2, W3, b3, W4, b4]</span><br><span class="line">for param in params:</span><br><span class="line">    param.attach_grad()</span><br></pre></td></tr></table></figure></p>
+<h3 id="构建LeNet网络"><a href="#构建LeNet网络" class="headerlink" title="构建LeNet网络"></a>构建LeNet网络</h3><p>我是在这了对输入维度进行transpose的<br>verbose参数是否打印每层的shape<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">def net(X,verbose):</span><br><span class="line">    # X = X.reshape(shape=(-1,1,28,28))</span><br><span class="line">    X = nd.transpose(X,(0,3,1,2))</span><br><span class="line">    h1 = nd.Convolution(data=X,weight=W1,bias=b1,kernel=W1.shape[2:],num_filter=W1.shape[0])</span><br><span class="line">    h1_activation = nd.relu(h1)</span><br><span class="line">    h1_pool = nd.Pooling(data = h1_activation,pool_type=&apos;max&apos;,kernel=(2,2),stride=(2,2))</span><br><span class="line">    h2 = nd.Convolution(data=h1_pool,weight=W2,bias=b2,kernel=W2.shape[2:],num_filter=W2.shape[0])</span><br><span class="line">    h2_activation = nd.relu(h2)</span><br><span class="line">    h2_pool = nd.Pooling(data=h2_activation,pool_type=&apos;max&apos;,kernel=(2,2),stride=(2,2))</span><br><span class="line">    # print(&apos;h2_pool&apos;,h2_pool.shape)</span><br><span class="line">    h2 = nd.flatten(h2_pool)</span><br><span class="line">    # print(&apos;h2&apos;,h2.shape)</span><br><span class="line">    #第一层全连接层</span><br><span class="line">    h3_liner = nd.dot(h2,W3)+b3</span><br><span class="line">    h3 = nd.relu(h3_liner)</span><br><span class="line">    # print(&apos;h3,W4&apos;,h3.shape,W4.shape)</span><br><span class="line">    #第二层全连接层</span><br><span class="line">    h4_linear = nd.dot(h3,W4)+b4</span><br><span class="line">    # print(&apos;h4&apos;,h4_linear.shape)</span><br><span class="line">    if verbose:</span><br><span class="line">        print(&apos;1st conv block:&apos;, h1_pool.shape)</span><br><span class="line">        print(&apos;2nd conv block:&apos;, h2.shape)</span><br><span class="line">        print(&apos;1st dense:&apos;, h3.shape)</span><br><span class="line">        print(&apos;2nd dense:&apos;, h4_linear.shape)</span><br><span class="line">        print(&apos;output:&apos;, h4_linear)</span><br><span class="line">    return h4_linear</span><br></pre></td></tr></table></figure></p>
+<h3 id="常规操作之SGD"><a href="#常规操作之SGD" class="headerlink" title="常规操作之SGD"></a>常规操作之SGD</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def SGD(params, lr):</span><br><span class="line">    for param in params:</span><br><span class="line">        param[:] = param - lr * param.grad</span><br></pre></td></tr></table></figure>
+<h2 id="计算准确率"><a href="#计算准确率" class="headerlink" title="计算准确率"></a>计算准确率</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def accuracy(output,label):</span><br><span class="line">    return nd.mean(output.argmax(axis=1)==label).asscalar()</span><br><span class="line"></span><br><span class="line">def evaluate_accuracy(data_iter,net):</span><br><span class="line">    acc = 0</span><br><span class="line">    for data,label in data_iter:</span><br><span class="line">        acc += accuracy(net(data,False),label)</span><br><span class="line">    return acc/len(data_iter)</span><br><span class="line"></span><br><span class="line">softmax_cross_entropy = gluon.loss.SoftmaxCrossEntropyLoss()</span><br></pre></td></tr></table></figure>
+<h3 id="开始训练"><a href="#开始训练" class="headerlink" title="开始训练"></a>开始训练</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">epoch = 5</span><br><span class="line">lr = .2</span><br><span class="line">for e in range(epoch):</span><br><span class="line">    i = 0</span><br><span class="line">    for data,label in train_iter:</span><br><span class="line">        with ag.record():</span><br><span class="line">            yhat = net(data,False)</span><br><span class="line">            loss = softmax_cross_entropy(yhat,label)</span><br><span class="line">        loss.backward()</span><br><span class="line">        SGD(params,lr/batch_size)</span><br><span class="line">        i+=1</span><br><span class="line">        if i%40==0:</span><br><span class="line">            print(&apos;After %d epoch,training_loss is&apos;%(e),nd.mean(loss).asscalar())</span><br><span class="line">    print(&apos;After %d epoch,the test_accuracy is&apos;%(e),evaluate_accuracy(test_iter,net))</span><br></pre></td></tr></table></figure>
+<h3 id="查看分类结果-matplotlib"><a href="#查看分类结果-matplotlib" class="headerlink" title="查看分类结果(matplotlib)"></a>查看分类结果(matplotlib)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">def show_images(images):</span><br><span class="line">    n = images.shape[0]</span><br><span class="line">    _,figs = plt.subplots(1,n,figsize=(15,15))</span><br><span class="line">    for i in range(n):</span><br><span class="line">        figs[i].imshow(images[i].reshape((28,28)).asnumpy())</span><br><span class="line">        figs[i].axes.get_xaxis().set_visible(False)</span><br><span class="line">        figs[i].axes.get_yaxis().set_visible(False)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">def get_text_labels(labels):</span><br><span class="line">    text_lables = [&apos;t-shirt&apos;, &apos;trouser&apos;, &apos;pullover&apos;, &apos;dress,&apos;, &apos;coat&apos;,</span><br><span class="line">        &apos;sandal&apos;, &apos;shirt&apos;, &apos;sneaker&apos;, &apos;bag&apos;, &apos;ankle boot&apos;]</span><br><span class="line">    return [text_lables[int(i)] for i in labels]</span><br><span class="line"></span><br><span class="line">data,label = mnist_test[0:9]</span><br><span class="line">show_images(data)</span><br><span class="line">print(&apos;true labels:&apos;,get_text_labels(label))</span><br><span class="line">predicted_labels = net(data,False).argmax(axis=1)</span><br><span class="line">print(predicted_labels)</span><br><span class="line">print(get_text_labels(predicted_labels.asnumpy()))</span><br></pre></td></tr></table></figure>
+<h3 id="结果上图"><a href="#结果上图" class="headerlink" title="结果上图"></a>结果上图</h3><p><img src="/2018/04/13/卷积神经网络/cnn.png" alt=""><br><img src="/2018/04/13/卷积神经网络/result.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mxnet/" rel="tag"># -mxnet</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/13/欠拟合，过拟合与正则/" rel="next" title="欠拟合，过拟合与正则">
+                <i class="fa fa-chevron-left"></i> 欠拟合，过拟合与正则
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="xiaokehu" />
+            
+              <p class="site-author-name" itemprop="name">xiaokehu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#卷积神经网络"><span class="nav-number">1.</span> <span class="nav-text">卷积神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积网络的由来"><span class="nav-number">1.1.</span> <span class="nav-text">卷积网络的由来</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对卷积的理解是："><span class="nav-number">1.1.1.</span> <span class="nav-text">对卷积的理解是：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对池化的理解是："><span class="nav-number">1.1.2.</span> <span class="nav-text">对池化的理解是：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载FashionMnist数据集，并做成数据迭代器"><span class="nav-number">1.2.</span> <span class="nav-text">下载FashionMnist数据集，并做成数据迭代器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给参数，为参数设定梯度空间"><span class="nav-number">1.3.</span> <span class="nav-text">给参数，为参数设定梯度空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建LeNet网络"><span class="nav-number">1.4.</span> <span class="nav-text">构建LeNet网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常规操作之SGD"><span class="nav-number">1.5.</span> <span class="nav-text">常规操作之SGD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算准确率"><span class="nav-number">2.</span> <span class="nav-text">计算准确率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开始训练"><span class="nav-number">2.1.</span> <span class="nav-text">开始训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看分类结果-matplotlib"><span class="nav-number">2.2.</span> <span class="nav-text">查看分类结果(matplotlib)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结果上图"><span class="nav-number">2.3.</span> <span class="nav-text">结果上图</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiaokehu</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">6.7k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+  
+
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("0Sd2syIyTxcEEmnoSombwfx8-gzGzoHsz", "ijA1IpMh35un7deoLpxjojrh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

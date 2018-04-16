@@ -77,7 +77,7 @@
 
 
 
-  <meta name="keywords" content="-tensorflow," />
+  <meta name="keywords" content="-mxnet," />
 
 
 
@@ -88,20 +88,21 @@
 
 
 
-<meta name="description" content="一直想写一个系列关于tensorflow的使用，之前由于准备一些事情耽误了，也有一部分因为懒。so,趁现在空闲写一点的，并一定给别人带来帮助就是记录学习的过程。  入门必备之helloWorld1234567import tensorflow as tfa = tf.constant(3)b = tf.constant(4)#熟悉with的用法,运行会话中的op,首先要有Sessionwith">
-<meta name="keywords" content="-tensorflow">
+<meta name="description" content="欠拟合：指的是在训练集上，训练误差较高欠拟合可能的原因：复杂的数据，配上简单的模型 过拟合指的训练集上的训练误差较低，但是测试集上的泛化误差较高过拟合可能的原因：训练的数据量过少，模型过于强大，误认为学习到了所有，导致最终的泛化误差较大。 测试模型模型L2正则 欠拟合过拟合code12345678910111213141516171819202122232425262728293031323334">
+<meta name="keywords" content="-mxnet">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tensorflow(一)">
-<meta property="og:url" content="http://yoursite.com/2018/04/03/Tensorflow一/index.html">
+<meta property="og:title" content="欠拟合，过拟合与正则">
+<meta property="og:url" content="http://yoursite.com/2018/04/13/欠拟合，过拟合与正则/index.html">
 <meta property="og:site_name" content="from Demon import Angel">
-<meta property="og:description" content="一直想写一个系列关于tensorflow的使用，之前由于准备一些事情耽误了，也有一部分因为懒。so,趁现在空闲写一点的，并一定给别人带来帮助就是记录学习的过程。  入门必备之helloWorld1234567import tensorflow as tfa = tf.constant(3)b = tf.constant(4)#熟悉with的用法,运行会话中的op,首先要有Sessionwith">
+<meta property="og:description" content="欠拟合：指的是在训练集上，训练误差较高欠拟合可能的原因：复杂的数据，配上简单的模型 过拟合指的训练集上的训练误差较低，但是测试集上的泛化误差较高过拟合可能的原因：训练的数据量过少，模型过于强大，误认为学习到了所有，导致最终的泛化误差较大。 测试模型模型L2正则 欠拟合过拟合code12345678910111213141516171819202122232425262728293031323334">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/04/03/Tensorflow一/operation.png">
-<meta property="og:updated_time" content="2018-04-03T09:33:51.500Z">
+<meta property="og:image" content="http://yoursite.com/2018/04/13/欠拟合，过拟合与正则/model.png">
+<meta property="og:image" content="http://yoursite.com/2018/04/13/欠拟合，过拟合与正则/L2.png">
+<meta property="og:updated_time" content="2018-04-13T07:10:20.870Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tensorflow(一)">
-<meta name="twitter:description" content="一直想写一个系列关于tensorflow的使用，之前由于准备一些事情耽误了，也有一部分因为懒。so,趁现在空闲写一点的，并一定给别人带来帮助就是记录学习的过程。  入门必备之helloWorld1234567import tensorflow as tfa = tf.constant(3)b = tf.constant(4)#熟悉with的用法,运行会话中的op,首先要有Sessionwith">
-<meta name="twitter:image" content="http://yoursite.com/2018/04/03/Tensorflow一/operation.png">
+<meta name="twitter:title" content="欠拟合，过拟合与正则">
+<meta name="twitter:description" content="欠拟合：指的是在训练集上，训练误差较高欠拟合可能的原因：复杂的数据，配上简单的模型 过拟合指的训练集上的训练误差较低，但是测试集上的泛化误差较高过拟合可能的原因：训练的数据量过少，模型过于强大，误认为学习到了所有，导致最终的泛化误差较大。 测试模型模型L2正则 欠拟合过拟合code12345678910111213141516171819202122232425262728293031323334">
+<meta name="twitter:image" content="http://yoursite.com/2018/04/13/欠拟合，过拟合与正则/model.png">
 
 
 
@@ -131,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/03/Tensorflow一/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/13/欠拟合，过拟合与正则/"/>
 
 
 
 
 
-  <title>Tensorflow(一) | from Demon import Angel</title>
+  <title>欠拟合，过拟合与正则 | from Demon import Angel</title>
   
 
 
@@ -264,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/03/Tensorflow一/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/13/欠拟合，过拟合与正则/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiaokehu">
@@ -281,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Tensorflow(一)</h1>
+          <h1 class="post-title" itemprop="name headline">欠拟合，过拟合与正则</h1>
         
 
         <div class="post-meta">
@@ -293,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-03T16:27:28+08:00">
-                2018-04-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-13T13:57:30+08:00">
+                2018-04-13
               </time>
             
 
@@ -333,7 +334,7 @@
 
           
           
-             <span id="/2018/04/03/Tensorflow一/" class="leancloud_visitors" data-flag-title="Tensorflow(一)">
+             <span id="/2018/04/13/欠拟合，过拟合与正则/" class="leancloud_visitors" data-flag-title="欠拟合，过拟合与正则">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -358,7 +359,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  300
+                  853
                 </span>
               
 
@@ -374,7 +375,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  5
                 </span>
               
             </div>
@@ -395,15 +396,11 @@
       
 
       
-        <blockquote>
-<p>一直想写一个系列关于tensorflow的使用，之前由于准备一些事情耽误了，也有一部分因为懒。so,趁现在空闲写一点的，并一定给别人带来帮助就是记录学习的过程。</p>
-</blockquote>
-<h2 id="入门必备之helloWorld"><a href="#入门必备之helloWorld" class="headerlink" title="入门必备之helloWorld"></a>入门必备之helloWorld</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf</span><br><span class="line">a = tf.constant(3)</span><br><span class="line">b = tf.constant(4)</span><br><span class="line">#熟悉with的用法,运行会话中的op,首先要有Session</span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">    print(&apos;a+b&apos;,sess.run(a+b))</span><br><span class="line">    print(&apos;a*b&apos;,sess.run(a*b))</span><br></pre></td></tr></table></figure>
-<h2 id="tensorflow的运算"><a href="#tensorflow的运算" class="headerlink" title="tensorflow的运算"></a>tensorflow的运算</h2><h3 id="常量运算"><a href="#常量运算" class="headerlink" title="常量运算"></a>常量运算</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">a = tf.constant(<span class="number">3</span>)</span><br><span class="line">b = tf.constant(<span class="number">4</span>)</span><br><span class="line">#熟悉with的用法,运行会话中的op,首先要有Session</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    print(<span class="string">'a+b'</span>,sess.run(a+b))</span><br><span class="line">    print(<span class="string">'a*b'</span>,sess.run(a*b))</span><br></pre></td></tr></table></figure>
-<h3 id="占位符"><a href="#占位符" class="headerlink" title="占位符"></a>占位符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = tf.placeholder(tf.int32)</span><br><span class="line">b = tf.placeholder(tf.int32)</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    #这边可以替换a+b,为tf.add(a,b)</span><br><span class="line">    print(<span class="string">'a+b'</span>,sess.run(a+b,feed_dict=&#123;<span class="attr">a</span>:<span class="number">3</span>,<span class="attr">b</span>:<span class="number">4</span>&#125;))</span><br><span class="line">    print(<span class="string">'a*b'</span>, sess.run(a*b, feed_dict=&#123;<span class="attr">a</span>: <span class="number">3</span>, <span class="attr">b</span>: <span class="number">4</span>&#125;))</span><br></pre></td></tr></table></figure>
-<h3 id="矩阵相乘"><a href="#矩阵相乘" class="headerlink" title="矩阵相乘"></a>矩阵相乘</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">matrix2 = tf.constant([[2.],[2.]])</span><br><span class="line">product = tf.matmul(matrix1,matrix2)</span><br><span class="line">with tf.Session() as tf:</span><br><span class="line">    print(&apos;matrix1 * matrix2&apos;,tf.run(product))</span><br><span class="line">    #查看矩阵相乘的类型</span><br><span class="line">    print(type(tf.run(product)))</span><br></pre></td></tr></table></figure>
-<h3 id="程序截图"><a href="#程序截图" class="headerlink" title="程序截图"></a>程序截图</h3><p><img src="/2018/04/03/Tensorflow一/operation.png" alt=""></p>
-
+        <h3 id="欠拟合："><a href="#欠拟合：" class="headerlink" title="欠拟合："></a>欠拟合：</h3><p>指的是在训练集上，训练误差较高<br>欠拟合可能的原因：复杂的数据，配上简单的模型</p>
+<h3 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h3><p>指的训练集上的训练误差较低，但是测试集上的泛化误差较高<br>过拟合可能的原因：训练的数据量过少，模型过于强大，误认为学习到了所有，导致最终的泛化误差较大。</p>
+<h3 id="测试模型"><a href="#测试模型" class="headerlink" title="测试模型"></a>测试模型</h3><p>模型<img src="/2018/04/13/欠拟合，过拟合与正则/model.png" alt=""><br>L2正则<img src="/2018/04/13/欠拟合，过拟合与正则/L2.png" alt=""></p>
+<h3 id="欠拟合过拟合code"><a href="#欠拟合过拟合code" class="headerlink" title="欠拟合过拟合code"></a>欠拟合过拟合code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"># y= 1.2x-3.4x**2+5.6x**3+5.0+noise</span><br><span class="line">from mxnet import ndarray as nd</span><br><span class="line">from mxnet import autograd as ag</span><br><span class="line">from mxnet import gluon</span><br><span class="line"></span><br><span class="line">num_train = 100</span><br><span class="line">num_test = 100</span><br><span class="line">true_w = [1.2,-3.4,5.6]</span><br><span class="line">true_b = 5.0</span><br><span class="line">x = nd.random_normal(shape=(num_test+num_train,1))</span><br><span class="line">X = nd.concat(x,nd.power(x,2),nd.power(x,3))</span><br><span class="line">y = true_w[0]*X[:,0]+true_w[1]*X[:,1]+true_w[2]*X[:,2]+true_b</span><br><span class="line">y += nd.random_normal(shape=y.shape)</span><br><span class="line"></span><br><span class="line">import matplotlib as mpl</span><br><span class="line">#指定图的大小</span><br><span class="line">mpl.rcParams[&apos;figure.dpi&apos;]= 120</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line">def train(x_train,x_test,y_train,y_test):</span><br><span class="line">    net = gluon.nn.Sequential()</span><br><span class="line">    with net.name_scope():</span><br><span class="line">        net.add(gluon.nn.Dense(1))</span><br><span class="line">    net.initialize()</span><br><span class="line">    dataset = gluon.data.ArrayDataset(x_train,y_train)</span><br><span class="line">    epoch = 100</span><br><span class="line">    learning_rate = 0.01</span><br><span class="line">    batch_size = min(10,y_train.shape[0])</span><br><span class="line">    data_iter = gluon.data.DataLoader(dataset,batch_size,shuffle=True)</span><br><span class="line">    square_loss = gluon.loss.L2Loss()</span><br><span class="line">    trainer = gluon.Trainer(net.collect_params(),&apos;sgd&apos;,&#123;&apos;learning_rate&apos;:learning_rate&#125;)</span><br><span class="line">    train_loss = []</span><br><span class="line">    test_loss = []</span><br><span class="line">    for e in range(epoch):</span><br><span class="line">        for data,label in data_iter:</span><br><span class="line">            with ag.record():</span><br><span class="line">                output = net(data)</span><br><span class="line">                loss = square_loss(output,label)</span><br><span class="line">            loss.backward()</span><br><span class="line">            trainer.step(batch_size)</span><br><span class="line">        temp_train = square_loss(net(x_train),y_train).mean().asscalar()</span><br><span class="line">        train_loss.append(temp_train)</span><br><span class="line">        temp_test = square_loss(net(x_test),y_test).mean().asscalar()</span><br><span class="line">        print(&apos;train loss,Test loss&apos;,temp_train,temp_test)</span><br><span class="line">        test_loss.append(temp_test)</span><br><span class="line">    plt.plot(train_loss)</span><br><span class="line">    plt.plot(test_loss)</span><br><span class="line">    plt.legend([&apos;train&apos;,&apos;test&apos;])</span><br><span class="line">    plt.show()</span><br><span class="line">    print(&apos;learned weight&apos;,net[0].weight.data())</span><br><span class="line">    print(&apos;learned weight&apos;, net[0].bias.data())</span><br><span class="line"></span><br><span class="line"># 多数据,复杂泛化性挺好</span><br><span class="line">print(&apos;x 的shape,X的shape&apos;,x.shape,X.shape)</span><br><span class="line">train(X[:num_train, :], X[num_train:, :], y[:num_train], y[num_train:])</span><br><span class="line">train(x[:num_train, :], x[num_train:, :], y[:num_train], y[num_train:])</span><br><span class="line">#训练量不足用复杂模型</span><br><span class="line">train(X[0:2, :], X[num_train:, :], y[0:2], y[num_train:])</span><br></pre></td></tr></table></figure>
+<h3 id="正则code"><a href="#正则code" class="headerlink" title="正则code"></a>正则code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">from mxnet import ndarray as nd</span><br><span class="line">from mxnet import autograd as ag</span><br><span class="line">from mxnet import gluon</span><br><span class="line">#加正则的目的是弱化模型，降低模型的复杂度。正则是加在loss上的，给个权值，来表示减弱</span><br><span class="line">#模型的复杂程度。最小化新loss,显然会导致w,b有向0的趋势</span><br><span class="line"></span><br><span class="line">num_train = 20</span><br><span class="line">num_test = 100</span><br><span class="line">num_inputs = 200</span><br><span class="line">#</span><br><span class="line">true_w = nd.ones(shape=(num_inputs,1))*0.01</span><br><span class="line"></span><br><span class="line">true_b = 0.05</span><br><span class="line">x = nd.random_normal(shape=(num_train+num_test,num_inputs))</span><br><span class="line">y = nd.dot(x,true_w)+true_b</span><br><span class="line">y += nd.random_normal(shape=y.shape)*0.01</span><br><span class="line">batch_size =1</span><br><span class="line">dataset = gluon.data.ArrayDataset(x[:num_train,:],y[:num_train,:])</span><br><span class="line">train_data = gluon.data.DataLoader(dataset,batch_size,shuffle=True)</span><br><span class="line">w = nd.random_normal(shape=(num_inputs,1),scale=1)</span><br><span class="line">b = nd.zeros(shape=(1,))</span><br><span class="line">lr = 0.01</span><br><span class="line"></span><br><span class="line">params = [w,b]</span><br><span class="line">for param in params:</span><br><span class="line">    param.attach_grad()</span><br><span class="line"></span><br><span class="line">def net(x):</span><br><span class="line">    return nd.dot(x,w)+b</span><br><span class="line"></span><br><span class="line">#le范数正则化</span><br><span class="line">def L2_penalty(w,b):</span><br><span class="line">    return ((w**2).sum()+b**2)/2</span><br><span class="line"></span><br><span class="line">#主要看一下loss</span><br><span class="line">def square_loss(yhat,y):</span><br><span class="line">    return (yhat-y.reshape(yhat.shape))**2/2</span><br><span class="line"></span><br><span class="line">def SGD(params):</span><br><span class="line">    for param in params:</span><br><span class="line">        param[:] = param - lr*param.grad/batch_size</span><br><span class="line"></span><br><span class="line">import matplotlib as mpl</span><br><span class="line">#指定图的大小</span><br><span class="line">mpl.rcParams[&apos;figure.dpi&apos;]= 120</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line">def train(lamda):</span><br><span class="line">    epoch = 5</span><br><span class="line">    train_loss = []</span><br><span class="line">    test_loss = []</span><br><span class="line">    for e in range(epoch):</span><br><span class="line">        for data,label in train_data:</span><br><span class="line">            with ag.record():</span><br><span class="line">                yhat = net(data)</span><br><span class="line">                loss = square_loss(yhat,label)+lamda*L2_penalty(*params)</span><br><span class="line">            loss.backward()</span><br><span class="line">            SGD(params)</span><br><span class="line">        train_loss.append(square_loss(net(x[:num_train,:]),y[:num_train,:]).mean().asscalar())</span><br><span class="line">        test_loss.append(square_loss(net(x[num_train:,:]),y[num_train:,:]).mean().asscalar())</span><br><span class="line">    plt.plot(train_loss)</span><br><span class="line">    plt.plot(test_loss)</span><br><span class="line">    plt.legend([&apos;train&apos;, &apos;test&apos;])</span><br><span class="line">    plt.show()</span><br><span class="line">train(0)</span><br><span class="line">train(3)</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -420,7 +417,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/tensorflow/" rel="tag"># -tensorflow</a>
+            <a href="/tags/mxnet/" rel="tag"># -mxnet</a>
           
         </div>
       
@@ -433,8 +430,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/29/Romance/" rel="next" title="Romance">
-                <i class="fa fa-chevron-left"></i> Romance
+              <a href="/2018/04/11/mxnet二多类逻辑回归softmax/" rel="next" title="mxnet二多类逻辑回归softmax">
+                <i class="fa fa-chevron-left"></i> mxnet二多类逻辑回归softmax
               </a>
             
           </div>
@@ -443,8 +440,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/04/Tensorflow二/" rel="prev" title="Tensorflow二">
-                Tensorflow二 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/13/卷积神经网络/" rel="prev" title="卷积神经网络">
+                卷积神经网络 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -583,7 +580,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#入门必备之helloWorld"><span class="nav-number">1.</span> <span class="nav-text">入门必备之helloWorld</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tensorflow的运算"><span class="nav-number">2.</span> <span class="nav-text">tensorflow的运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常量运算"><span class="nav-number">2.1.</span> <span class="nav-text">常量运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#占位符"><span class="nav-number">2.2.</span> <span class="nav-text">占位符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矩阵相乘"><span class="nav-number">2.3.</span> <span class="nav-text">矩阵相乘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序截图"><span class="nav-number">2.4.</span> <span class="nav-text">程序截图</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#欠拟合："><span class="nav-number">1.</span> <span class="nav-text">欠拟合：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过拟合"><span class="nav-number">2.</span> <span class="nav-text">过拟合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试模型"><span class="nav-number">3.</span> <span class="nav-text">测试模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#欠拟合过拟合code"><span class="nav-number">4.</span> <span class="nav-text">欠拟合过拟合code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则code"><span class="nav-number">5.</span> <span class="nav-text">正则code</span></a></li></ol></div>
             
 
           </div>
