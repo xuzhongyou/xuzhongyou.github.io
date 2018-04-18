@@ -77,7 +77,7 @@
 
 
 
-  <meta name="keywords" content="-tensorflow," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -88,20 +88,14 @@
 
 
 
-<meta name="description" content="CNN厉害的地方在于感受野和权值共享减少神经网络的训练参数.类比于人，不需要每个神经元对全局图像做感受，每个神经元只感受局部信息，然后在高层组合这些局部信息得到全局信息。相比于全连接层，CNN局部连接大量减少了参数。总的来说CNN能够自己做特征提取。  123456789101112131415161718192021222324252627282930313233343536373839404">
-<meta name="keywords" content="-tensorflow">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tensorflow三">
-<meta property="og:url" content="http://yoursite.com/2018/04/04/Tensorflow三/index.html">
+<meta property="og:title" content="卷积网络模型的简单介绍">
+<meta property="og:url" content="http://yoursite.com/2018/04/18/卷积网络模型的简单介绍/index.html">
 <meta property="og:site_name" content="from Demon import Angel">
-<meta property="og:description" content="CNN厉害的地方在于感受野和权值共享减少神经网络的训练参数.类比于人，不需要每个神经元对全局图像做感受，每个神经元只感受局部信息，然后在高层组合这些局部信息得到全局信息。相比于全连接层，CNN局部连接大量减少了参数。总的来说CNN能够自己做特征提取。  123456789101112131415161718192021222324252627282930313233343536373839404">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/04/04/Tensorflow三/cnn.png">
-<meta property="og:updated_time" content="2018-04-08T07:20:51.946Z">
+<meta property="og:updated_time" content="2018-04-18T03:43:38.976Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tensorflow三">
-<meta name="twitter:description" content="CNN厉害的地方在于感受野和权值共享减少神经网络的训练参数.类比于人，不需要每个神经元对全局图像做感受，每个神经元只感受局部信息，然后在高层组合这些局部信息得到全局信息。相比于全连接层，CNN局部连接大量减少了参数。总的来说CNN能够自己做特征提取。  123456789101112131415161718192021222324252627282930313233343536373839404">
-<meta name="twitter:image" content="http://yoursite.com/2018/04/04/Tensorflow三/cnn.png">
+<meta name="twitter:title" content="卷积网络模型的简单介绍">
 
 
 
@@ -131,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/04/Tensorflow三/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/18/卷积网络模型的简单介绍/"/>
 
 
 
 
 
-  <title>Tensorflow三 | from Demon import Angel</title>
+  <title>卷积网络模型的简单介绍 | from Demon import Angel</title>
   
 
 
@@ -264,7 +258,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/04/Tensorflow三/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/18/卷积网络模型的简单介绍/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiaokehu">
@@ -281,7 +275,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Tensorflow三</h1>
+          <h1 class="post-title" itemprop="name headline">卷积网络模型的简单介绍</h1>
         
 
         <div class="post-meta">
@@ -293,8 +287,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T17:18:04+08:00">
-                2018-04-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-18T11:43:38+08:00">
+                2018-04-18
               </time>
             
 
@@ -304,28 +298,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DeepLearning/" itemprop="url" rel="index">
-                    <span itemprop="name">-DeepLearning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -333,7 +305,7 @@
 
           
           
-             <span id="/2018/04/04/Tensorflow三/" class="leancloud_visitors" data-flag-title="Tensorflow三">
+             <span id="/2018/04/18/卷积网络模型的简单介绍/" class="leancloud_visitors" data-flag-title="卷积网络模型的简单介绍">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -358,7 +330,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  679
+                  0
                 </span>
               
 
@@ -374,7 +346,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  1
                 </span>
               
             </div>
@@ -395,12 +367,7 @@
       
 
       
-        <blockquote>
-<p>CNN厉害的地方在于感受野和权值共享减少神经网络的训练参数.类比于人，不需要每个神经元对全局图像做感受，每个神经元只感受局部信息，然后在高层组合这些局部信息得到全局信息。相比于全连接层，CNN局部连接大量减少了参数。总的来说CNN能够自己做特征提取。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf</span><br><span class="line">from tensorflow.examples.tutorials.mnist import input_data</span><br><span class="line">mnist = input_data.read_data_sets(&apos;/tmp/data&apos;,one_hot=True)</span><br><span class="line"></span><br><span class="line">#超参数</span><br><span class="line">learning_rate=0.01</span><br><span class="line">num_step = 201</span><br><span class="line">batch_size = 128</span><br><span class="line">hidden_size = 1024</span><br><span class="line">num_input = 784</span><br><span class="line">num_class = 10</span><br><span class="line">#选择激活部分神经元</span><br><span class="line">dropout = 0.75</span><br><span class="line"></span><br><span class="line">X = tf.placeholder(tf.float32,[None,num_input])</span><br><span class="line">Y = tf.placeholder(tf.float32,[None,num_class])</span><br><span class="line">keep_prob = tf.placeholder(tf.float32)</span><br><span class="line"></span><br><span class="line">#卷积层</span><br><span class="line">def conv2d(x,W,b,strides=1):</span><br><span class="line">    #第一个参数和第四个参数都是1</span><br><span class="line">    x = tf.nn.conv2d(x,W,strides=[1,strides,strides,1],padding=&apos;SAME&apos;)</span><br><span class="line">    x = tf.nn.bias_add(x,b)</span><br><span class="line">    #图像中激活函数一般relu用的比较多</span><br><span class="line">    return tf.nn.relu(x)</span><br><span class="line">#池化层</span><br><span class="line">def maxpool2d(x,k=2):</span><br><span class="line">    return tf.nn.max_pool(x,ksize=[1,k,k,1],strides=[1,k,k,1],padding=&apos;SAME&apos;)</span><br><span class="line">#网络模型</span><br><span class="line">def netWork(x,weights,biases,dropout):</span><br><span class="line">    x = tf.reshape(x,shape=[-1,28,28,1])</span><br><span class="line">    #一个卷积层加一个最大池化层</span><br><span class="line">    conv1 = conv2d(x,weights[&apos;wc1&apos;],biases[&apos;bc1&apos;])</span><br><span class="line">    conv1 = maxpool2d(conv1,k=2)</span><br><span class="line">    #再来一个卷积层加一个最大池化层</span><br><span class="line">    conv2 = conv2d(conv1,weights[&apos;wc2&apos;],biases[&apos;bc2&apos;])</span><br><span class="line">    conv2 = maxpool2d(conv2,k=2)</span><br><span class="line">    #一个全连接层,reshape一定要对应</span><br><span class="line">    fc1 = tf.reshape(conv2,[-1,weights[&apos;fc1&apos;].get_shape().as_list()[0]])</span><br><span class="line">    fc1 = tf.add(tf.matmul(fc1,weights[&apos;fc1&apos;]),biases[&apos;bd1&apos;])</span><br><span class="line">    fc1 = tf.nn.relu(fc1)</span><br><span class="line">    #矩阵中一部分置0</span><br><span class="line">    fc1 = tf.nn.dropout(fc1,dropout)</span><br><span class="line">    out = tf.add(tf.matmul(fc1,weights[&apos;out&apos;]),biases[&apos;out&apos;])</span><br><span class="line">    return out</span><br><span class="line"></span><br><span class="line">weights = &#123;</span><br><span class="line">    &apos;wc1&apos;:tf.Variable(tf.random_normal([5,5,1,32])),</span><br><span class="line">    &apos;wc2&apos;:tf.Variable(tf.random_normal([5,5,32,64])),</span><br><span class="line">    &apos;fc1&apos;:tf.Variable(tf.random_normal([7*7*64,hidden_size])),</span><br><span class="line">    &apos;out&apos;:tf.Variable(tf.random_normal([hidden_size,num_class]))</span><br><span class="line">&#125;</span><br><span class="line">biases = &#123;</span><br><span class="line">    &apos;bc1&apos;: tf.Variable(tf.random_normal([32])),</span><br><span class="line">    &apos;bc2&apos;: tf.Variable(tf.random_normal([64])),</span><br><span class="line">    &apos;bd1&apos;: tf.Variable(tf.random_normal([hidden_size])),</span><br><span class="line">    &apos;out&apos;: tf.Variable(tf.random_normal([num_class]))</span><br><span class="line">&#125;</span><br><span class="line">pred = netWork(X,weights,biases,dropout)</span><br><span class="line">cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=pred,labels=Y))</span><br><span class="line">optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)</span><br><span class="line"></span><br><span class="line">#计算准确率</span><br><span class="line">correct_prediction = tf.equal(tf.argmax(pred, 1), tf.argmax(Y, 1))</span><br><span class="line">accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))</span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">    sess.run(init)</span><br><span class="line">    for epoch in range(num_step):</span><br><span class="line">        batch_x , batch_y = mnist.train.next_batch(batch_size)</span><br><span class="line">        sess.run(optimizer,feed_dict=&#123;X:batch_x,Y:batch_y,keep_prob:0.8&#125;)</span><br><span class="line">        if epoch%5 ==0:</span><br><span class="line">            loss,acc = sess.run([cost,accuracy],feed_dict=&#123;X:batch_x,Y:batch_y,keep_prob:1.0&#125;)</span><br><span class="line">            print(&quot;Step &quot; + str(epoch) + &quot;, Minibatch Loss= &quot; + &quot;&#123;:.4f&#125;&quot;.format(loss) + &quot;, Training Accuracy= &quot; + &quot;&#123;:.3f&#125;&quot;.format(acc))</span><br><span class="line"></span><br><span class="line">    print(&quot;Optimization Finished!&quot;)</span><br><span class="line">    # Calculate accuracy for 256 MNIST test images</span><br><span class="line">    print(&quot;Testing Accuracy:&quot;, sess.run(accuracy, feed_dict=&#123;X: mnist.test.images[:256],Y: mnist.test.labels[:256],keep_prob: 1.0&#125;))</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/04/04/Tensorflow三/cnn.png" alt=""></p>
-
+        
       
     </div>
     
@@ -415,12 +382,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/tensorflow/" rel="tag"># -tensorflow</a>
-          
-        </div>
-      
 
       
       
@@ -430,8 +391,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/04/Tensorflow二/" rel="next" title="Tensorflow二">
-                <i class="fa fa-chevron-left"></i> Tensorflow二
+              <a href="/2018/04/17/批量归一化/" rel="next" title="批量归一化">
+                <i class="fa fa-chevron-left"></i> 批量归一化
               </a>
             
           </div>
@@ -439,10 +400,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/08/python编码问题/" rel="prev" title="python编码问题">
-                python编码问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
