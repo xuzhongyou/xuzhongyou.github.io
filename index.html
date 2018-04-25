@@ -258,6 +258,223 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/23/mxnet的计算性能/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaokehu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="from Demon import Angel">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/23/mxnet的计算性能/" itemprop="url">mxnet的计算性能</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-23T20:02:19+08:00">
+                2018-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DeepLearning/" itemprop="url" rel="index">
+                    <span itemprop="name">-DeepLearning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/04/23/mxnet的计算性能/" class="leancloud_visitors" data-flag-title="mxnet的计算性能">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,075
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>计算性能的重要因子：命令式编程，符号式编程，惰性计算，自动并行计算，多GPU计算。</p>
+</blockquote>
+<h2 id="mxnet的命令式编程和符号式编程"><a href="#mxnet的命令式编程和符号式编程" class="headerlink" title="mxnet的命令式编程和符号式编程"></a>mxnet的命令式编程和符号式编程</h2><p>命令式编程：一行一行一次执行，运行非常的慢。<br>符号式编程：计算流程完全定义好之后才被执行。(Theano,Tensorflow)</p>
+<blockquote>
+<p>符号式编程步骤：1.定义计算流程。2.计算流编译成可执行的程序。3.给定输入，调用编译好的程序执行。</p>
+</blockquote>
+<h3 id="符号式编程Demo"><a href="#符号式编程Demo" class="headerlink" title="符号式编程Demo"></a>符号式编程Demo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">def add_str():</span><br><span class="line">    return &apos;&apos;&apos;</span><br><span class="line">def add(a, b):</span><br><span class="line">    return a + b</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">def fancy_func_str():</span><br><span class="line">    return &apos;&apos;&apos;</span><br><span class="line">def fancy_func(a, b, c, d):</span><br><span class="line">    e = add(a, b)</span><br><span class="line">    f = add(c, d)</span><br><span class="line">    g = add(e, f)</span><br><span class="line">    return g</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">def evoke_str():</span><br><span class="line">    return add_str() + fancy_func_str() + &apos;&apos;&apos;</span><br><span class="line">print(fancy_func(1, 2, 3, 4))</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">prog = evoke_str()</span><br><span class="line">print(prog)</span><br><span class="line">y = compile(prog, &apos;&apos;, &apos;exec&apos;)</span><br><span class="line">exec(y)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>符号式编程优点：1.编译过程中能够看到全部程序，能够做到优化计算。如上列中优化程序：print((1 + 2) + (3 + 4))。2.高效移植，能够将程序变成一个与python无关的格式，能够在非python环境下运行。而命令式编程的优点是方便Debug。Theano,Tensorflow符号式编程。PyTorch使用命令编程。mxnet提倡命令式开发，符号式部署运行。</p>
+</blockquote>
+<h3 id="HybridBlock-和-HybridSequential"><a href="#HybridBlock-和-HybridSequential" class="headerlink" title="HybridBlock 和 HybridSequential"></a>HybridBlock 和 HybridSequential</h3><p>默认情况下是命令式编程方式，当调用hybridize函数后，Gluon会转换成符号式编程。</p>
+<h3 id="获取符号式程序"><a href="#获取符号式程序" class="headerlink" title="获取符号式程序"></a>获取符号式程序</h3><p>net.export(‘my_mlp’)来保存符号式程序和模型参数到硬盘。会生成json和params文件分别为符号式程序和模型参数。<br>MXNet中符号式程序类型是Symbol，还可以给一个Symbol输入量。形式和Tensorflow很相似。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = sym.var(&apos;data&apos;)</span><br><span class="line">net(x)</span><br></pre></td></tr></table></figure></p>
+<h3 id="HybridBlock，HybridSequential，Sequential，Block，Dense之间的关系"><a href="#HybridBlock，HybridSequential，Sequential，Block，Dense之间的关系" class="headerlink" title="HybridBlock，HybridSequential，Sequential，Block，Dense之间的关系"></a>HybridBlock，HybridSequential，Sequential，Block，Dense之间的关系</h3><p>Sequential是Block的子类，HybridSequential，Dense类是HybridBlock的子类。hybrid_forward代替forward函数。基于命令式编程的是NDArray类，基于符号式编程的是Symbol类。当函数调用hybridize函数时，运行net(x)会得到符号式程序，之后调用net(x)不会访问python代码，而是直接在c++后端执行符号式程序。</p>
+<h2 id="惰性计算"><a href="#惰性计算" class="headerlink" title="惰性计算"></a>惰性计算</h2><blockquote>
+<p>惰性计算的优点是：能够看到有关变量a的所有计算，从未有更多空间来做优化。例如下面print(a),采用惰性计算能够不计算前两句的赋值语句。<br>MXNet包含两个部分：用户交互的前端和用来执行的后端。前端语言可以用任意一种语言，MXNet程序执行主要发生在C++后端。主要工作流前端MXNet程序会传给后端执行计算，后端通过线程不断收集任务，构造，优化并执行计算图。</p>
+</blockquote>
+<h3 id="简单演示"><a href="#简单演示" class="headerlink" title="简单演示"></a>简单演示</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = nd.ones((1, 2))</span><br><span class="line">b = nd.ones((1, 2))</span><br><span class="line">c = a * b + 2</span><br><span class="line">print(c)</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/04/23/mxnet的计算性能/lazy.png" alt=""></p>
+<blockquote>
+<p>前端执行前三个语句，把任务放进后端队列。需要打印时，前端等后端线程把c的结果计算完。可以理解为前端python不参与计算，计算都在后端c++来支持的。更好的一点是惰性计算大部分情况对用户是透明的，只要数据保存在NDArray里，而且使用MXNet提供的运算子，默认多行计算。</p>
+</blockquote>
+<h3 id="立即获取结果"><a href="#立即获取结果" class="headerlink" title="立即获取结果"></a>立即获取结果</h3><pre><code>1.nd.NDArray.wait_to_read等待特定结果完成。
+2.nd.waitall()等待所有前面结果完成
+3.任何方法将内容从NDArray搬运到其他不支持延迟执行的数据结构都会触发等待。asnumpy(),asscalar()可以理解为同步函数。
+</code></pre><blockquote>
+<p>延迟操作会代开更多的内存开销。</p>
+</blockquote>
+<h2 id="多GPU训练"><a href="#多GPU训练" class="headerlink" title="多GPU训练"></a>多GPU训练</h2><h3 id="数据并行"><a href="#数据并行" class="headerlink" title="数据并行"></a>数据并行</h3><blockquote>
+<p>数据并行是深度学习里面使用最广泛将任务划分到多设备的办法。原理：多个GPU,每个GPU维护模型参数的复制。将一个批量的样本划分成多块给多个GPU，每个GPU使用分到的数据计算梯度。然后将所有GPU上梯度相加得到这个批量上的整个梯度，用完整梯度对自己维护的模型进行更新。穷人，还没有GPU,想看怎么实现的<a href="http://zh.gluon.ai/chapter_gluon-advances/multiple-gpus-scratch.html" target="_blank" rel="noopener">这里</a></p>
+<blockquote>
+<p>需要注意的地方是：数据的切分，梯度的累加，参数的更新。</p>
+</blockquote>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/18/卷积网络模型的简单介绍/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2009,197 +2226,6 @@ asscalar将nd.mean的结果转为标量
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/03/Tensorflow一/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xiaokehu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="from Demon import Angel">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/03/Tensorflow一/" itemprop="url">Tensorflow(一)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-03T16:27:28+08:00">
-                2018-04-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DeepLearning/" itemprop="url" rel="index">
-                    <span itemprop="name">-DeepLearning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/04/03/Tensorflow一/" class="leancloud_visitors" data-flag-title="Tensorflow(一)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  300
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>一直想写一个系列关于tensorflow的使用，之前由于准备一些事情耽误了，也有一部分因为懒。so,趁现在空闲写一点的，并一定给别人带来帮助就是记录学习的过程。</p>
-</blockquote>
-<h2 id="入门必备之helloWorld"><a href="#入门必备之helloWorld" class="headerlink" title="入门必备之helloWorld"></a>入门必备之helloWorld</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf</span><br><span class="line">a = tf.constant(3)</span><br><span class="line">b = tf.constant(4)</span><br><span class="line">#熟悉with的用法,运行会话中的op,首先要有Session</span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">    print(&apos;a+b&apos;,sess.run(a+b))</span><br><span class="line">    print(&apos;a*b&apos;,sess.run(a*b))</span><br></pre></td></tr></table></figure>
-<h2 id="tensorflow的运算"><a href="#tensorflow的运算" class="headerlink" title="tensorflow的运算"></a>tensorflow的运算</h2><h3 id="常量运算"><a href="#常量运算" class="headerlink" title="常量运算"></a>常量运算</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">a = tf.constant(<span class="number">3</span>)</span><br><span class="line">b = tf.constant(<span class="number">4</span>)</span><br><span class="line">#熟悉with的用法,运行会话中的op,首先要有Session</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    print(<span class="string">'a+b'</span>,sess.run(a+b))</span><br><span class="line">    print(<span class="string">'a*b'</span>,sess.run(a*b))</span><br></pre></td></tr></table></figure>
-<h3 id="占位符"><a href="#占位符" class="headerlink" title="占位符"></a>占位符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = tf.placeholder(tf.int32)</span><br><span class="line">b = tf.placeholder(tf.int32)</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    #这边可以替换a+b,为tf.add(a,b)</span><br><span class="line">    print(<span class="string">'a+b'</span>,sess.run(a+b,feed_dict=&#123;<span class="attr">a</span>:<span class="number">3</span>,<span class="attr">b</span>:<span class="number">4</span>&#125;))</span><br><span class="line">    print(<span class="string">'a*b'</span>, sess.run(a*b, feed_dict=&#123;<span class="attr">a</span>: <span class="number">3</span>, <span class="attr">b</span>: <span class="number">4</span>&#125;))</span><br></pre></td></tr></table></figure>
-<h3 id="矩阵相乘"><a href="#矩阵相乘" class="headerlink" title="矩阵相乘"></a>矩阵相乘</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">matrix2 = tf.constant([[2.],[2.]])</span><br><span class="line">product = tf.matmul(matrix1,matrix2)</span><br><span class="line">with tf.Session() as tf:</span><br><span class="line">    print(&apos;matrix1 * matrix2&apos;,tf.run(product))</span><br><span class="line">    #查看矩阵相乘的类型</span><br><span class="line">    print(type(tf.run(product)))</span><br></pre></td></tr></table></figure>
-<h3 id="程序截图"><a href="#程序截图" class="headerlink" title="程序截图"></a>程序截图</h3><p><img src="/2018/04/03/Tensorflow一/operation.png" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2256,7 +2282,7 @@ asscalar将nd.mean的结果转为标量
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2329,7 +2355,7 @@ asscalar将nd.mean的结果转为标量
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">10.2k</span>
+    <span title="Site words total count">11.2k</span>
   
 </div>
 
