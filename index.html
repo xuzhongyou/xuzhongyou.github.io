@@ -258,6 +258,225 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/04/目标检测/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaokehu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="from Demon import Angel">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/04/目标检测/" itemprop="url">目标检测</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-04T16:10:44+08:00">
+                2018-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DeepLearning/" itemprop="url" rel="index">
+                    <span itemprop="name">-DeepLearning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/05/04/目标检测/" class="leancloud_visitors" data-flag-title="目标检测">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  752
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="目标检测"><a href="#目标检测" class="headerlink" title="目标检测"></a>目标检测</h2><blockquote>
+<p>一直觉得，图像分类比较简单，物体检测多分类很复杂，所以也不愿意花时间去研究。万事开头难，每个人都有自己擅长的学习方式，而我喜欢：细究一样东西前，先整体把握。so，这篇博客先整体上了解一下目标检测的几个算法，算法出现前后优化了什么，解决了什么样的局限性。</p>
+<blockquote>
+<p>目标检测：分析图片里有什么，然后识别它在什么位置。就是常见的一张图中一个框(bounding box)，并给出概率。</p>
+</blockquote>
+</blockquote>
+<h3 id="R-CNN"><a href="#R-CNN" class="headerlink" title="R-CNN"></a>R-CNN</h3><p>思想：</p>
+<pre><code>1.    Selective Search选出候选区域。
+2.    Conv抽取特征。
+3.    分类器分类，回归器的得到准确bounding box。
+</code></pre><p><img src="/2018/05/04/目标检测/R-CNN.png" alt=""><br>Tips:</p>
+<pre><code>1.    Selective Search基于规则的选择性搜索。
+2.    这边的特征提取可以用迁移学习微调。
+3.    提取的特征放入多个svm分类器，每个svm判断是否包含这个物体。
+4.    2提取的特征来训练回归器，得到bounding box。
+</code></pre><p>缺陷：<br>    Selective Search 可能选出上千个候选区域，速度特别慢。</p>
+<h3 id="Fast-R-CNN"><a href="#Fast-R-CNN" class="headerlink" title="Fast R-CNN"></a>Fast R-CNN</h3><p>思想：</p>
+<pre><code>1.    R-CNN的对原始图片进行Select Search,其中大量区域可能相互覆盖，每次可能抽取相同特征。Fast R-CNN解决办法是先对输入图片抽取特征，然后再选取区域
+2.    R-CNN使用多个SVM分类，太笨重。Fast R-CNN使用一个多类逻辑回归-Softmax。
+</code></pre><p><img src="/2018/05/04/目标检测/F R-CNN.png" alt=""><br>Tips：</p>
+<pre><code>1.    原始图片做一次特征提取，节省重复计算。
+2.    ROL(兴趣区域池化层)对指定区域池化，生成固定大小输出。(具体实现可以看后面博客)
+</code></pre><h3 id="Faster-R-CNN"><a href="#Faster-R-CNN" class="headerlink" title="Faster R-CNN"></a>Faster R-CNN</h3><p>思想:</p>
+<pre><code>1.    Fast R-CNN仍然是用Select Search来选取候选区域。Faster R-CNN改进提出了RPN选取候选区域。
+</code></pre><p><img src="/2018/05/04/目标检测/Faster R-CNN.png" alt=""><br>Tips:<br>    RPN:</p>
+<pre><code>    1.    预先配置好一些区域
+    2.    网络判断区域是否包含检测物体，如果是再预测一个更加准确的边框。
+PRN具体操作：
+    1.    生成锚框。(以每个像素为中心，生成指定k个长宽比预先设定好的默认边框)
+    2.    构造分类器特征。例如输入特征基础上放一个padding为1，通道256的3x3卷积。得到长为256的向量。
+    3.    对于所有锚框，使用中心像素对应的256维向量作为特征放入分类器。被检测物体的，将回归器的边框作为输入放到接下来的ROL池化层。
+</code></pre><h3 id="SSD"><a href="#SSD" class="headerlink" title="SSD"></a>SSD</h3><p>思想：</p>
+<pre><code>1.    直接使用一个n+1个分类器。(n表示原有分类，1表示背景)，并且直接使用一个回归器来预测bounding.
+2.    不仅对卷积后的特征做预测，还会进一步将特征卷积再次预测。
+</code></pre><p>Tips:</p>
+<pre><code>1.    SSD单发多框检测器。所谓单发指的是不同于R-CNN候选区域和分类分开进行。
+</code></pre><h3 id="YOLO-后面补充"><a href="#YOLO-后面补充" class="headerlink" title="YOLO(后面补充)"></a>YOLO(后面补充)</h3><h3 id="Mask-R-CNN-后面补充"><a href="#Mask-R-CNN-后面补充" class="headerlink" title="Mask R-CNN(后面补充)"></a>Mask R-CNN(后面补充)</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/23/mxnet的计算性能/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2030,202 +2249,6 @@ asscalar将nd.mean的结果转为标量
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/04/Tensorflow二/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xiaokehu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="from Demon import Angel">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/04/Tensorflow二/" itemprop="url">Tensorflow二</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T13:35:15+08:00">
-                2018-04-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DeepLearning/" itemprop="url" rel="index">
-                    <span itemprop="name">-DeepLearning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/04/04/Tensorflow二/" class="leancloud_visitors" data-flag-title="Tensorflow二">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,049
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>上一节讲了tensorflow简单的运算，这节用简单的线性模型感受一下tensorflow和机器学习的一般操作。本章节只讲tensorflow的用法，如果对线性模型不了解的可以自行查阅，或者等博主有空写个专题（涉及基本原理和公式的推导）。<br>讲两个模型，线性回归(numpy造一些数据)，逻辑回归（mnist数据集）</p>
-</blockquote>
-<h2 id="从线性回归开始"><a href="#从线性回归开始" class="headerlink" title="从线性回归开始"></a>从线性回归开始</h2><blockquote>
-<p>线性回归：找到一组参数，作用于样本的属性，使其预测结果与真实结果接近（自行理解接近）</p>
-</blockquote>
-<h3 id="用tensorflow求解参数W，b，拟合样本数据，并matplotlib展示"><a href="#用tensorflow求解参数W，b，拟合样本数据，并matplotlib展示" class="headerlink" title="用tensorflow求解参数W，b，拟合样本数据，并matplotlib展示"></a>用tensorflow求解参数W，b，拟合样本数据，并matplotlib展示</h3><p>直接上代码吧<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf</span><br><span class="line">import numpy</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line">#params:设定超参数</span><br><span class="line">learning_rate = 0.01</span><br><span class="line">training_epochs = 1001</span><br><span class="line"></span><br><span class="line">train_x = numpy.asarray([3.3,4.4,5.5,6.71,6.93,4.168,9.779,6.182,7.59,2.167,</span><br><span class="line">                         7.042,10.791,5.313,7.997,5.654,9.27,3.1])</span><br><span class="line">train_y = numpy.asarray([1.7,2.76,2.09,3.19,1.694,1.573,3.366,2.596,2.53,1.221,</span><br><span class="line">                         2.827,3.465,1.65,2.904,2.42,2.94,1.3])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">n_samples = train_x.shape[0]</span><br><span class="line">#需要注意的是当train_x是向量形式时，他的表示方式。</span><br><span class="line">print(train_x.shape)</span><br><span class="line">#线性回归，找到一组参数，作用于x,使其接近于y</span><br><span class="line">X = tf.placeholder(&apos;float&apos;)</span><br><span class="line">Y = tf.placeholder(&apos;float&apos;)</span><br><span class="line"></span><br><span class="line">#w参数一般会给一个非0的初始值,取名为weights,b为偏移</span><br><span class="line">#不加说明的命名规范，矩阵用大写</span><br><span class="line">W = tf.Variable(numpy.random.randn(),name=&apos;weights&apos;)</span><br><span class="line">b = tf.Variable(numpy.random.randn(),name= &apos;bias&apos;)</span><br><span class="line"></span><br><span class="line">#预测结果</span><br><span class="line">pred = tf.add(tf.multiply(X,W),b)</span><br><span class="line"></span><br><span class="line">#定义损失函数，一般线性回归用均方误差即可（别告诉我你不知道分母为什么）</span><br><span class="line">cost = tf.reduce_sum(tf.pow(pred-Y,2))/(2*n_samples)</span><br><span class="line">#定义优化器,这里选择随机梯度下降</span><br><span class="line">optimizer =  tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)</span><br><span class="line"></span><br><span class="line">#初始化定义的变量</span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">    sess.run(init)</span><br><span class="line">    #训练模型</span><br><span class="line">    for epoch in range(training_epochs):</span><br><span class="line">        for (x,y) in zip(train_x,train_y):</span><br><span class="line">            sess.run(optimizer,feed_dict=&#123;X:x,Y:y&#125;)</span><br><span class="line">        if epoch % 50 == 0:</span><br><span class="line">            c = sess.run(cost,feed_dict=&#123;X:train_x,Y:train_y&#125;)</span><br><span class="line">            #每50次看一下训练的效果</span><br><span class="line">            print(&quot;Epoch:&quot;, &apos;%04d&apos; % (epoch), &quot;cost=&quot;, &quot;&#123;:.9f&#125;&quot;.format(c),</span><br><span class="line">                  &quot;W=&quot;, sess.run(W), &quot;b=&quot;, sess.run(b))</span><br><span class="line">    print(&quot;Optimization Finished!&quot;)</span><br><span class="line">    training_cost = sess.run(cost, feed_dict=&#123;X: train_x, Y: train_y&#125;)</span><br><span class="line">    print(&quot;Training cost=&quot;, training_cost, &quot;W=&quot;, sess.run(W), &quot;b=&quot;, sess.run(b), &apos;\n&apos;)</span><br><span class="line"></span><br><span class="line">    #画图，这里的&apos;ro&apos;r指的red,o指的是散点图</span><br><span class="line">    plt.plot(train_x, train_y, &apos;ro&apos;, label=&apos;Original data&apos;)#加0变成散点图</span><br><span class="line">    plt.plot(train_x, sess.run(W) * train_x + sess.run(b), label=&apos;Fitted line&apos;)</span><br><span class="line">    #legend显示label</span><br><span class="line">    plt.legend()</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure></p>
-<h3 id="程序截图"><a href="#程序截图" class="headerlink" title="程序截图"></a>程序截图</h3><p><img src="/2018/04/04/Tensorflow二/linerRegression.png" alt=""></p>
-<h2 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h2><blockquote>
-<p>逻辑回归：在线性回归的基础上，用sigmoid函数对值域进行控制（0，1）之间，逻辑回归处理二分类问题，这里用mnist数据集，用softmax函数代替，损失函数用交叉熵代替。（不明白交叉熵就等我更新喽）</p>
-</blockquote>
-<figure class="highlight plain"><figcaption><span>tensorflow as tf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">from tensorflow.examples.tutorials.mnist import  input_data</span><br><span class="line"></span><br><span class="line">mnist = input_data.read_data_sets(&apos;/tmp/data/&apos;,one_hot=True)</span><br><span class="line"></span><br><span class="line">#Params:</span><br><span class="line">learning_rate = 0.01</span><br><span class="line">training_epochs = 26</span><br><span class="line">batch_size = 100</span><br><span class="line"></span><br><span class="line">x = tf.placeholder(tf.float32,[None,784])</span><br><span class="line">y = tf.placeholder(tf.float32,[None,10])</span><br><span class="line"></span><br><span class="line">W = tf.Variable(tf.zeros([784,10]))</span><br><span class="line">b = tf.Variable(tf.zeros([10]))</span><br><span class="line">#预测结果</span><br><span class="line">#matmul表示矩阵乘法</span><br><span class="line">pred = tf.nn.softmax(tf.matmul(x,W)+b)</span><br><span class="line">#损失函数采用交叉熵</span><br><span class="line">cost = tf.reduce_mean(-tf.reduce_sum(y*tf.log(pred),reduction_indices=1))</span><br><span class="line">optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)</span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">    sess.run(init)</span><br><span class="line">    for epoch in range(training_epochs):</span><br><span class="line">        avg_cost = 0</span><br><span class="line">        total_batch = mnist.train.num_examples // batch_size</span><br><span class="line">        for i in range(total_batch):</span><br><span class="line">            batch_x,batch_y = mnist.train.next_batch(batch_size)</span><br><span class="line">            _,c = sess.run([optimizer,cost],feed_dict=&#123;x:batch_x,y:batch_y&#125;)</span><br><span class="line">            avg_cost += c/total_batch</span><br><span class="line">        if epoch%5==0:</span><br><span class="line">            print(&quot;Epoch:&quot;, &apos;%04d&apos; % (epoch), &quot;cost=&quot;, &quot;&#123;:.9f&#125;&quot;.format(avg_cost))</span><br><span class="line">    print(&quot;Optimization Finished!&quot;)</span><br><span class="line">    correct_prediction = tf.equal(tf.argmax(pred,1),tf.argmax(y,1))</span><br><span class="line">    #求平均值，如果不明白可以单独写一个demo去测试tf.cast(),tf.reduce_man()方法。</span><br><span class="line">    #需要注意的是这里的correct_prediction以及accuracy是 op ,必须放到会话中去运行。</span><br><span class="line">    accuracy = tf.reduce_mean(tf.cast(correct_prediction,tf.float32))</span><br><span class="line">    # print(&apos;correct_prediction&apos;,sess.run(correct_prediction,&#123;x: mnist.test.images, y: mnist.test.labels&#125;))</span><br><span class="line">    print(&quot;Accuracy:&quot;, accuracy.eval(&#123;x: mnist.test.images, y: mnist.test.labels&#125;))</span><br></pre></td></tr></table></figure>
-<h3 id="程序截图-1"><a href="#程序截图-1" class="headerlink" title="程序截图"></a>程序截图</h3><p><img src="/2018/04/04/Tensorflow二/logisticRegression.png" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2282,7 +2305,7 @@ asscalar将nd.mean的结果转为标量
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2355,7 +2378,7 @@ asscalar将nd.mean的结果转为标量
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">11.2k</span>
+    <span title="Site words total count">12.0k</span>
   
 </div>
 
