@@ -258,6 +258,197 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/22/GAN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaokehu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="from Demon import Angel">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/22/GAN/" itemprop="url">GAN</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-22T23:16:41+08:00">
+                2018-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DeepLearning/" itemprop="url" rel="index">
+                    <span itemprop="name">-DeepLearning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/22/GAN/" class="leancloud_visitors" data-flag-title="GAN">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  276
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          GANDefinition of generative model
+Given a large dataset, without any labels, we might want to learn a model that concisely captures the characteristic
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/22/GAN/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/14/语义分割/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -393,24 +584,20 @@
       
         
           
-            <h2 id="语义分割"><a href="#语义分割" class="headerlink" title="语义分割"></a>语义分割</h2><blockquote>
-<p>语义分割解决的问题是：对每一个像素进行分类。图片分割同样解决像素分类问题。区别在于，语义分割是监督学习，图像分割是聚类。语义分割的核心在于全连接卷积网络。</p>
-</blockquote>
-<h3 id="常用的语义分割数据集-VOC2012"><a href="#常用的语义分割数据集-VOC2012" class="headerlink" title="常用的语义分割数据集(VOC2012)"></a>常用的语义分割数据集(<a href="http://host.robots.ox.ac.uk/pascal/VOC/voc2012/" target="_blank" rel="noopener">VOC2012</a>)</h3><ol>
-<li>语义分割的数据集比较特殊，标注(label)是相应大小的图片。</li>
-<li>一般用rand_crop来取代imresize来调整同样的大小。</li>
-</ol>
-<h3 id="全连接卷积网络-Fcn"><a href="#全连接卷积网络-Fcn" class="headerlink" title="全连接卷积网络(Fcn)"></a>全连接卷积网络(Fcn)</h3><blockquote>
-<p>卷积网络中，通过卷积层和池化层来减少数据长宽增加数据通道。Fcn是将全连接层转化为卷积层，然后通过反卷积来还原输入效果达到每个像素的分类。(通过论文来进一步了解)</p>
-</blockquote>
-<h4 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h4><ol>
-<li>替换全连接层和池化层成1x1卷积</li>
-<li>添加反卷积转置到需要大小的输出</li>
-<li>权重初始化维预先训练权重</li>
-</ol>
-<p><img src="/2018/05/14/语义分割/Fcn.png" alt=""><br>Dense变为1x1的卷积</p>
+          语义分割
+语义分割解决的问题是：对每一个像素进行分类。图片分割同样解决像素分类问题。区别在于，语义分割是监督学习，图像分割是聚类。语义分割的核心在于全连接卷积网络。
 
-          
+常用的语义分割数据集(VOC2012)
+语义分割的数据集比较特殊，标注(label)是相应大小的图片。
+一般用rand_crop来取
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/14/语义分割/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -592,44 +779,18 @@
       
         
           
-            <h2 id="目标检测"><a href="#目标检测" class="headerlink" title="目标检测"></a>目标检测</h2><blockquote>
-<p>一直觉得，图像分类比较简单，物体检测多分类很复杂，所以也不愿意花时间去研究。万事开头难，每个人都有自己擅长的学习方式，而我喜欢：细究一样东西前，先整体把握。so，这篇博客先整体上了解一下目标检测的几个算法，算法出现前后优化了什么，解决了什么样的局限性。</p>
-<blockquote>
-<p>目标检测：分析图片里有什么，然后识别它在什么位置。就是常见的一张图中一个框(bounding box)，并给出概率。</p>
-</blockquote>
-</blockquote>
-<h3 id="R-CNN"><a href="#R-CNN" class="headerlink" title="R-CNN"></a>R-CNN</h3><p>思想：</p>
-<pre><code>1.    Selective Search选出候选区域。
-2.    Conv抽取特征。
-3.    分类器分类，回归器的得到准确bounding box。
-</code></pre><p><img src="/2018/05/04/目标检测/R-CNN.png" alt=""><br>Tips:</p>
-<pre><code>1.    Selective Search基于规则的选择性搜索。
-2.    这边的特征提取可以用迁移学习微调。
-3.    提取的特征放入多个svm分类器，每个svm判断是否包含这个物体。
-4.    2提取的特征来训练回归器，得到bounding box。
-</code></pre><p>缺陷：<br>    Selective Search 可能选出上千个候选区域，速度特别慢。</p>
-<h3 id="Fast-R-CNN"><a href="#Fast-R-CNN" class="headerlink" title="Fast R-CNN"></a>Fast R-CNN</h3><p>思想：</p>
-<pre><code>1.    R-CNN的对原始图片进行Select Search,其中大量区域可能相互覆盖，每次可能抽取相同特征。Fast R-CNN解决办法是先对输入图片抽取特征，然后再选取区域
-2.    R-CNN使用多个SVM分类，太笨重。Fast R-CNN使用一个多类逻辑回归-Softmax。
-</code></pre><p><img src="/2018/05/04/目标检测/F R-CNN.png" alt=""><br>Tips：</p>
-<pre><code>1.    原始图片做一次特征提取，节省重复计算。
-2.    ROL(兴趣区域池化层)对指定区域池化，生成固定大小输出。(具体实现可以看后面博客)
-</code></pre><h3 id="Faster-R-CNN"><a href="#Faster-R-CNN" class="headerlink" title="Faster R-CNN"></a>Faster R-CNN</h3><p>思想:</p>
-<pre><code>1.    Fast R-CNN仍然是用Select Search来选取候选区域。Faster R-CNN改进提出了RPN选取候选区域。
-</code></pre><p><img src="/2018/05/04/目标检测/Faster R-CNN.png" alt=""><br>Tips:<br>    RPN:</p>
-<pre><code>    1.    预先配置好一些区域
-    2.    网络判断区域是否包含检测物体，如果是再预测一个更加准确的边框。
-PRN具体操作：
-    1.    生成锚框。(以每个像素为中心，生成指定k个长宽比预先设定好的默认边框)
-    2.    构造分类器特征。例如输入特征基础上放一个padding为1，通道256的3x3卷积。得到长为256的向量。
-    3.    对于所有锚框，使用中心像素对应的256维向量作为特征放入分类器。被检测物体的，将回归器的边框作为输入放到接下来的ROL池化层。
-</code></pre><h3 id="SSD"><a href="#SSD" class="headerlink" title="SSD"></a>SSD</h3><p>思想：</p>
-<pre><code>1.    直接使用一个n+1个分类器。(n表示原有分类，1表示背景)，并且直接使用一个回归器来预测bounding.
-2.    不仅对卷积后的特征做预测，还会进一步将特征卷积再次预测。
-</code></pre><p>Tips:</p>
-<pre><code>1.    SSD单发多框检测器。所谓单发指的是不同于R-CNN候选区域和分类分开进行。
-</code></pre><h3 id="YOLO-后面补充"><a href="#YOLO-后面补充" class="headerlink" title="YOLO(后面补充)"></a>YOLO(后面补充)</h3><h3 id="Mask-R-CNN-后面补充"><a href="#Mask-R-CNN-后面补充" class="headerlink" title="Mask R-CNN(后面补充)"></a>Mask R-CNN(后面补充)</h3>
-          
+          目标检测
+一直觉得，图像分类比较简单，物体检测多分类很复杂，所以也不愿意花时间去研究。万事开头难，每个人都有自己擅长的学习方式，而我喜欢：细究一样东西前，先整体把握。so，这篇博客先整体上了解一下目标检测的几个算法，算法出现前后优化了什么，解决了什么样的局限性。
+
+目标检测：分析图片里有什么，然后识
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/04/目标检测/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -811,42 +972,20 @@ PRN具体操作：
       
         
           
-            <blockquote>
-<p>计算性能的重要因子：命令式编程，符号式编程，惰性计算，自动并行计算，多GPU计算。</p>
-</blockquote>
-<h2 id="mxnet的命令式编程和符号式编程"><a href="#mxnet的命令式编程和符号式编程" class="headerlink" title="mxnet的命令式编程和符号式编程"></a>mxnet的命令式编程和符号式编程</h2><p>命令式编程：一行一行一次执行，运行非常的慢。<br>符号式编程：计算流程完全定义好之后才被执行。(Theano,Tensorflow)</p>
-<blockquote>
-<p>符号式编程步骤：1.定义计算流程。2.计算流编译成可执行的程序。3.给定输入，调用编译好的程序执行。</p>
-</blockquote>
-<h3 id="符号式编程Demo"><a href="#符号式编程Demo" class="headerlink" title="符号式编程Demo"></a>符号式编程Demo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">def add_str():</span><br><span class="line">    return &apos;&apos;&apos;</span><br><span class="line">def add(a, b):</span><br><span class="line">    return a + b</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">def fancy_func_str():</span><br><span class="line">    return &apos;&apos;&apos;</span><br><span class="line">def fancy_func(a, b, c, d):</span><br><span class="line">    e = add(a, b)</span><br><span class="line">    f = add(c, d)</span><br><span class="line">    g = add(e, f)</span><br><span class="line">    return g</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">def evoke_str():</span><br><span class="line">    return add_str() + fancy_func_str() + &apos;&apos;&apos;</span><br><span class="line">print(fancy_func(1, 2, 3, 4))</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">prog = evoke_str()</span><br><span class="line">print(prog)</span><br><span class="line">y = compile(prog, &apos;&apos;, &apos;exec&apos;)</span><br><span class="line">exec(y)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>符号式编程优点：1.编译过程中能够看到全部程序，能够做到优化计算。如上列中优化程序：print((1 + 2) + (3 + 4))。2.高效移植，能够将程序变成一个与python无关的格式，能够在非python环境下运行。而命令式编程的优点是方便Debug。Theano,Tensorflow符号式编程。PyTorch使用命令编程。mxnet提倡命令式开发，符号式部署运行。</p>
-</blockquote>
-<h3 id="HybridBlock-和-HybridSequential"><a href="#HybridBlock-和-HybridSequential" class="headerlink" title="HybridBlock 和 HybridSequential"></a>HybridBlock 和 HybridSequential</h3><p>默认情况下是命令式编程方式，当调用hybridize函数后，Gluon会转换成符号式编程。</p>
-<h3 id="获取符号式程序"><a href="#获取符号式程序" class="headerlink" title="获取符号式程序"></a>获取符号式程序</h3><p>net.export(‘my_mlp’)来保存符号式程序和模型参数到硬盘。会生成json和params文件分别为符号式程序和模型参数。<br>MXNet中符号式程序类型是Symbol，还可以给一个Symbol输入量。形式和Tensorflow很相似。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = sym.var(&apos;data&apos;)</span><br><span class="line">net(x)</span><br></pre></td></tr></table></figure></p>
-<h3 id="HybridBlock，HybridSequential，Sequential，Block，Dense之间的关系"><a href="#HybridBlock，HybridSequential，Sequential，Block，Dense之间的关系" class="headerlink" title="HybridBlock，HybridSequential，Sequential，Block，Dense之间的关系"></a>HybridBlock，HybridSequential，Sequential，Block，Dense之间的关系</h3><p>Sequential是Block的子类，HybridSequential，Dense类是HybridBlock的子类。hybrid_forward代替forward函数。基于命令式编程的是NDArray类，基于符号式编程的是Symbol类。当函数调用hybridize函数时，运行net(x)会得到符号式程序，之后调用net(x)不会访问python代码，而是直接在c++后端执行符号式程序。</p>
-<h2 id="惰性计算"><a href="#惰性计算" class="headerlink" title="惰性计算"></a>惰性计算</h2><blockquote>
-<p>惰性计算的优点是：能够看到有关变量a的所有计算，从未有更多空间来做优化。例如下面print(a),采用惰性计算能够不计算前两句的赋值语句。<br>MXNet包含两个部分：用户交互的前端和用来执行的后端。前端语言可以用任意一种语言，MXNet程序执行主要发生在C++后端。主要工作流前端MXNet程序会传给后端执行计算，后端通过线程不断收集任务，构造，优化并执行计算图。</p>
-</blockquote>
-<h3 id="简单演示"><a href="#简单演示" class="headerlink" title="简单演示"></a>简单演示</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = nd.ones((1, 2))</span><br><span class="line">b = nd.ones((1, 2))</span><br><span class="line">c = a * b + 2</span><br><span class="line">print(c)</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/04/23/mxnet的计算性能/lazy.png" alt=""></p>
-<blockquote>
-<p>前端执行前三个语句，把任务放进后端队列。需要打印时，前端等后端线程把c的结果计算完。可以理解为前端python不参与计算，计算都在后端c++来支持的。更好的一点是惰性计算大部分情况对用户是透明的，只要数据保存在NDArray里，而且使用MXNet提供的运算子，默认多行计算。</p>
-</blockquote>
-<h3 id="立即获取结果"><a href="#立即获取结果" class="headerlink" title="立即获取结果"></a>立即获取结果</h3><pre><code>1.nd.NDArray.wait_to_read等待特定结果完成。
-2.nd.waitall()等待所有前面结果完成
-3.任何方法将内容从NDArray搬运到其他不支持延迟执行的数据结构都会触发等待。asnumpy(),asscalar()可以理解为同步函数。
-</code></pre><blockquote>
-<p>延迟操作会代开更多的内存开销。</p>
-</blockquote>
-<h2 id="多GPU训练"><a href="#多GPU训练" class="headerlink" title="多GPU训练"></a>多GPU训练</h2><h3 id="数据并行"><a href="#数据并行" class="headerlink" title="数据并行"></a>数据并行</h3><blockquote>
-<p>数据并行是深度学习里面使用最广泛将任务划分到多设备的办法。原理：多个GPU,每个GPU维护模型参数的复制。将一个批量的样本划分成多块给多个GPU，每个GPU使用分到的数据计算梯度。然后将所有GPU上梯度相加得到这个批量上的整个梯度，用完整梯度对自己维护的模型进行更新。穷人，还没有GPU,想看怎么实现的<a href="http://zh.gluon.ai/chapter_gluon-advances/multiple-gpus-scratch.html" target="_blank" rel="noopener">这里</a></p>
-<blockquote>
-<p>需要注意的地方是：数据的切分，梯度的累加，参数的更新。</p>
-</blockquote>
-</blockquote>
-
           
+计算性能的重要因子：命令式编程，符号式编程，惰性计算，自动并行计算，多GPU计算。
+
+mxnet的命令式编程和符号式编程命令式编程：一行一行一次执行，运行非常的慢。符号式编程：计算流程完全定义好之后才被执行。(Theano,Tensorflow)
+
+符号式编程步骤：1.定义计算流程。2.计算流编译
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/23/mxnet的计算性能/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1028,39 +1167,16 @@ PRN具体操作：
       
         
           
-            <blockquote>
-<p>计算机中的神经网络是研究者试图通过人工模拟脑神经元作为学习模型，但是这种模型通过梯度下降来学习，不得而知人脑应该不是这样学习的吧。这块恐怕还需要生物学家做出贡献，才能进一步提升或者说优化神经网络的学习能力。时代造英雄，深度神经网络的崛起不是偶然，随着海量的数据，计算能力更强的硬件支撑，深度神经网络开始展现它强大的学习能力。为什么从Alex Net说起，本人觉得是一个分界线，Alex Net相比之前的网络更大，参数更多，当然取得更好的效果，完胜传统的机器学习方法(ImageNet)。<br>下面简单说下图像方面的几个模型，旨在了解每个网络模型的特点，优点，以及构造的思路。</p>
-</blockquote>
-<h2 id="Alex-Net"><a href="#Alex-Net" class="headerlink" title="Alex Net"></a>Alex Net</h2><p>八层转换：五层卷积，两层全连接，一层输出层。具体的每层的设计看代码(卷积核的大小，池化层的设计)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">from mxnet.gluon import nn</span><br><span class="line"></span><br><span class="line">net = nn.Sequential()</span><br><span class="line">with net.name_scope():</span><br><span class="line">    net.add(</span><br><span class="line">        # 第一阶段</span><br><span class="line">        nn.Conv2D(channels=96, kernel_size=11,</span><br><span class="line">                  strides=4, activation=&apos;relu&apos;),</span><br><span class="line">        nn.MaxPool2D(pool_size=3, strides=2),</span><br><span class="line">        # 第二阶段</span><br><span class="line">        nn.Conv2D(channels=256, kernel_size=5,</span><br><span class="line">                  padding=2, activation=&apos;relu&apos;),</span><br><span class="line">        nn.MaxPool2D(pool_size=3, strides=2),</span><br><span class="line">        # 第三阶段</span><br><span class="line">        nn.Conv2D(channels=384, kernel_size=3,</span><br><span class="line">                  padding=1, activation=&apos;relu&apos;),</span><br><span class="line">        nn.Conv2D(channels=384, kernel_size=3,</span><br><span class="line">                  padding=1, activation=&apos;relu&apos;),</span><br><span class="line">        nn.Conv2D(channels=256, kernel_size=3,</span><br><span class="line">                  padding=1, activation=&apos;relu&apos;),</span><br><span class="line">        nn.MaxPool2D(pool_size=3, strides=2),</span><br><span class="line">        # 第四阶段</span><br><span class="line">        nn.Flatten(),</span><br><span class="line">        nn.Dense(4096, activation=&quot;relu&quot;),</span><br><span class="line">        nn.Dropout(.5),</span><br><span class="line">        # 第五阶段</span><br><span class="line">        nn.Dense(4096, activation=&quot;relu&quot;),</span><br><span class="line">        nn.Dropout(.5),</span><br><span class="line">        # 第六阶段</span><br><span class="line">        nn.Dense(10)</span><br><span class="line">    )</span><br></pre></td></tr></table></figure></p>
-<h2 id="VGG"><a href="#VGG" class="headerlink" title="VGG"></a>VGG</h2><p>VGG是有重复结构网络。可以用for loop来快速搭建一个深层次的神经网络。VGG还有一个关键使用很多个3x3的卷积层接上一个池化层。for loop这样的结构。</p>
-<h3 id="通用结构"><a href="#通用结构" class="headerlink" title="通用结构"></a>通用结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from mxnet.gluon import nn</span><br><span class="line"></span><br><span class="line">def vgg_block(num_convs, channels):</span><br><span class="line">    out = nn.Sequential()</span><br><span class="line">    for _ in range(num_convs):</span><br><span class="line">        out.add(</span><br><span class="line">            nn.Conv2D(channels=channels, kernel_size=3,</span><br><span class="line">                      padding=1, activation=&apos;relu&apos;)</span><br><span class="line">        )</span><br><span class="line">    out.add(nn.MaxPool2D(pool_size=2, strides=2))</span><br><span class="line">    return out</span><br></pre></td></tr></table></figure>
-<h3 id="stack通用结构"><a href="#stack通用结构" class="headerlink" title="stack通用结构"></a>stack通用结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def vgg_stack(architecture):</span><br><span class="line">    out = nn.Sequential()</span><br><span class="line">    for (num_convs, channels) in architecture:</span><br><span class="line">        out.add(vgg_block(num_convs, channels))</span><br><span class="line">    return out</span><br></pre></td></tr></table></figure>
-<h3 id="VGG11"><a href="#VGG11" class="headerlink" title="VGG11"></a>VGG11</h3><p>8个卷积层，加3个全连接层<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">num_outputs = 10</span><br><span class="line">architecture = ((1,64), (1,128), (2,256), (2,512), (2,512))</span><br><span class="line">net = nn.Sequential()</span><br><span class="line"># add name_scope on the outermost Sequential</span><br><span class="line">with net.name_scope():</span><br><span class="line">    net.add(</span><br><span class="line">        vgg_stack(architecture),</span><br><span class="line">        nn.Flatten(),</span><br><span class="line">        nn.Dense(4096, activation=&quot;relu&quot;),</span><br><span class="line">        nn.Dropout(.5),</span><br><span class="line">        nn.Dense(4096, activation=&quot;relu&quot;),</span><br><span class="line">        nn.Dropout(.5),</span><br><span class="line">        nn.Dense(num_outputs))</span><br></pre></td></tr></table></figure></p>
-<h2 id="Network-in-Network"><a href="#Network-in-Network" class="headerlink" title="Network in Network"></a>Network in Network</h2><p>NiN的出现对后面的Googlenet,resnet都有很大的影响。<br>沐神说林敏也是早期mxnet的开发者。感叹大牛身边还是大牛！<br>一个卷积操作理解成一个CNN感受野，传统卷积层可看成是一个广义的线性模型。当接收到的感受野(提取到的特征是线性可分的情况)CNN层对特征的抽象就足够了，但是要提取更加抽象的特征需要对输入的数据做高度的非线性变换。如何去做？1.同一层中对个通道来覆盖。2.stack多个CNN层来获取更抽象的特征。随之带来的问题也是显而易见的：参数太多，计算量太大。NiN就是用来解决这个问题。在正常卷积的基础上先用一个ksize为1的CNN层，效果等同对前一层的特征进行线性组合，也等同于一种全“连接层”。再使用激活函数进行非线性变换，这样并不能做到高度抽象提取。NiN又加了同样的ksize为1的CNN层，这样进一步提取达到高度的非线性转换。回过头看这两层CNN，就相当于在减少参数的情况下，做了两层“全连接”，实现特征的高度整合。<br>1.NiN两大特性：<br>    mlpconv<br>    平均池化层<br>2.作用：<br>    实现跨通道的交互和信息整合<br>    进行卷积核通道数的降维和升维，减少网络参数。<br>更直观的<a href="https://discuss.gluon.ai/t/topic/1661/6" target="_blank" rel="noopener">数学解释</a>。</p>
-<h3 id="conv-conv-1x1-conv-1x1-mlpconv"><a href="#conv-conv-1x1-conv-1x1-mlpconv" class="headerlink" title="conv + conv(1x1) + conv(1x1) = mlpconv"></a>conv + conv(1x1) + conv(1x1) = mlpconv</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">from mxnet.gluon import nn</span><br><span class="line"></span><br><span class="line">def mlpconv(channels, kernel_size, padding,</span><br><span class="line">            strides=1, max_pooling=True):</span><br><span class="line">    out = nn.Sequential()</span><br><span class="line">    out.add(</span><br><span class="line">        nn.Conv2D(channels=channels, kernel_size=kernel_size,</span><br><span class="line">                  strides=strides, padding=padding,</span><br><span class="line">                  activation=&apos;relu&apos;),</span><br><span class="line">        nn.Conv2D(channels=channels, kernel_size=1,</span><br><span class="line">                  padding=0, strides=1, activation=&apos;relu&apos;),</span><br><span class="line">        nn.Conv2D(channels=channels, kernel_size=1,</span><br><span class="line">                  padding=0, strides=1, activation=&apos;relu&apos;))</span><br><span class="line">    if max_pooling:</span><br><span class="line">        out.add(nn.MaxPool2D(pool_size=3, strides=2))</span><br><span class="line">    return out</span><br></pre></td></tr></table></figure>
-<h3 id="NiN的卷积层的参数"><a href="#NiN的卷积层的参数" class="headerlink" title="NiN的卷积层的参数"></a>NiN的卷积层的参数</h3><pre><code>11x11，channel 96
-5x5  ，channel 256
-3x3  ，channel 384
-</code></pre><p>另一个更有意思的地方是：NiN最后没有使用全连接，而是使用通道数为输出类别个数的mlpconv,外界一个平均池化层将每个通道的数值平均成一个标量。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">net = nn.Sequential()</span><br><span class="line"># add name_scope on the outer most Sequential</span><br><span class="line">with net.name_scope():</span><br><span class="line">    net.add(</span><br><span class="line">        mlpconv(96, 11, 0, strides=4),</span><br><span class="line">        mlpconv(256, 5, 2),</span><br><span class="line">        mlpconv(384, 3, 1),</span><br><span class="line">        nn.Dropout(.5),</span><br><span class="line">        # 目标类为10类</span><br><span class="line">        mlpconv(10, 3, 1, max_pooling=False),</span><br><span class="line">        # 输入为 batch_size x 10 x 5 x 5, 通过AvgPool2D转成</span><br><span class="line">        # batch_size x 10 x 1 x 1。</span><br><span class="line">        # 我们可以使用 nn.AvgPool2D(pool_size=5),</span><br><span class="line">        # 但更方便是使用全局池化，可以避免估算pool_size大小</span><br><span class="line">        nn.GlobalAvgPool2D(),</span><br><span class="line">        # 转成 batch_size x 10</span><br><span class="line">        nn.Flatten()</span><br><span class="line">    )</span><br></pre></td></tr></table></figure></p>
-<p>说了半天其实并没有看NiN的论文，期待开学对NiN有一个更加深刻的认识。没有详细上代码也是因为穷，没有gpu实在没法调参。</p>
-<h2 id="GoogLeNet"><a href="#GoogLeNet" class="headerlink" title="GoogLeNet"></a>GoogLeNet</h2><p>先来一张很吓人的图<br><img src="/2018/04/18/卷积网络模型的简单介绍/googlenet.png" alt=""></p>
-<h3 id="Inception"><a href="#Inception" class="headerlink" title="Inception"></a>Inception</h3><p>在NiN的思想上做了很大改进，一个Inception由四个并行卷积层组成<br><img src="/2018/04/18/卷积网络模型的简单介绍/Inception.png" alt=""><br>代码构造上图网络<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">from mxnet.gluon import nn</span><br><span class="line">from mxnet import nd</span><br><span class="line"></span><br><span class="line">class Inception(nn.Block):</span><br><span class="line">    def __init__(self, n1_1, n2_1, n2_3, n3_1, n3_5, n4_1, **kwargs):</span><br><span class="line">        super(Inception, self).__init__(**kwargs)</span><br><span class="line">        # path 1</span><br><span class="line">        self.p1_conv_1 = nn.Conv2D(n1_1, kernel_size=1,</span><br><span class="line">                                   activation=&apos;relu&apos;)</span><br><span class="line">        # path 2</span><br><span class="line">        self.p2_conv_1 = nn.Conv2D(n2_1, kernel_size=1,</span><br><span class="line">                                   activation=&apos;relu&apos;)</span><br><span class="line">        self.p2_conv_3 = nn.Conv2D(n2_3, kernel_size=3, padding=1,</span><br><span class="line">                                   activation=&apos;relu&apos;)</span><br><span class="line">        # path 3</span><br><span class="line">        self.p3_conv_1 = nn.Conv2D(n3_1, kernel_size=1,</span><br><span class="line">                                   activation=&apos;relu&apos;)</span><br><span class="line">        self.p3_conv_5 = nn.Conv2D(n3_5, kernel_size=5, padding=2,</span><br><span class="line">                                   activation=&apos;relu&apos;)</span><br><span class="line">        # path 4</span><br><span class="line">        self.p4_pool_3 = nn.MaxPool2D(pool_size=3, padding=1,</span><br><span class="line">                                      strides=1)</span><br><span class="line">        self.p4_conv_1 = nn.Conv2D(n4_1, kernel_size=1,</span><br><span class="line">                                   activation=&apos;relu&apos;)</span><br><span class="line"></span><br><span class="line">    def forward(self, x):</span><br><span class="line">        p1 = self.p1_conv_1(x)</span><br><span class="line">        p2 = self.p2_conv_3(self.p2_conv_1(x))</span><br><span class="line">        p3 = self.p3_conv_5(self.p3_conv_1(x))</span><br><span class="line">        p4 = self.p4_conv_1(self.p4_pool_3(x))</span><br><span class="line">        return nd.concat(p1, p2, p3, p4, dim=1)</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>需要注意的是Inception 将并行的卷积结果concat,显然不同卷积后的输出维度应该相同，需要用padding处理。Inception的版本有很多，日后再来补充。</p>
-</blockquote>
-<h2 id="ResNet"><a href="#ResNet" class="headerlink" title="ResNet"></a>ResNet</h2><p>经过前面卷积神经网络模型我们了解到，网络宽不如网络深效果来的好。那么深的网络也会带来一个问题，不好训练。原因是：误差反传过程中，梯度通常会变的越来越小，权重更新量也会变小。可以理解为远离输出层的参数更新慢，甚至停止更新。ResNet通过跨层连接来解决梯度逐层回传变小的问题。<img src="/2018/04/18/卷积网络模型的简单介绍/ResNet.png" alt="">如图所示最底层的输入不仅输出给了中间层，还与中间层结果相加进入最上层。梯度反传时，嘴上才能梯度可以直接跳过中间层传到最下层(不是很明白这里的直接跳过，中间层不算梯度吗？为什么不是同时更新)，避免最下层梯度过小。</p>
-<h3 id="Residual块"><a href="#Residual块" class="headerlink" title="Residual块"></a>Residual块</h3><pre><code>1.沿用VGG 3x3卷积核，在卷积和池化层之间加入批量归一层加速训练。
-2.每次跨层连接跨过两层卷积。
-3.补充：当输入通道数和输出通道不一样时可选择1x1来做通道变化，同时strides=2把长宽减半。
-</code></pre><h3 id="Residual-code"><a href="#Residual-code" class="headerlink" title="Residual code"></a>Residual code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">from mxnet.gluon import nn</span><br><span class="line">from mxnet import nd</span><br><span class="line"></span><br><span class="line">class Residual(nn.Block):</span><br><span class="line">    def __init__(self, channels, same_shape=True, **kwargs):</span><br><span class="line">        super(Residual, self).__init__(**kwargs)</span><br><span class="line">        self.same_shape = same_shape</span><br><span class="line">        strides = 1 if same_shape else 2</span><br><span class="line">        self.conv1 = nn.Conv2D(channels, kernel_size=3, padding=1,</span><br><span class="line">                              strides=strides)</span><br><span class="line">        self.bn1 = nn.BatchNorm()</span><br><span class="line">        self.conv2 = nn.Conv2D(channels, kernel_size=3, padding=1)</span><br><span class="line">        self.bn2 = nn.BatchNorm()</span><br><span class="line">        if not same_shape:</span><br><span class="line">            self.conv3 = nn.Conv2D(channels, kernel_size=1,</span><br><span class="line">                                  strides=strides)</span><br><span class="line"></span><br><span class="line">    def forward(self, x):</span><br><span class="line">        out = nd.relu(self.bn1(self.conv1(x)))</span><br><span class="line">        out = self.bn2(self.conv2(out))</span><br><span class="line">        if not self.same_shape:</span><br><span class="line">            x = self.conv3(x)</span><br><span class="line">        return nd.relu(out + x)</span><br></pre></td></tr></table></figure>
-<h3 id="构建ResNet"><a href="#构建ResNet" class="headerlink" title="构建ResNet"></a>构建ResNet</h3><p>code中没有用个池化层来减少数据长宽，而是通过Residual中strides为2的卷积层。这里用18层演示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">class ResNet(nn.Block):</span><br><span class="line">    def __init__(self, num_classes, verbose=False, **kwargs):</span><br><span class="line">        super(ResNet, self).__init__(**kwargs)</span><br><span class="line">        self.verbose = verbose</span><br><span class="line">        # add name_scope on the outermost Sequential</span><br><span class="line">        with self.name_scope():</span><br><span class="line">            # block 1</span><br><span class="line">            b1 = nn.Conv2D(64, kernel_size=7, strides=2)</span><br><span class="line">            # block 2</span><br><span class="line">            b2 = nn.Sequential()</span><br><span class="line">            b2.add(</span><br><span class="line">                nn.MaxPool2D(pool_size=3, strides=2),</span><br><span class="line">                Residual(64),</span><br><span class="line">                Residual(64)</span><br><span class="line">            )</span><br><span class="line">            # block 3</span><br><span class="line">            b3 = nn.Sequential()</span><br><span class="line">            b3.add(</span><br><span class="line">                Residual(128, same_shape=False),</span><br><span class="line">                Residual(128)</span><br><span class="line">            )</span><br><span class="line">            # block 4</span><br><span class="line">            b4 = nn.Sequential()</span><br><span class="line">            b4.add(</span><br><span class="line">                Residual(256, same_shape=False),</span><br><span class="line">                Residual(256)</span><br><span class="line">            )</span><br><span class="line">            # block 5</span><br><span class="line">            b5 = nn.Sequential()</span><br><span class="line">            b5.add(</span><br><span class="line">                Residual(512, same_shape=False),</span><br><span class="line">                Residual(512)</span><br><span class="line">            )</span><br><span class="line">            # block 6</span><br><span class="line">            b6 = nn.Sequential()</span><br><span class="line">            b6.add(</span><br><span class="line">                nn.AvgPool2D(pool_size=3),</span><br><span class="line">                nn.Dense(num_classes)</span><br><span class="line">            )</span><br><span class="line">            # chain all blocks together</span><br><span class="line">            self.net = nn.Sequential()</span><br><span class="line">            self.net.add(b1, b2, b3, b4, b5, b6)</span><br><span class="line"></span><br><span class="line">    def forward(self, x):</span><br><span class="line">        out = x</span><br><span class="line">        for i, b in enumerate(self.net):</span><br><span class="line">            out = b(out)</span><br><span class="line">            if self.verbose:</span><br><span class="line">                print(&apos;Block %d output: %s&apos;%(i+1, out.shape))</span><br><span class="line">        return out</span><br></pre></td></tr></table></figure></p>
-<h2 id="DenseNet"><a href="#DenseNet" class="headerlink" title="DenseNet"></a>DenseNet</h2><p><img src="/2018/04/18/卷积网络模型的简单介绍/DenseNet.png" alt=""><br>DenseNet的想法来自于ResNet,从图中可以看出将+，变为concat，也就是底层的输出会保留到更深层次。</p>
-<h3 id="稠密块"><a href="#稠密块" class="headerlink" title="稠密块"></a>稠密块</h3><p>相比于ResNet,DenseNet卷积使用的版本BN-&gt;Relu-&gt;Conv.code中的growth_rate表示每个卷积的输出通道，in_channels表示输入，layers表示层数，输出通道数就是in_channels+growth_rate*layers。</p>
-<h3 id="Dense-Block"><a href="#Dense-Block" class="headerlink" title="Dense Block"></a>Dense Block</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">from mxnet import nd</span><br><span class="line">from mxnet.gluon import nn</span><br><span class="line"></span><br><span class="line">def conv_block(channels):</span><br><span class="line">    out = nn.Sequential()</span><br><span class="line">    out.add(</span><br><span class="line">        nn.BatchNorm(),</span><br><span class="line">        nn.Activation(&apos;relu&apos;),</span><br><span class="line">        nn.Conv2D(channels, kernel_size=3, padding=1)</span><br><span class="line">    )</span><br><span class="line">    return out</span><br><span class="line"></span><br><span class="line">class DenseBlock(nn.Block):</span><br><span class="line">    def __init__(self, layers, growth_rate, **kwargs):</span><br><span class="line">        super(DenseBlock, self).__init__(**kwargs)</span><br><span class="line">        self.net = nn.Sequential()</span><br><span class="line">        for i in range(layers):</span><br><span class="line">            self.net.add(conv_block(growth_rate))</span><br><span class="line"></span><br><span class="line">    def forward(self, x):</span><br><span class="line">        for layer in self.net:</span><br><span class="line">            out = layer(x)</span><br><span class="line">            x = nd.concat(x, out, dim=1)</span><br><span class="line">        return x</span><br></pre></td></tr></table></figure>
-<h3 id="Transition-Block"><a href="#Transition-Block" class="headerlink" title="Transition Block"></a>Transition Block</h3><p>concat会使通道数激增，为了控制模型复杂度，引入过渡块，把输入的长宽减半，同时使用1x1卷积来改变通道数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def transition_block(channels):</span><br><span class="line">    out = nn.Sequential()</span><br><span class="line">    out.add(</span><br><span class="line">        nn.BatchNorm(),</span><br><span class="line">        nn.Activation(&apos;relu&apos;),</span><br><span class="line">        nn.Conv2D(channels, kernel_size=1),</span><br><span class="line">        nn.AvgPool2D(pool_size=2, strides=2)</span><br><span class="line">    )</span><br><span class="line">    return out</span><br></pre></td></tr></table></figure></p>
-<h3 id="DenseNet构建"><a href="#DenseNet构建" class="headerlink" title="DenseNet构建"></a>DenseNet构建</h3><p>交替串联稠密块和过度块。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">init_channels = 64</span><br><span class="line">growth_rate = 32</span><br><span class="line">block_layers = [6, 12, 24, 16]</span><br><span class="line">num_classes = 10</span><br><span class="line"></span><br><span class="line">def dense_net():</span><br><span class="line">    net = nn.Sequential()</span><br><span class="line">    # add name_scope on the outermost Sequential</span><br><span class="line">    with net.name_scope():</span><br><span class="line">        # first block</span><br><span class="line">        net.add(</span><br><span class="line">            nn.Conv2D(init_channels, kernel_size=7,</span><br><span class="line">                      strides=2, padding=3),</span><br><span class="line">            nn.BatchNorm(),</span><br><span class="line">            nn.Activation(&apos;relu&apos;),</span><br><span class="line">            nn.MaxPool2D(pool_size=3, strides=2, padding=1)</span><br><span class="line">        )</span><br><span class="line">        # dense blocks</span><br><span class="line">        channels = init_channels</span><br><span class="line">        for i, layers in enumerate(block_layers):</span><br><span class="line">            net.add(DenseBlock(layers, growth_rate))</span><br><span class="line">            channels += layers * growth_rate</span><br><span class="line">            if i != len(block_layers)-1:</span><br><span class="line">                net.add(transition_block(channels//2))</span><br><span class="line">        # last block</span><br><span class="line">        net.add(</span><br><span class="line">            nn.BatchNorm(),</span><br><span class="line">            nn.Activation(&apos;relu&apos;),</span><br><span class="line">            nn.AvgPool2D(pool_size=1),</span><br><span class="line">            nn.Flatten(),</span><br><span class="line">            nn.Dense(num_classes)</span><br><span class="line">        )</span><br><span class="line">    return net</span><br></pre></td></tr></table></figure></p>
-
           
+计算机中的神经网络是研究者试图通过人工模拟脑神经元作为学习模型，但是这种模型通过梯度下降来学习，不得而知人脑应该不是这样学习的吧。这块恐怕还需要生物学家做出贡献，才能进一步提升或者说优化神经网络的学习能力。时代造英雄，深度神经网络的崛起不是偶然，随着海量的数据，计算能力更强的硬件支撑，深度神经网络
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/18/卷积网络模型的简单介绍/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1242,12 +1358,15 @@ PRN具体操作：
       
         
           
-            <h2 id="批量归一化"><a href="#批量归一化" class="headerlink" title="批量归一化"></a>批量归一化</h2><p>一般情况下，在数据的预处理过程中会对样本特征进行归一化处理(将均值变为0方差为1)，使得优化求解过程中数值更加稳定，收敛的更快一些。<br>但是对于深层网络模型而言会变得复杂：矩阵的乘法，使得网络中一些层的输入值不在一个数量级，那么训练过程中会造成不稳定。<a href="http://zh.gluon.ai/chapter_convolutional-neural-networks/batch-norm-scratch.html" target="_blank" rel="noopener">数学上的解释</a>更加直接的说法，给定批量输入，批量归一化对网络某一层激活函数前的输入进行归一化，使批量呈标准正态分布。</p>
-<h3 id="简化的批量归一化层"><a href="#简化的批量归一化层" class="headerlink" title="简化的批量归一化层"></a>简化的批量归一化层</h3><p><img src="/2018/04/17/批量归一化/Batch_Normal.png" alt=""></p>
-<h3 id="手动实现Batch-Normal"><a href="#手动实现Batch-Normal" class="headerlink" title="手动实现Batch Normal"></a>手动实现Batch Normal</h3><p>分为全连接和二维卷积两种情况<br>可能会对二维卷积中gamma,beta的维度会有疑问？其次对于二维卷积每一个通道都要做归一，且要保证维度(4)不变(正确广播)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">from mxnet import nd</span><br><span class="line"></span><br><span class="line">def batch_normal(X,gamma,beta,eps=1e-5):</span><br><span class="line">    #表示全连接层,输入格式为 batchsize x feature</span><br><span class="line">    if len(X.shape) == 2:</span><br><span class="line">        mean = X.mean(axis=0)</span><br><span class="line">        variance = ((X-mean)**2).mean(axis=0)</span><br><span class="line">    #表示二维卷积,输入格式为 batchsize x channel x height,weight</span><br><span class="line">    else:</span><br><span class="line">        mean = X.mean(axis=(0,2,3),keepdims=True)</span><br><span class="line">        print(&apos;mean的shape&apos;,mean.shape)</span><br><span class="line">        variance = ((X-mean)**2).mean(axis=(0,2,3),keepdims=True)</span><br><span class="line">    X_hat = (X-mean)/nd.sqrt(variance+eps)</span><br><span class="line">    print(&apos;gamma的shape&apos;,gamma.reshape(mean.shape))</span><br><span class="line">    return gamma.reshape(mean.shape)*X_hat+beta.reshape(mean.shape)</span><br><span class="line"></span><br><span class="line"># a = nd.arange(6).reshape((3,2))</span><br><span class="line"># print(a)</span><br><span class="line"># b = batch_normal(a,gamma=nd.array([1.,1.]),beta=nd.array([0,0]))</span><br><span class="line"># print(b)</span><br><span class="line"></span><br><span class="line">a = nd.arange(18).reshape((1,2,3,3))</span><br><span class="line">print(a)</span><br><span class="line">b = batch_normal(a,gamma=nd.array([1.,1.]),beta=nd.array([0,0]))</span><br><span class="line">print(b)</span><br></pre></td></tr></table></figure></p>
-<h3 id="训练和测试期间的Batch-Normal"><a href="#训练和测试期间的Batch-Normal" class="headerlink" title="训练和测试期间的Batch_Normal"></a>训练和测试期间的Batch_Normal</h3><p>训练期间的Batch_Normal没什么好说的。测试中一般采用移动平均的方法来近似计算，参考Gluon官方教程。然而，训练过程中实在没感觉Batch_Normal的收敛快的优势。</p>
-
-          
+          批量归一化一般情况下，在数据的预处理过程中会对样本特征进行归一化处理(将均值变为0方差为1)，使得优化求解过程中数值更加稳定，收敛的更快一些。但是对于深层网络模型而言会变得复杂：矩阵的乘法，使得网络中一些层的输入值不在一个数量级，那么训练过程中会造成不稳定。数学上的解释更加直接的说法，给定批量输入，
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/17/批量归一化/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1429,20 +1548,16 @@ PRN具体操作：
       
         
           
-            <h2 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h2><p>卷积神经网络的模型有很多，从LeNet,AlexNet,GoogleNet,Inception到ResNet，牢牢把握卷积的核心，其他的网络结构只是加深了层数，和一些trick。本文用mxnet构造一个LeNet网络。</p>
-<h3 id="卷积网络的由来"><a href="#卷积网络的由来" class="headerlink" title="卷积网络的由来"></a>卷积网络的由来</h3><p>在说卷积神经网络的时候，先来想一下为什么会有卷积神经网络的出现，一定是之前的神经网络有一定的局限性和问题之前是用全连接神经网络，将一张图拉成一向量。<br>局限性：<br>1.拉成向量丢失了列上的相关性。<br>2.全连接神经网络的参数太多。</p>
-<h4 id="对卷积的理解是："><a href="#对卷积的理解是：" class="headerlink" title="对卷积的理解是："></a>对卷积的理解是：</h4><p>拿滤波器对图像进行扫描（对应元素相乘求和）。<br><img src="/2018/04/13/卷积神经网络/Filter.gif" alt=""><br>学习的时候一直有个疑问：例如：（3,3,2）被 （2,2）过滤，希望得到2层结果，我的理解是两次滤波(对应2层结果)，一次滤波过程中，几个滤波器是由输入图像的层数决定的(channel)，例如这里的(3,3,2)中的2，<br>有两个滤波器分别对不同层数(channel)卷积，再对两个卷积结果求和。</p>
-<h4 id="对池化的理解是："><a href="#对池化的理解是：" class="headerlink" title="对池化的理解是："></a>对池化的理解是：</h4><p>卷积过程作用在窗口上，对位置非常敏感，池化层能够缓解这个问题。也可以起到降维减少参数的作用。一般有两种池化方式，最大池化，和平均池化。</p>
-<h3 id="下载FashionMnist数据集，并做成数据迭代器"><a href="#下载FashionMnist数据集，并做成数据迭代器" class="headerlink" title="下载FashionMnist数据集，并做成数据迭代器"></a>下载FashionMnist数据集，并做成数据迭代器</h3><p>这边有一个地方特别的坑，要注意，一张图片的维度的是(28, 28, 1)多张得到的张量是(batch_size,28,28,1),而在mxnet卷积网络中的输入维度是(batch_size,channel,height,weight),所以这里从FashionMnist中得到的结果需要transpose。可以在很多个地方进行转化，根据自己喜好，我选择在net中进行，并不是最好的方式。再这需要提醒的是权值的维度(output_channel,in_channel,height,weight),可以深入研究权值四个参数在计算中分别代表了什么以及如何计算，参考对上面对卷积的理解<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from mxnet import ndarray as nd</span><br><span class="line">from mxnet import autograd as ag</span><br><span class="line">from mxnet import gluon</span><br><span class="line"></span><br><span class="line">batch_size = 256</span><br><span class="line">def transform(data,label):</span><br><span class="line">    return data.astype(&apos;float32&apos;)/255,label.astype(&apos;float32&apos;)</span><br><span class="line">mnist_train = gluon.data.vision.FashionMNIST(train=True,transform=transform)</span><br><span class="line">mnist_test = gluon.data.vision.FashionMNIST(train=False,transform=transform)</span><br><span class="line">train_iter = gluon.data.DataLoader(mnist_train,batch_size,shuffle=True)</span><br><span class="line">test_iter = gluon.data.DataLoader(mnist_test,batch_size,shuffle=False)</span><br></pre></td></tr></table></figure></p>
-<h3 id="给参数，为参数设定梯度空间"><a href="#给参数，为参数设定梯度空间" class="headerlink" title="给参数，为参数设定梯度空间"></a>给参数，为参数设定梯度空间</h3><p>这边也有一个非常坑的地方，可以尝试不给W初始化范围(weight_scale)，看看识别效果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">weight_scale= 0.01</span><br><span class="line"># output channels = 20, kernel = (5,5)</span><br><span class="line">W1 = nd.random_normal(shape=(20,1,5,5),scale=weight_scale)</span><br><span class="line">b1 = nd.zeros(W1.shape[0])</span><br><span class="line"># output channels = 50, kernel = (3,3)</span><br><span class="line">W2 = nd.random_normal(shape=(50,20,3,3),scale=weight_scale)</span><br><span class="line">b2 = nd.zeros(W2.shape[0])</span><br><span class="line"># output dim = 128 感受下W2 和W3的不同</span><br><span class="line">W3 = nd.random_normal(shape=(1250,128),scale=weight_scale)</span><br><span class="line">b3 = nd.zeros(W3.shape[1])</span><br><span class="line"># output dim = 10</span><br><span class="line">W4 =nd.random_normal(shape=(128,10),scale=weight_scale)</span><br><span class="line">b4 = nd.zeros(W4.shape[1])</span><br><span class="line">params = [W1, b1, W2, b2, W3, b3, W4, b4]</span><br><span class="line">for param in params:</span><br><span class="line">    param.attach_grad()</span><br></pre></td></tr></table></figure></p>
-<h3 id="构建LeNet网络"><a href="#构建LeNet网络" class="headerlink" title="构建LeNet网络"></a>构建LeNet网络</h3><p>我是在这了对输入维度进行transpose的<br>verbose参数是否打印每层的shape<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">def net(X,verbose):</span><br><span class="line">    # X = X.reshape(shape=(-1,1,28,28))</span><br><span class="line">    X = nd.transpose(X,(0,3,1,2))</span><br><span class="line">    h1 = nd.Convolution(data=X,weight=W1,bias=b1,kernel=W1.shape[2:],num_filter=W1.shape[0])</span><br><span class="line">    h1_activation = nd.relu(h1)</span><br><span class="line">    h1_pool = nd.Pooling(data = h1_activation,pool_type=&apos;max&apos;,kernel=(2,2),stride=(2,2))</span><br><span class="line">    h2 = nd.Convolution(data=h1_pool,weight=W2,bias=b2,kernel=W2.shape[2:],num_filter=W2.shape[0])</span><br><span class="line">    h2_activation = nd.relu(h2)</span><br><span class="line">    h2_pool = nd.Pooling(data=h2_activation,pool_type=&apos;max&apos;,kernel=(2,2),stride=(2,2))</span><br><span class="line">    # print(&apos;h2_pool&apos;,h2_pool.shape)</span><br><span class="line">    h2 = nd.flatten(h2_pool)</span><br><span class="line">    # print(&apos;h2&apos;,h2.shape)</span><br><span class="line">    #第一层全连接层</span><br><span class="line">    h3_liner = nd.dot(h2,W3)+b3</span><br><span class="line">    h3 = nd.relu(h3_liner)</span><br><span class="line">    # print(&apos;h3,W4&apos;,h3.shape,W4.shape)</span><br><span class="line">    #第二层全连接层</span><br><span class="line">    h4_linear = nd.dot(h3,W4)+b4</span><br><span class="line">    # print(&apos;h4&apos;,h4_linear.shape)</span><br><span class="line">    if verbose:</span><br><span class="line">        print(&apos;1st conv block:&apos;, h1_pool.shape)</span><br><span class="line">        print(&apos;2nd conv block:&apos;, h2.shape)</span><br><span class="line">        print(&apos;1st dense:&apos;, h3.shape)</span><br><span class="line">        print(&apos;2nd dense:&apos;, h4_linear.shape)</span><br><span class="line">        print(&apos;output:&apos;, h4_linear)</span><br><span class="line">    return h4_linear</span><br></pre></td></tr></table></figure></p>
-<h3 id="常规操作之SGD"><a href="#常规操作之SGD" class="headerlink" title="常规操作之SGD"></a>常规操作之SGD</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def SGD(params, lr):</span><br><span class="line">    for param in params:</span><br><span class="line">        param[:] = param - lr * param.grad</span><br></pre></td></tr></table></figure>
-<h2 id="计算准确率"><a href="#计算准确率" class="headerlink" title="计算准确率"></a>计算准确率</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def accuracy(output,label):</span><br><span class="line">    return nd.mean(output.argmax(axis=1)==label).asscalar()</span><br><span class="line"></span><br><span class="line">def evaluate_accuracy(data_iter,net):</span><br><span class="line">    acc = 0</span><br><span class="line">    for data,label in data_iter:</span><br><span class="line">        acc += accuracy(net(data,False),label)</span><br><span class="line">    return acc/len(data_iter)</span><br><span class="line"></span><br><span class="line">softmax_cross_entropy = gluon.loss.SoftmaxCrossEntropyLoss()</span><br></pre></td></tr></table></figure>
-<h3 id="开始训练"><a href="#开始训练" class="headerlink" title="开始训练"></a>开始训练</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">epoch = 5</span><br><span class="line">lr = .2</span><br><span class="line">for e in range(epoch):</span><br><span class="line">    i = 0</span><br><span class="line">    for data,label in train_iter:</span><br><span class="line">        with ag.record():</span><br><span class="line">            yhat = net(data,False)</span><br><span class="line">            loss = softmax_cross_entropy(yhat,label)</span><br><span class="line">        loss.backward()</span><br><span class="line">        SGD(params,lr/batch_size)</span><br><span class="line">        i+=1</span><br><span class="line">        if i%40==0:</span><br><span class="line">            print(&apos;After %d epoch,training_loss is&apos;%(e),nd.mean(loss).asscalar())</span><br><span class="line">    print(&apos;After %d epoch,the test_accuracy is&apos;%(e),evaluate_accuracy(test_iter,net))</span><br></pre></td></tr></table></figure>
-<h3 id="查看分类结果-matplotlib"><a href="#查看分类结果-matplotlib" class="headerlink" title="查看分类结果(matplotlib)"></a>查看分类结果(matplotlib)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">def show_images(images):</span><br><span class="line">    n = images.shape[0]</span><br><span class="line">    _,figs = plt.subplots(1,n,figsize=(15,15))</span><br><span class="line">    for i in range(n):</span><br><span class="line">        figs[i].imshow(images[i].reshape((28,28)).asnumpy())</span><br><span class="line">        figs[i].axes.get_xaxis().set_visible(False)</span><br><span class="line">        figs[i].axes.get_yaxis().set_visible(False)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">def get_text_labels(labels):</span><br><span class="line">    text_lables = [&apos;t-shirt&apos;, &apos;trouser&apos;, &apos;pullover&apos;, &apos;dress,&apos;, &apos;coat&apos;,</span><br><span class="line">        &apos;sandal&apos;, &apos;shirt&apos;, &apos;sneaker&apos;, &apos;bag&apos;, &apos;ankle boot&apos;]</span><br><span class="line">    return [text_lables[int(i)] for i in labels]</span><br><span class="line"></span><br><span class="line">data,label = mnist_test[0:9]</span><br><span class="line">show_images(data)</span><br><span class="line">print(&apos;true labels:&apos;,get_text_labels(label))</span><br><span class="line">predicted_labels = net(data,False).argmax(axis=1)</span><br><span class="line">print(predicted_labels)</span><br><span class="line">print(get_text_labels(predicted_labels.asnumpy()))</span><br></pre></td></tr></table></figure>
-<h3 id="结果上图"><a href="#结果上图" class="headerlink" title="结果上图"></a>结果上图</h3><p><img src="/2018/04/13/卷积神经网络/cnn.png" alt=""><br><img src="/2018/04/13/卷积神经网络/result.png" alt=""></p>
-
-          
+          卷积神经网络卷积神经网络的模型有很多，从LeNet,AlexNet,GoogleNet,Inception到ResNet，牢牢把握卷积的核心，其他的网络结构只是加深了层数，和一些trick。本文用mxnet构造一个LeNet网络。
+卷积网络的由来在说卷积神经网络的时候，先来想一下为什么会有卷积神经网
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/13/卷积神经网络/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1585,7 +1700,7 @@ PRN具体操作：
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,045
+                  1,101
                 </span>
               
 
@@ -1601,7 +1716,7 @@ PRN具体操作：
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  6
                 </span>
               
             </div>
@@ -1624,16 +1739,18 @@ PRN具体操作：
       
         
           
-            <h3 id="欠拟合："><a href="#欠拟合：" class="headerlink" title="欠拟合："></a>欠拟合：</h3><p>指的是在训练集上，训练误差较高<br>欠拟合可能的原因：复杂的数据，配上简单的模型</p>
-<h3 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h3><p>指的训练集上的训练误差较低，但是测试集上的泛化误差较高<br>过拟合可能的原因：训练的数据量过少，模型过于强大，误认为学习到了所有，导致最终的泛化误差较大。</p>
-<h3 id="测试模型"><a href="#测试模型" class="headerlink" title="测试模型"></a>测试模型</h3><p>模型<img src="/2018/04/13/欠拟合，过拟合与正则/model.png" alt=""><br>L2正则<img src="/2018/04/13/欠拟合，过拟合与正则/L2.png" alt=""></p>
-<h3 id="欠拟合过拟合code"><a href="#欠拟合过拟合code" class="headerlink" title="欠拟合过拟合code"></a>欠拟合过拟合code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"># y= 1.2x-3.4x**2+5.6x**3+5.0+noise</span><br><span class="line">from mxnet import ndarray as nd</span><br><span class="line">from mxnet import autograd as ag</span><br><span class="line">from mxnet import gluon</span><br><span class="line"></span><br><span class="line">num_train = 100</span><br><span class="line">num_test = 100</span><br><span class="line">true_w = [1.2,-3.4,5.6]</span><br><span class="line">true_b = 5.0</span><br><span class="line">x = nd.random_normal(shape=(num_test+num_train,1))</span><br><span class="line">X = nd.concat(x,nd.power(x,2),nd.power(x,3))</span><br><span class="line">y = true_w[0]*X[:,0]+true_w[1]*X[:,1]+true_w[2]*X[:,2]+true_b</span><br><span class="line">y += nd.random_normal(shape=y.shape)</span><br><span class="line"></span><br><span class="line">import matplotlib as mpl</span><br><span class="line">#指定图的大小</span><br><span class="line">mpl.rcParams[&apos;figure.dpi&apos;]= 120</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line">def train(x_train,x_test,y_train,y_test):</span><br><span class="line">    net = gluon.nn.Sequential()</span><br><span class="line">    with net.name_scope():</span><br><span class="line">        net.add(gluon.nn.Dense(1))</span><br><span class="line">    net.initialize()</span><br><span class="line">    dataset = gluon.data.ArrayDataset(x_train,y_train)</span><br><span class="line">    epoch = 100</span><br><span class="line">    learning_rate = 0.01</span><br><span class="line">    batch_size = min(10,y_train.shape[0])</span><br><span class="line">    data_iter = gluon.data.DataLoader(dataset,batch_size,shuffle=True)</span><br><span class="line">    square_loss = gluon.loss.L2Loss()</span><br><span class="line">    trainer = gluon.Trainer(net.collect_params(),&apos;sgd&apos;,&#123;&apos;learning_rate&apos;:learning_rate&#125;)</span><br><span class="line">    train_loss = []</span><br><span class="line">    test_loss = []</span><br><span class="line">    for e in range(epoch):</span><br><span class="line">        for data,label in data_iter:</span><br><span class="line">            with ag.record():</span><br><span class="line">                output = net(data)</span><br><span class="line">                loss = square_loss(output,label)</span><br><span class="line">            loss.backward()</span><br><span class="line">            trainer.step(batch_size)</span><br><span class="line">        temp_train = square_loss(net(x_train),y_train).mean().asscalar()</span><br><span class="line">        train_loss.append(temp_train)</span><br><span class="line">        temp_test = square_loss(net(x_test),y_test).mean().asscalar()</span><br><span class="line">        print(&apos;train loss,Test loss&apos;,temp_train,temp_test)</span><br><span class="line">        test_loss.append(temp_test)</span><br><span class="line">    plt.plot(train_loss)</span><br><span class="line">    plt.plot(test_loss)</span><br><span class="line">    plt.legend([&apos;train&apos;,&apos;test&apos;])</span><br><span class="line">    plt.show()</span><br><span class="line">    print(&apos;learned weight&apos;,net[0].weight.data())</span><br><span class="line">    print(&apos;learned weight&apos;, net[0].bias.data())</span><br><span class="line"></span><br><span class="line"># 多数据,复杂泛化性挺好</span><br><span class="line">print(&apos;x 的shape,X的shape&apos;,x.shape,X.shape)</span><br><span class="line">train(X[:num_train, :], X[num_train:, :], y[:num_train], y[num_train:])</span><br><span class="line">train(x[:num_train, :], x[num_train:, :], y[:num_train], y[num_train:])</span><br><span class="line">#训练量不足用复杂模型</span><br><span class="line">train(X[0:2, :], X[num_train:, :], y[0:2], y[num_train:])</span><br></pre></td></tr></table></figure>
-<h3 id="正则code"><a href="#正则code" class="headerlink" title="正则code"></a>正则code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">from mxnet import ndarray as nd</span><br><span class="line">from mxnet import autograd as ag</span><br><span class="line">from mxnet import gluon</span><br><span class="line">#加正则的目的是弱化模型，降低模型的复杂度。正则是加在loss上的，给个权值，来表示减弱</span><br><span class="line">#模型的复杂程度。最小化新loss,显然会导致w,b有向0的趋势</span><br><span class="line"></span><br><span class="line">num_train = 20</span><br><span class="line">num_test = 100</span><br><span class="line">num_inputs = 200</span><br><span class="line">#</span><br><span class="line">true_w = nd.ones(shape=(num_inputs,1))*0.01</span><br><span class="line"></span><br><span class="line">true_b = 0.05</span><br><span class="line">x = nd.random_normal(shape=(num_train+num_test,num_inputs))</span><br><span class="line">y = nd.dot(x,true_w)+true_b</span><br><span class="line">y += nd.random_normal(shape=y.shape)*0.01</span><br><span class="line">batch_size =1</span><br><span class="line">dataset = gluon.data.ArrayDataset(x[:num_train,:],y[:num_train,:])</span><br><span class="line">train_data = gluon.data.DataLoader(dataset,batch_size,shuffle=True)</span><br><span class="line">w = nd.random_normal(shape=(num_inputs,1),scale=1)</span><br><span class="line">b = nd.zeros(shape=(1,))</span><br><span class="line">lr = 0.01</span><br><span class="line"></span><br><span class="line">params = [w,b]</span><br><span class="line">for param in params:</span><br><span class="line">    param.attach_grad()</span><br><span class="line"></span><br><span class="line">def net(x):</span><br><span class="line">    return nd.dot(x,w)+b</span><br><span class="line"></span><br><span class="line">#le范数正则化</span><br><span class="line">def L2_penalty(w,b):</span><br><span class="line">    return ((w**2).sum()+b**2)/2</span><br><span class="line"></span><br><span class="line">#主要看一下loss</span><br><span class="line">def square_loss(yhat,y):</span><br><span class="line">    return (yhat-y.reshape(yhat.shape))**2/2</span><br><span class="line"></span><br><span class="line">def SGD(params):</span><br><span class="line">    for param in params:</span><br><span class="line">        param[:] = param - lr*param.grad/batch_size</span><br><span class="line"></span><br><span class="line">import matplotlib as mpl</span><br><span class="line">#指定图的大小</span><br><span class="line">mpl.rcParams[&apos;figure.dpi&apos;]= 120</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line">def train(lamda):</span><br><span class="line">    epoch = 5</span><br><span class="line">    train_loss = []</span><br><span class="line">    test_loss = []</span><br><span class="line">    for e in range(epoch):</span><br><span class="line">        for data,label in train_data:</span><br><span class="line">            with ag.record():</span><br><span class="line">                yhat = net(data)</span><br><span class="line">                loss = square_loss(yhat,label)+lamda*L2_penalty(*params)</span><br><span class="line">            loss.backward()</span><br><span class="line">            SGD(params)</span><br><span class="line">        train_loss.append(square_loss(net(x[:num_train,:]),y[:num_train,:]).mean().asscalar())</span><br><span class="line">        test_loss.append(square_loss(net(x[num_train:,:]),y[num_train:,:]).mean().asscalar())</span><br><span class="line">    plt.plot(train_loss)</span><br><span class="line">    plt.plot(test_loss)</span><br><span class="line">    plt.legend([&apos;train&apos;, &apos;test&apos;])</span><br><span class="line">    plt.show()</span><br><span class="line">train(0)</span><br><span class="line">train(3)</span><br></pre></td></tr></table></figure>
-<p>添加：另一种防止模型过拟合的方法</p>
-<h3 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h3><p>Dropout总的来说分为两部分<br>    1.对于该层的输出结果，以一定的概率选择丢弃元素乘0<br>    2.把非丢弃元素拉伸(保证期望不变)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">from mxnet import nd</span><br><span class="line"></span><br><span class="line">def dropout(X, drop_probability):</span><br><span class="line">    keep_probability = 1 - drop_probability</span><br><span class="line">    # 全部元素都丢弃。</span><br><span class="line">    if keep_probability == 0:</span><br><span class="line">        return X.zeros_like()</span><br><span class="line"></span><br><span class="line">    # 随机选择一部分该层的输出作为丢弃元素。</span><br><span class="line">    mask = nd.random.uniform(</span><br><span class="line">        0, 1.0, X.shape) &lt; keep_probability</span><br><span class="line">    # 保证 E[dropout(X)] == X</span><br><span class="line">    scale =  1 / keep_probability</span><br><span class="line">    return mask * X * scale</span><br></pre></td></tr></table></figure></p>
-<p>Dropout的实质：<br>Dropout的解释还是很多的，有人认为是<a href="http://zh.gluon.ai/chapter_supervised-learning/dropout-scratch.html" target="_blank" rel="noopener">集成学习</a>不是很能理解，黑盒，并不是加Dropout一定比不加会有更高的准确率。</p>
-
-          
+          欠拟合：指的是在训练集上，训练误差较高欠拟合可能的原因：复杂的数据，配上简单的模型
+过拟合指的训练集上的训练误差较低，但是测试集上的泛化误差较高过拟合可能的原因：训练的数据量过少，模型过于强大，误认为学习到了所有，导致最终的泛化误差较大。
+测试模型模型L2正则
+欠拟合过拟合code123456789
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/13/欠拟合，过拟合与正则/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1776,7 +1893,7 @@ PRN具体操作：
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,023
+                  1,216
                 </span>
               
 
@@ -1792,7 +1909,7 @@ PRN具体操作：
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  6
                 </span>
               
             </div>
@@ -1815,24 +1932,15 @@ PRN具体操作：
       
         
           
-            <h1 id="多类逻辑回归"><a href="#多类逻辑回归" class="headerlink" title="多类逻辑回归"></a>多类逻辑回归</h1><p>1.其实就是一个多分类问题，用到softmax函数：将每一项变为非负，然后归一化每一项得到一个概率。(softmax虽然简单但是手写存在一点问题，当输入过大，出现NAN,除此之外易造成数值的不稳定)<br>2.另一种针对预测为概率值的算是函数—交叉熵损失函数，关于交叉熵函数的<a href="https://zhuanlan.zhihu.com/p/27223959" target="_blank" rel="noopener">详解</a>.将两个概率的负交叉熵作为目标值，最小化这个值等于最大化这两个概率的相似度。<br>3.数据集采用的FashionMnist，讲道理Mnist被用烂了吧。<br>4.关于FashionMnist的下载问题。换下载地址。vision.py，需要改的部分上截图。下拉到文底</p>
-<h2 id="下载数据，制作数据迭代集"><a href="#下载数据，制作数据迭代集" class="headerlink" title="下载数据，制作数据迭代集"></a>下载数据，制作数据迭代集</h2><p>transform 对数据进行归一化，类型转换，用gluon制作数据迭代集<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from mxnet import ndarray as nd</span><br><span class="line">from mxnet import  autograd as ag</span><br><span class="line">from mxnet import gluon</span><br><span class="line">def transform(data,label):</span><br><span class="line">    return data.astype(&apos;float32&apos;)/255,label.astype(&apos;float32&apos;)</span><br><span class="line">mnist_train = gluon.data.vision.FashionMNIST(train=True,transform=transform)</span><br><span class="line">mnist_test = gluon.data.vision.FashionMNIST(train=False,transform=transform)</span><br></pre></td></tr></table></figure></p>
-<h2 id="设置输入维度和输出维度-为参数申请梯度空间"><a href="#设置输入维度和输出维度-为参数申请梯度空间" class="headerlink" title="设置输入维度和输出维度,为参数申请梯度空间"></a>设置输入维度和输出维度,为参数申请梯度空间</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">num_inputs = 784</span><br><span class="line">num_output = 10</span><br><span class="line">w = nd.random_normal(shape=(num_inputs,num_output))</span><br><span class="line">b = nd.zeros(shape=num_output)</span><br><span class="line">params = [w,b]</span><br><span class="line">for param in params:</span><br><span class="line">    param.attach_grad()</span><br></pre></td></tr></table></figure>
-<h2 id="多分类函数"><a href="#多分类函数" class="headerlink" title="多分类函数"></a>多分类函数</h2><p>这是低级版的softmax，可以有一些优化<br>也可以理解为对计算结果的值域限制<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def softmax(a):</span><br><span class="line">    exp = nd.exp(a)</span><br><span class="line">    partition = exp.sum(axis=1,keepdims=True)</span><br><span class="line">    return exp/partition</span><br></pre></td></tr></table></figure></p>
-<h2 id="网络计算"><a href="#网络计算" class="headerlink" title="网络计算"></a>网络计算</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def net(x):</span><br><span class="line">    return softmax(nd.dot(x.reshape((-1,num_inputs)),w)+b)</span><br></pre></td></tr></table></figure>
-<h2 id="交叉熵损失函数-针对概率值的损失函数"><a href="#交叉熵损失函数-针对概率值的损失函数" class="headerlink" title="交叉熵损失函数(针对概率值的损失函数)"></a>交叉熵损失函数(针对概率值的损失函数)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def cross_entropy(yhat,y):</span><br><span class="line">    return -nd.pick(nd.log(yhat),y)</span><br></pre></td></tr></table></figure>
-<h2 id="优化函数"><a href="#优化函数" class="headerlink" title="优化函数"></a>优化函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def SGD(params,lr):</span><br><span class="line">    for param in params:</span><br><span class="line">        param[:] = param - lr*param.grad</span><br></pre></td></tr></table></figure>
-<h2 id="计算准确率和evaluate-accuracy"><a href="#计算准确率和evaluate-accuracy" class="headerlink" title="计算准确率和evaluate_accuracy"></a>计算准确率和evaluate_accuracy</h2><pre><code>这里的output是一个矩阵，第一维度是batch_size
-这里的argmax返回output每行中最大值的索引
-asscalar将nd.mean的结果转为标量
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def accuracy(output,label):</span><br><span class="line">    return nd.mean(output.argmax(axis=1)==label).asscalar()</span><br><span class="line"></span><br><span class="line">def evaluate_accuracy(data_iterator,net):</span><br><span class="line">    acc = 0</span><br><span class="line">    for data,label in data_iterator:</span><br><span class="line">        acc+=accuracy(net(data),label)</span><br><span class="line">    return acc/len(data_iterator)</span><br></pre></td></tr></table></figure>
-<h2 id="训练-打印没训练的模型准确率作为参考，一般接近10"><a href="#训练-打印没训练的模型准确率作为参考，一般接近10" class="headerlink" title="训练(打印没训练的模型准确率作为参考，一般接近10%)"></a>训练(打印没训练的模型准确率作为参考，一般接近10%)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">print(&apos;Not train ,the result&apos;,evaluate_accuracy(test_data,net))</span><br><span class="line"></span><br><span class="line">epoch = 5</span><br><span class="line">for e in range(epoch):</span><br><span class="line">    i = 0</span><br><span class="line">    for data,label in train_data:</span><br><span class="line">        i+=1</span><br><span class="line">        with ag.record():</span><br><span class="line">            output = net(data)</span><br><span class="line">            loss = cross_entropy(output,label)</span><br><span class="line">        loss.backward()</span><br><span class="line">        SGD(params,lr=0.0004)</span><br><span class="line">        train_acc = accuracy(output,label)</span><br><span class="line">        train_loss = nd.mean(loss).asscalar()</span><br><span class="line">        if i%50==0:</span><br><span class="line">            print(&apos;train_acc is %.10f , train_loss is %.10f&apos;%(train_acc,train_loss))</span><br><span class="line">    test_acc = evaluate_accuracy(test_data,net)</span><br><span class="line">    print(&apos;After %d epoch&apos;%(e))</span><br><span class="line">    print(&apos;test_acc is  , &apos;,test_acc)</span><br></pre></td></tr></table></figure>
-<h2 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h2><p><img src="/2018/04/11/mxnet二多类逻辑回归softmax/多逻辑回归FashionMnist.png" alt=""></p>
-<h2 id="继续研究softmax问题"><a href="#继续研究softmax问题" class="headerlink" title="继续研究softmax问题"></a>继续研究<a href="http://freemind.pluskid.org/machine-learning/softmax-vs-softmax-loss-numerical-stability/" target="_blank" rel="noopener">softmax问题</a></h2><h2 id="关于FashionMnist如何下载问题，下面提供自己的解决方案"><a href="#关于FashionMnist如何下载问题，下面提供自己的解决方案" class="headerlink" title="关于FashionMnist如何下载问题，下面提供自己的解决方案"></a>关于FashionMnist如何下载问题，下面提供自己的解决方案</h2><p><img src="/2018/04/11/mxnet二多类逻辑回归softmax/get_url.png" alt=""><br><img src="/2018/04/11/mxnet二多类逻辑回归softmax/dataset_url.png" alt=""><br><img src="/2018/04/11/mxnet二多类逻辑回归softmax/hash.png" alt=""><br><img src="/2018/04/11/mxnet二多类逻辑回归softmax/md5.png" alt=""></p>
-<h2 id="不加解释上Gluon版本，识别率居然比自己写的高10个百分点，那是什么原因。"><a href="#不加解释上Gluon版本，识别率居然比自己写的高10个百分点，那是什么原因。" class="headerlink" title="不加解释上Gluon版本，识别率居然比自己写的高10个百分点，那是什么原因。"></a>不加解释上Gluon版本，识别率居然比自己写的高10个百分点，那是什么原因。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">from mxnet import ndarray as nd</span><br><span class="line">from mxnet import autograd as ag</span><br><span class="line">from mxnet import gluon</span><br><span class="line">def transform(data,label):</span><br><span class="line">    return data.astype(&apos;float32&apos;)/255,label.astype(&apos;float32&apos;)</span><br><span class="line">mnist_train = gluon.data.vision.FashionMNIST(train=True,transform=transform)</span><br><span class="line">mnist_test = gluon.data.vision.FashionMNIST(train=False,transform=transform)</span><br><span class="line">batch_size = 256</span><br><span class="line">train_data = gluon.data.DataLoader(mnist_train,batch_size,True)</span><br><span class="line">test_data = gluon.data.DataLoader(mnist_test,batch_size,False)</span><br><span class="line"># data,label = mnist_train[0]</span><br><span class="line"># print(data.shape,label)</span><br><span class="line">#定义网络</span><br><span class="line">net = gluon.nn.Sequential()</span><br><span class="line">with net.name_scope():</span><br><span class="line">    #官网上的解释Flattens the input to two dimensional.</span><br><span class="line">    net.add(gluon.nn.Flatten())</span><br><span class="line">    net.add(gluon.nn.Dense(10))</span><br><span class="line">net.initialize()</span><br><span class="line">#定义损失函数分来定义softmax和交叉熵会有数值不稳定性，gluon提供了合起来的api</span><br><span class="line">softmax_cross_entropy = gluon.loss.SoftmaxCrossEntropyLoss()</span><br><span class="line">#优化器</span><br><span class="line">trainer = gluon.Trainer(net.collect_params(),&apos;sgd&apos;,&#123;&apos;learning_rate&apos;:0.1&#125;)</span><br><span class="line"></span><br><span class="line">def accuracy(output,label):</span><br><span class="line">    return nd.mean(output.argmax(axis=1)==label).asscalar()</span><br><span class="line"></span><br><span class="line">def evaluate_accuracy(data_iterator,net):</span><br><span class="line">    acc = 0</span><br><span class="line">    for data,label in data_iterator:</span><br><span class="line">        acc+=accuracy(net(data),label)</span><br><span class="line">    return acc/len(data_iterator)</span><br><span class="line"></span><br><span class="line">#开始训练</span><br><span class="line">epoch = 5</span><br><span class="line">for e in range(epoch):</span><br><span class="line">    i = 0</span><br><span class="line">    for data,label in train_data:</span><br><span class="line">        with ag.record():</span><br><span class="line">            yhat = net(data)</span><br><span class="line">            loss = softmax_cross_entropy(yhat,label)</span><br><span class="line">        loss.backward()</span><br><span class="line">        trainer.step(batch_size)</span><br><span class="line">        train_loss = nd.mean(loss).asscalar()</span><br><span class="line">        i += 1</span><br><span class="line">        if i%40==0:</span><br><span class="line">            print(&apos;After %d epoch, train_loss is &apos;%(e),train_loss/batch_size)</span><br><span class="line">    acc = evaluate_accuracy(test_data,net)</span><br><span class="line">    print(&apos;After %d epoch, test_acc is &apos;%(e),acc)</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/04/11/mxnet二多类逻辑回归softmax/gluon版本.png" alt=""></p>
-
-          
+          多类逻辑回归1.其实就是一个多分类问题，用到softmax函数：将每一项变为非负，然后归一化每一项得到一个概率。(softmax虽然简单但是手写存在一点问题，当输入过大，出现NAN,除此之外易造成数值的不稳定)2.另一种针对预测为概率值的损失函数—交叉熵损失函数，关于交叉熵函数的详解.将两个概率的负
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/11/mxnet二多类逻辑回归softmax/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1975,7 +2083,7 @@ asscalar将nd.mean的结果转为标量
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  902
+                  1,014
                 </span>
               
 
@@ -1991,7 +2099,7 @@ asscalar将nd.mean的结果转为标量
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -2014,219 +2122,16 @@ asscalar将nd.mean的结果转为标量
       
         
           
-            <blockquote>
-<p>为什么要选择mxnet呢，主要是被tensorflow弄烦了！不是说tensorflow很难上手，就是来来回回折腾了好多次，换个口味。其次，仰慕李沐大神，国人小骄傲。再其次，接触了一点mxnet之后确实比tensorflow友好些，以后做实验可能mxnet更方便的一点。当然，前期tensorflow踩过的坑让我上手mxnet快多了。</p>
-</blockquote>
-<h2 id="做简单的实验"><a href="#做简单的实验" class="headerlink" title="做简单的实验"></a>做简单的实验</h2><h3 id="用mxnet的NDARRAY-AUTOGRAD就足够了"><a href="#用mxnet的NDARRAY-AUTOGRAD就足够了" class="headerlink" title="用mxnet的NDARRAY ,AUTOGRAD就足够了"></a>用mxnet的NDARRAY ,AUTOGRAD就足够了</h3><p>NDARRAY,AUTOGRAD的使用自己看<br><a href="http://zh.gluon.ai/" target="_blank" rel="noopener">官方教程</a>，中文文档实在写的很厉害，再次崇拜李沐大神。而我只是记录自己学习使用的一些心得和体会</p>
-<h2 id="深度学习最好的入门是线性回归"><a href="#深度学习最好的入门是线性回归" class="headerlink" title="深度学习最好的入门是线性回归"></a>深度学习最好的入门是线性回归</h2><h3 id="构造数据集"><a href="#构造数据集" class="headerlink" title="构造数据集"></a>构造数据集</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">n_examples = 1000</span><br><span class="line">n_inputs = 2</span><br><span class="line">x = nd.random_normal(shape=[n_examples,n_inputs])</span><br><span class="line">true_w = [2,-3.4]</span><br><span class="line">true_b = 4.2</span><br><span class="line">y = x[:,0]*true_w[0]+x[:,1]*true_w[1]+true_b</span><br><span class="line">#给出噪音</span><br><span class="line">y+=.01*nd.random_normal(shape=y.shape)</span><br><span class="line">#打印看看构造的数据</span><br><span class="line">print(&apos;x is &apos;,x[:2,:])</span><br><span class="line">print(&apos;y is &apos;,y[:2])</span><br></pre></td></tr></table></figure>
-<h3 id="构造训练的迭代器-指定batchsize"><a href="#构造训练的迭代器-指定batchsize" class="headerlink" title="构造训练的迭代器,指定batchsize"></a>构造训练的迭代器,指定batchsize</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import random</span><br><span class="line">def data_iter():</span><br><span class="line">    batchsize =10</span><br><span class="line">    idx = list(range(n_examples))</span><br><span class="line">    random.shuffle(idx)</span><br><span class="line">    for i in range(0,n_examples,batchsize):</span><br><span class="line">        j = nd.array(idx[i:min(i+batchsize,n_examples)])</span><br><span class="line">        #构造batchsize为10 的data,label迭代器</span><br><span class="line">        yield nd.take(x,j),nd.take(y,j)</span><br></pre></td></tr></table></figure>
-<h3 id="定参数，并初始化"><a href="#定参数，并初始化" class="headerlink" title="定参数，并初始化"></a>定参数，并初始化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">w = nd.random_normal(shape=[n_inputs,1])</span><br><span class="line">b = nd.zeros((1,))</span><br><span class="line">params = [w,b]</span><br><span class="line">#为变量申请梯度空间</span><br><span class="line">for param in params:</span><br><span class="line">    param.attach_grad()</span><br></pre></td></tr></table></figure>
-<h3 id="网络计算"><a href="#网络计算" class="headerlink" title="网络计算"></a>网络计算</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def net(x):</span><br><span class="line">    return nd.dot(x,w)+b</span><br></pre></td></tr></table></figure>
-<h3 id="定义损失函数"><a href="#定义损失函数" class="headerlink" title="定义损失函数"></a>定义损失函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def squre_loss(yhat,y):</span><br><span class="line">    return (yhat-y.reshape(yhat.shape))**2</span><br></pre></td></tr></table></figure>
-<h3 id="优化器，如何更新参数-这里选梯度下降方法"><a href="#优化器，如何更新参数-这里选梯度下降方法" class="headerlink" title="优化器，如何更新参数,这里选梯度下降方法"></a>优化器，如何更新参数,这里选梯度下降方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def SGD(params,lr):</span><br><span class="line">    for param in params:</span><br><span class="line">        param[:] = param - lr*param</span><br></pre></td></tr></table></figure>
-<h3 id="开始训练，设置迭代次数"><a href="#开始训练，设置迭代次数" class="headerlink" title="开始训练，设置迭代次数"></a>开始训练，设置迭代次数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">epoch = 5</span><br><span class="line">learning_rate = 0.001</span><br><span class="line">for e in range(epoch):</span><br><span class="line">    total_loss = 0</span><br><span class="line">    for data,label in data_iter():</span><br><span class="line">        with ag.record():</span><br><span class="line">            yhat = net(data)</span><br><span class="line">            loss = squre_loss(yhat,label)</span><br><span class="line">        loss.backward()</span><br><span class="line">        SGD(params,learning_rate)</span><br><span class="line">        total_loss += nd.sum(loss).asscalar()</span><br><span class="line">    print(&apos;After %d epoch,loss id %.10fparams is&apos;%(e+1,total_loss),params)</span><br></pre></td></tr></table></figure>
-<h3 id="真诚的附上运行截图"><a href="#真诚的附上运行截图" class="headerlink" title="真诚的附上运行截图"></a>真诚的附上运行截图</h3><p><img src="/2018/04/10/mxnet一/mxnet_lineRegress.png" alt=""></p>
-<h2 id="给出gluon版本"><a href="#给出gluon版本" class="headerlink" title="给出gluon版本"></a>给出gluon版本</h2><blockquote>
-<p>gluon给出了 构造数据迭代器的api<br>给出了搭建层的Sequential容器，里面的Dense相当于全连接层<br>不需要自己定参数，只需给输出维度<br>给出loss方法<br>给出迭代param的trainer,但是trainer.step传了一个batchsize，使得太小的学习率无法快速收敛，与上一个版本不同。<br>训练部分几乎一下，整体思路就是这些<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">from mxnet import ndarray as nd</span><br><span class="line">from mxnet import autograd as ag</span><br><span class="line">#构造数据集</span><br><span class="line">n_examples = 1000</span><br><span class="line">n_inputs = 2</span><br><span class="line">x = nd.random_normal(shape=[n_examples,n_inputs])</span><br><span class="line">true_w = [2,-3.4]</span><br><span class="line">true_b = 4.2</span><br><span class="line">y = x[:,0]*true_w[0]+x[:,1]*true_w[1]+true_b</span><br><span class="line">#给出噪音</span><br><span class="line">y+=.01*nd.random_normal(shape=y.shape)</span><br><span class="line">#用gluon的好处不用考虑参数，对复杂网络特别友好</span><br><span class="line">from mxnet import gluon</span><br><span class="line">#构造迭代器</span><br><span class="line">batch_size = 10</span><br><span class="line">dataset = gluon.data.ArrayDataset(x,y)</span><br><span class="line">data_iter = gluon.data.DataLoader(dataset,batch_size = batch_size,shuffle=True)</span><br><span class="line">#网络用sequential容器，只需指定输出的维度，初始网络中的参数</span><br><span class="line">net = gluon.nn.Sequential()</span><br><span class="line">net.add(gluon.nn.Dense(1))</span><br><span class="line">net.initialize()</span><br><span class="line">squre_loss = gluon.loss.L2Loss()</span><br><span class="line">trainer = gluon.Trainer(net.collect_params(),&apos;sgd&apos;,&#123;&apos;learning_rate&apos;:0.1&#125;)</span><br><span class="line">#开始训练</span><br><span class="line">epoch = 5</span><br><span class="line">dense = net[0]</span><br><span class="line">for e in range(epoch):</span><br><span class="line">    total_loss = 0</span><br><span class="line">    for data,label in data_iter:</span><br><span class="line">        with ag.record():</span><br><span class="line">            yhat = net(data)</span><br><span class="line">            loss = squre_loss(yhat,label)</span><br><span class="line">        loss.backward()</span><br><span class="line">        trainer.step(batch_size)</span><br><span class="line">        total_loss += nd.sum(loss).asscalar()</span><br><span class="line">    print(&apos;After %d epoch,loss id %.10f params is&apos;%(e+1,total_loss),dense.weight.data(),dense.bias.data())</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1.构造数据集(迭代器)<br>2.模型的构造<br>3.定义损失函数<br>4.定义优化器<br>5.迭代训练，更新参数</p>
-
           
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/08/python编码问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xiaokehu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="from Demon import Angel">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/08/python编码问题/" itemprop="url">python编码问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-08T15:24:27+08:00">
-                2018-04-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Question/" itemprop="url" rel="index">
-                    <span itemprop="name">-Question</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/04/08/python编码问题/" class="leancloud_visitors" data-flag-title="python编码问题">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  431
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="python中的编码和解码"><a href="#python中的编码和解码" class="headerlink" title="python中的编码和解码"></a>python中的编码和解码</h2><h3 id="python中的字符串"><a href="#python中的字符串" class="headerlink" title="python中的字符串"></a>python中的字符串</h3><p>1.python 有两种字符串类型：str和unicode<br>2.str转换成特定编码类型，需要把str转为Unicode，然后由unicode转为特定编码。</p>
-<h3 id="unicode和utf-8的区别"><a href="#unicode和utf-8的区别" class="headerlink" title="unicode和utf-8的区别"></a>unicode和utf-8的区别</h3><blockquote>
-<p>utf-8用1-8个字节来保存unicode编码的字符。unicode编码字符集，utf-8字符集编码(编码规则)。</p>
-</blockquote>
-<h4 id="字符集：为每一个字符分配唯一的ID-学名码位"><a href="#字符集：为每一个字符分配唯一的ID-学名码位" class="headerlink" title="字符集：为每一个字符分配唯一的ID(学名码位)"></a>字符集：为每一个字符分配唯一的ID(学名码位)</h4><h4 id="编码规则：将字符转为字节序列"><a href="#编码规则：将字符转为字节序列" class="headerlink" title="编码规则：将字符转为字节序列"></a>编码规则：将字符转为字节序列</h4><blockquote>
-<p>unicode字符集为每一个字符分配了一个码位，例如「知」的码位是 30693，记作 U+77E5（30693 的十六进制为 0x77E5）。<br>UTF-8 顾名思义，是一套以 8 位为一个编码单位的可变长编码。会将一个码位编码为 1 到 4 个字节(变长编码方式)</p>
-</blockquote>
-<h3 id="上代码更直观"><a href="#上代码更直观" class="headerlink" title="上代码更直观"></a>上代码更直观</h3><p>unicode 转为gb2312<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding=UTF-8 -*-</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    s = u&apos;中国&apos;</span><br><span class="line">    s_gb = s.encode(&apos;gb2312&apos;)</span><br></pre></td></tr></table></figure></p>
-<p>utf-8 转为unicode<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#coding=UTF-8</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    s = u&apos;中国&apos;</span><br><span class="line">    #s为unicode先转为utf-8</span><br><span class="line">    s_utf8 =  s.encode(&apos;UTF-8&apos;)</span><br><span class="line">    assert(s_utf8.decode(&apos;utf-8&apos;) == s)</span><br></pre></td></tr></table></figure></p>
-<p>普通的str转为unicode<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#coding=UTF-8</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    s = &apos;中国&apos;</span><br><span class="line">    su = u&apos;中国&apos;&apos;</span><br><span class="line">    #s为unicode先转为utf-8</span><br><span class="line">    #因为s为所在的.py(# -*- coding=UTF-8 -*-)编码为utf-8</span><br><span class="line">    s_unicode =  s.decode(&apos;UTF-8&apos;)</span><br><span class="line">    assert(s_unicode == su)</span><br><span class="line">    #s转为gb2312:先转为unicode再转为gb2312</span><br><span class="line">    s.decode(&apos;utf-8&apos;).encode(&apos;gb2312&apos;)</span><br></pre></td></tr></table></figure></p>
-<p>python 编码检测<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import chardet</span><br><span class="line">chardet.detect(rawdata)</span><br></pre></td></tr></table></figure></p>
-<p>需要注意的是p2,p3在编码上有差别<br>p2的bytes是str,p3bytes,str混用会报错<br>字符串和bytes之间的转换：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    s = u&apos;中国&apos;</span><br><span class="line">    #s为unicode先转为utf-8</span><br><span class="line">    s_utf8 = s.encode(&apos;gb2312&apos;)</span><br><span class="line">    print(s_utf8)</span><br><span class="line">    print(str(s_utf8,encoding=&apos;gb2312&apos;))</span><br><span class="line">    # assert(s_utf8.decode(&apos;utf-8&apos;) == s)</span><br></pre></td></tr></table></figure></p>
-
-          
+为什么要选择mxnet呢，主要是被tensorflow弄烦了！不是说tensorflow很难上手，就是来来回回折腾了好多次，换个口味。其次，仰慕李沐大神，国人小骄傲。再其次，接触了一点mxnet之后确实比tensorflow友好些，以后做实验可能mxnet更方便的一点。当然，前期tensorflo
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/10/mxnet一/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2316,7 +2221,7 @@ asscalar将nd.mean的结果转为标量
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2338,7 +2243,7 @@ asscalar将nd.mean的结果转为标量
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2348,6 +2253,22 @@ asscalar将nd.mean的结果转为标量
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yourname@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -2389,7 +2310,7 @@ asscalar将nd.mean的结果转为标量
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">12.2k</span>
+    <span title="Site words total count">12.9k</span>
   
 </div>
 
@@ -2669,6 +2590,28 @@ asscalar将nd.mean的结果转为标量
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 

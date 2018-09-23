@@ -97,7 +97,7 @@
 <meta property="og:description" content="为什么要选择mxnet呢，主要是被tensorflow弄烦了！不是说tensorflow很难上手，就是来来回回折腾了好多次，换个口味。其次，仰慕李沐大神，国人小骄傲。再其次，接触了一点mxnet之后确实比tensorflow友好些，以后做实验可能mxnet更方便的一点。当然，前期tensorflow踩过的坑让我上手mxnet快多了。  做简单的实验用mxnet的NDARRAY ,AUTOGRAD">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/04/10/mxnet一/mxnet_lineRegress.png">
-<meta property="og:updated_time" content="2018-04-10T03:59:08.740Z">
+<meta property="og:updated_time" content="2018-09-22T15:03:54.455Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mxnet一">
 <meta name="twitter:description" content="为什么要选择mxnet呢，主要是被tensorflow弄烦了！不是说tensorflow很难上手，就是来来回回折腾了好多次，换个口味。其次，仰慕李沐大神，国人小骄傲。再其次，接触了一点mxnet之后确实比tensorflow友好些，以后做实验可能mxnet更方便的一点。当然，前期tensorflow踩过的坑让我上手mxnet快多了。  做简单的实验用mxnet的NDARRAY ,AUTOGRAD">
@@ -358,7 +358,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  902
+                  1,014
                 </span>
               
 
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -399,16 +399,21 @@
 <p>为什么要选择mxnet呢，主要是被tensorflow弄烦了！不是说tensorflow很难上手，就是来来回回折腾了好多次，换个口味。其次，仰慕李沐大神，国人小骄傲。再其次，接触了一点mxnet之后确实比tensorflow友好些，以后做实验可能mxnet更方便的一点。当然，前期tensorflow踩过的坑让我上手mxnet快多了。</p>
 </blockquote>
 <h2 id="做简单的实验"><a href="#做简单的实验" class="headerlink" title="做简单的实验"></a>做简单的实验</h2><h3 id="用mxnet的NDARRAY-AUTOGRAD就足够了"><a href="#用mxnet的NDARRAY-AUTOGRAD就足够了" class="headerlink" title="用mxnet的NDARRAY ,AUTOGRAD就足够了"></a>用mxnet的NDARRAY ,AUTOGRAD就足够了</h3><p>NDARRAY,AUTOGRAD的使用自己看<br><a href="http://zh.gluon.ai/" target="_blank" rel="noopener">官方教程</a>，中文文档实在写的很厉害，再次崇拜李沐大神。而我只是记录自己学习使用的一些心得和体会</p>
+<h3 id="还是想简单说下自动求导"><a href="#还是想简单说下自动求导" class="headerlink" title="还是想简单说下自动求导"></a>还是想简单说下自动求导</h3><ol>
+<li>关于求变量x的梯度，先用attach_grad函数来申请存储梯度需要的内存</li>
+<li>record函数记录有关变量x的计算</li>
+<li>backward函数对record中进行求梯度，backward的该为标量，如果非标量，可以求和转为标量</li>
+</ol>
 <h2 id="深度学习最好的入门是线性回归"><a href="#深度学习最好的入门是线性回归" class="headerlink" title="深度学习最好的入门是线性回归"></a>深度学习最好的入门是线性回归</h2><h3 id="构造数据集"><a href="#构造数据集" class="headerlink" title="构造数据集"></a>构造数据集</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">n_examples = 1000</span><br><span class="line">n_inputs = 2</span><br><span class="line">x = nd.random_normal(shape=[n_examples,n_inputs])</span><br><span class="line">true_w = [2,-3.4]</span><br><span class="line">true_b = 4.2</span><br><span class="line">y = x[:,0]*true_w[0]+x[:,1]*true_w[1]+true_b</span><br><span class="line">#给出噪音</span><br><span class="line">y+=.01*nd.random_normal(shape=y.shape)</span><br><span class="line">#打印看看构造的数据</span><br><span class="line">print(&apos;x is &apos;,x[:2,:])</span><br><span class="line">print(&apos;y is &apos;,y[:2])</span><br></pre></td></tr></table></figure>
 <h3 id="构造训练的迭代器-指定batchsize"><a href="#构造训练的迭代器-指定batchsize" class="headerlink" title="构造训练的迭代器,指定batchsize"></a>构造训练的迭代器,指定batchsize</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import random</span><br><span class="line">def data_iter():</span><br><span class="line">    batchsize =10</span><br><span class="line">    idx = list(range(n_examples))</span><br><span class="line">    random.shuffle(idx)</span><br><span class="line">    for i in range(0,n_examples,batchsize):</span><br><span class="line">        j = nd.array(idx[i:min(i+batchsize,n_examples)])</span><br><span class="line">        #构造batchsize为10 的data,label迭代器</span><br><span class="line">        yield nd.take(x,j),nd.take(y,j)</span><br></pre></td></tr></table></figure>
 <h3 id="定参数，并初始化"><a href="#定参数，并初始化" class="headerlink" title="定参数，并初始化"></a>定参数，并初始化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">w = nd.random_normal(shape=[n_inputs,1])</span><br><span class="line">b = nd.zeros((1,))</span><br><span class="line">params = [w,b]</span><br><span class="line">#为变量申请梯度空间</span><br><span class="line">for param in params:</span><br><span class="line">    param.attach_grad()</span><br></pre></td></tr></table></figure>
 <h3 id="网络计算"><a href="#网络计算" class="headerlink" title="网络计算"></a>网络计算</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def net(x):</span><br><span class="line">    return nd.dot(x,w)+b</span><br></pre></td></tr></table></figure>
 <h3 id="定义损失函数"><a href="#定义损失函数" class="headerlink" title="定义损失函数"></a>定义损失函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def squre_loss(yhat,y):</span><br><span class="line">    return (yhat-y.reshape(yhat.shape))**2</span><br></pre></td></tr></table></figure>
-<h3 id="优化器，如何更新参数-这里选梯度下降方法"><a href="#优化器，如何更新参数-这里选梯度下降方法" class="headerlink" title="优化器，如何更新参数,这里选梯度下降方法"></a>优化器，如何更新参数,这里选梯度下降方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def SGD(params,lr):</span><br><span class="line">    for param in params:</span><br><span class="line">        param[:] = param - lr*param</span><br></pre></td></tr></table></figure>
+<h3 id="优化器，如何更新参数-这里选梯度下降方法"><a href="#优化器，如何更新参数-这里选梯度下降方法" class="headerlink" title="优化器，如何更新参数,这里选梯度下降方法"></a>优化器，如何更新参数,这里选梯度下降方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def SGD(params,lr):</span><br><span class="line">    for param in params:</span><br><span class="line">        param[:] = param - lr*param/batchsize#data_iter中的batchsize</span><br></pre></td></tr></table></figure>
 <h3 id="开始训练，设置迭代次数"><a href="#开始训练，设置迭代次数" class="headerlink" title="开始训练，设置迭代次数"></a>开始训练，设置迭代次数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">epoch = 5</span><br><span class="line">learning_rate = 0.001</span><br><span class="line">for e in range(epoch):</span><br><span class="line">    total_loss = 0</span><br><span class="line">    for data,label in data_iter():</span><br><span class="line">        with ag.record():</span><br><span class="line">            yhat = net(data)</span><br><span class="line">            loss = squre_loss(yhat,label)</span><br><span class="line">        loss.backward()</span><br><span class="line">        SGD(params,learning_rate)</span><br><span class="line">        total_loss += nd.sum(loss).asscalar()</span><br><span class="line">    print(&apos;After %d epoch,loss id %.10fparams is&apos;%(e+1,total_loss),params)</span><br></pre></td></tr></table></figure>
 <h3 id="真诚的附上运行截图"><a href="#真诚的附上运行截图" class="headerlink" title="真诚的附上运行截图"></a>真诚的附上运行截图</h3><p><img src="/2018/04/10/mxnet一/mxnet_lineRegress.png" alt=""></p>
 <h2 id="给出gluon版本"><a href="#给出gluon版本" class="headerlink" title="给出gluon版本"></a>给出gluon版本</h2><blockquote>
-<p>gluon给出了 构造数据迭代器的api<br>给出了搭建层的Sequential容器，里面的Dense相当于全连接层<br>不需要自己定参数，只需给输出维度<br>给出loss方法<br>给出迭代param的trainer,但是trainer.step传了一个batchsize，使得太小的学习率无法快速收敛，与上一个版本不同。<br>训练部分几乎一下，整体思路就是这些<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">from mxnet import ndarray as nd</span><br><span class="line">from mxnet import autograd as ag</span><br><span class="line">#构造数据集</span><br><span class="line">n_examples = 1000</span><br><span class="line">n_inputs = 2</span><br><span class="line">x = nd.random_normal(shape=[n_examples,n_inputs])</span><br><span class="line">true_w = [2,-3.4]</span><br><span class="line">true_b = 4.2</span><br><span class="line">y = x[:,0]*true_w[0]+x[:,1]*true_w[1]+true_b</span><br><span class="line">#给出噪音</span><br><span class="line">y+=.01*nd.random_normal(shape=y.shape)</span><br><span class="line">#用gluon的好处不用考虑参数，对复杂网络特别友好</span><br><span class="line">from mxnet import gluon</span><br><span class="line">#构造迭代器</span><br><span class="line">batch_size = 10</span><br><span class="line">dataset = gluon.data.ArrayDataset(x,y)</span><br><span class="line">data_iter = gluon.data.DataLoader(dataset,batch_size = batch_size,shuffle=True)</span><br><span class="line">#网络用sequential容器，只需指定输出的维度，初始网络中的参数</span><br><span class="line">net = gluon.nn.Sequential()</span><br><span class="line">net.add(gluon.nn.Dense(1))</span><br><span class="line">net.initialize()</span><br><span class="line">squre_loss = gluon.loss.L2Loss()</span><br><span class="line">trainer = gluon.Trainer(net.collect_params(),&apos;sgd&apos;,&#123;&apos;learning_rate&apos;:0.1&#125;)</span><br><span class="line">#开始训练</span><br><span class="line">epoch = 5</span><br><span class="line">dense = net[0]</span><br><span class="line">for e in range(epoch):</span><br><span class="line">    total_loss = 0</span><br><span class="line">    for data,label in data_iter:</span><br><span class="line">        with ag.record():</span><br><span class="line">            yhat = net(data)</span><br><span class="line">            loss = squre_loss(yhat,label)</span><br><span class="line">        loss.backward()</span><br><span class="line">        trainer.step(batch_size)</span><br><span class="line">        total_loss += nd.sum(loss).asscalar()</span><br><span class="line">    print(&apos;After %d epoch,loss id %.10f params is&apos;%(e+1,total_loss),dense.weight.data(),dense.bias.data())</span><br></pre></td></tr></table></figure></p>
+<p>gluon给出了 构造数据迭代器的api<br>给出了搭建层的Sequential容器，串联各个层，给定输入，容器中的每一层输出将作为下一层的输入，里面的Dense相当于全连接层<br>不需要自己定参数，只需给输出维度<br>给出loss方法<br>给出迭代param的trainer,但是trainer.step传了一个batchsize，使得太小的学习率无法快速收敛，与上一个版本不同。<br>训练部分几乎一下，整体思路就是这些<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">from mxnet import ndarray as nd</span><br><span class="line">from mxnet import autograd as ag</span><br><span class="line">#构造数据集</span><br><span class="line">n_examples = 1000</span><br><span class="line">n_inputs = 2</span><br><span class="line">x = nd.random_normal(shape=[n_examples,n_inputs])</span><br><span class="line">true_w = [2,-3.4]</span><br><span class="line">true_b = 4.2</span><br><span class="line">y = x[:,0]*true_w[0]+x[:,1]*true_w[1]+true_b</span><br><span class="line">#给出噪音</span><br><span class="line">y+=.01*nd.random_normal(shape=y.shape)</span><br><span class="line">#用gluon的好处不用考虑参数，对复杂网络特别友好</span><br><span class="line">from mxnet import gluon</span><br><span class="line">#构造迭代器</span><br><span class="line">batch_size = 10</span><br><span class="line">dataset = gluon.data.ArrayDataset(x,y)</span><br><span class="line">data_iter = gluon.data.DataLoader(dataset,batch_size = batch_size,shuffle=True)</span><br><span class="line">#网络用sequential容器，只需指定输出的维度，初始网络中的参数</span><br><span class="line">net = gluon.nn.Sequential()</span><br><span class="line">net.add(gluon.nn.Dense(1))</span><br><span class="line">net.initialize()</span><br><span class="line">squre_loss = gluon.loss.L2Loss()</span><br><span class="line">trainer = gluon.Trainer(net.collect_params(),&apos;sgd&apos;,&#123;&apos;learning_rate&apos;:0.1&#125;)</span><br><span class="line">#开始训练</span><br><span class="line">epoch = 5</span><br><span class="line">dense = net[0]</span><br><span class="line">for e in range(epoch):</span><br><span class="line">    total_loss = 0</span><br><span class="line">    for data,label in data_iter:</span><br><span class="line">        with ag.record():</span><br><span class="line">            yhat = net(data)</span><br><span class="line">            loss = squre_loss(yhat,label)</span><br><span class="line">        loss.backward()</span><br><span class="line">        trainer.step(batch_size)</span><br><span class="line">        total_loss += nd.sum(loss).asscalar()</span><br><span class="line">    print(&apos;After %d epoch,loss id %.10f params is&apos;%(e+1,total_loss),dense.weight.data(),dense.bias.data())</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1.构造数据集(迭代器)<br>2.模型的构造<br>3.定义损失函数<br>4.定义优化器<br>5.迭代训练，更新参数</p>
 
@@ -541,7 +546,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -563,7 +568,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -573,6 +578,22 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yourname@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -596,7 +617,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#做简单的实验"><span class="nav-number">1.</span> <span class="nav-text">做简单的实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用mxnet的NDARRAY-AUTOGRAD就足够了"><span class="nav-number">1.1.</span> <span class="nav-text">用mxnet的NDARRAY ,AUTOGRAD就足够了</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度学习最好的入门是线性回归"><span class="nav-number">2.</span> <span class="nav-text">深度学习最好的入门是线性回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造数据集"><span class="nav-number">2.1.</span> <span class="nav-text">构造数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造训练的迭代器-指定batchsize"><span class="nav-number">2.2.</span> <span class="nav-text">构造训练的迭代器,指定batchsize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定参数，并初始化"><span class="nav-number">2.3.</span> <span class="nav-text">定参数，并初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络计算"><span class="nav-number">2.4.</span> <span class="nav-text">网络计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义损失函数"><span class="nav-number">2.5.</span> <span class="nav-text">定义损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化器，如何更新参数-这里选梯度下降方法"><span class="nav-number">2.6.</span> <span class="nav-text">优化器，如何更新参数,这里选梯度下降方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始训练，设置迭代次数"><span class="nav-number">2.7.</span> <span class="nav-text">开始训练，设置迭代次数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#真诚的附上运行截图"><span class="nav-number">2.8.</span> <span class="nav-text">真诚的附上运行截图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给出gluon版本"><span class="nav-number">3.</span> <span class="nav-text">给出gluon版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#做简单的实验"><span class="nav-number">1.</span> <span class="nav-text">做简单的实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用mxnet的NDARRAY-AUTOGRAD就足够了"><span class="nav-number">1.1.</span> <span class="nav-text">用mxnet的NDARRAY ,AUTOGRAD就足够了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#还是想简单说下自动求导"><span class="nav-number">1.2.</span> <span class="nav-text">还是想简单说下自动求导</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度学习最好的入门是线性回归"><span class="nav-number">2.</span> <span class="nav-text">深度学习最好的入门是线性回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造数据集"><span class="nav-number">2.1.</span> <span class="nav-text">构造数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造训练的迭代器-指定batchsize"><span class="nav-number">2.2.</span> <span class="nav-text">构造训练的迭代器,指定batchsize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定参数，并初始化"><span class="nav-number">2.3.</span> <span class="nav-text">定参数，并初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络计算"><span class="nav-number">2.4.</span> <span class="nav-text">网络计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义损失函数"><span class="nav-number">2.5.</span> <span class="nav-text">定义损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化器，如何更新参数-这里选梯度下降方法"><span class="nav-number">2.6.</span> <span class="nav-text">优化器，如何更新参数,这里选梯度下降方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始训练，设置迭代次数"><span class="nav-number">2.7.</span> <span class="nav-text">开始训练，设置迭代次数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#真诚的附上运行截图"><span class="nav-number">2.8.</span> <span class="nav-text">真诚的附上运行截图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给出gluon版本"><span class="nav-number">3.</span> <span class="nav-text">给出gluon版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -630,7 +651,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">12.2k</span>
+    <span title="Site words total count">12.9k</span>
   
 </div>
 
@@ -930,6 +951,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
