@@ -88,19 +88,19 @@
 
 
 
-<meta name="description" content="计算性能的重要因子：命令式编程，符号式编程，惰性计算，自动并行计算，多GPU计算。  mxnet的命令式编程和符号式编程命令式编程：一行一行一次执行，运行非常的慢。符号式编程：计算流程完全定义好之后才被执行。(Theano,Tensorflow)  符号式编程步骤：1.定义计算流程。2.计算流编译成可执行的程序。3.给定输入，调用编译好的程序执行。  符号式编程Demo1234567891011">
+<meta name="description" content="计算性能的重要因子：命令式编程，符号式编程，惰性计算，自动并行计算，多GPU计算。 mxnet的命令式编程和符号式编程命令式编程：一行一行一次执行，运行非常的慢。符号式编程：计算流程完全定义好之后才被执行。(Theano,Tensorflow)符号式编程步骤：1.定义计算流程。2.计算流编译成可执行的程序。3.给定输入，调用编译好的程序执行。 符号式编程Demo12345678910111213">
 <meta name="keywords" content="-mxnet">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mxnet的计算性能">
 <meta property="og:url" content="http://yoursite.com/2018/04/23/mxnet的计算性能/index.html">
 <meta property="og:site_name" content="from Demon import Angel">
-<meta property="og:description" content="计算性能的重要因子：命令式编程，符号式编程，惰性计算，自动并行计算，多GPU计算。  mxnet的命令式编程和符号式编程命令式编程：一行一行一次执行，运行非常的慢。符号式编程：计算流程完全定义好之后才被执行。(Theano,Tensorflow)  符号式编程步骤：1.定义计算流程。2.计算流编译成可执行的程序。3.给定输入，调用编译好的程序执行。  符号式编程Demo1234567891011">
+<meta property="og:description" content="计算性能的重要因子：命令式编程，符号式编程，惰性计算，自动并行计算，多GPU计算。 mxnet的命令式编程和符号式编程命令式编程：一行一行一次执行，运行非常的慢。符号式编程：计算流程完全定义好之后才被执行。(Theano,Tensorflow)符号式编程步骤：1.定义计算流程。2.计算流编译成可执行的程序。3.给定输入，调用编译好的程序执行。 符号式编程Demo12345678910111213">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/04/23/mxnet的计算性能/lazy.png">
 <meta property="og:updated_time" content="2018-04-25T11:45:03.609Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mxnet的计算性能">
-<meta name="twitter:description" content="计算性能的重要因子：命令式编程，符号式编程，惰性计算，自动并行计算，多GPU计算。  mxnet的命令式编程和符号式编程命令式编程：一行一行一次执行，运行非常的慢。符号式编程：计算流程完全定义好之后才被执行。(Theano,Tensorflow)  符号式编程步骤：1.定义计算流程。2.计算流编译成可执行的程序。3.给定输入，调用编译好的程序执行。  符号式编程Demo1234567891011">
+<meta name="twitter:description" content="计算性能的重要因子：命令式编程，符号式编程，惰性计算，自动并行计算，多GPU计算。 mxnet的命令式编程和符号式编程命令式编程：一行一行一次执行，运行非常的慢。符号式编程：计算流程完全定义好之后才被执行。(Theano,Tensorflow)符号式编程步骤：1.定义计算流程。2.计算流编译成可执行的程序。3.给定输入，调用编译好的程序执行。 符号式编程Demo12345678910111213">
 <meta name="twitter:image" content="http://yoursite.com/2018/04/23/mxnet的计算性能/lazy.png">
 
 
@@ -397,31 +397,24 @@
       
         <blockquote>
 <p>计算性能的重要因子：命令式编程，符号式编程，惰性计算，自动并行计算，多GPU计算。</p>
-</blockquote>
-<h2 id="mxnet的命令式编程和符号式编程"><a href="#mxnet的命令式编程和符号式编程" class="headerlink" title="mxnet的命令式编程和符号式编程"></a>mxnet的命令式编程和符号式编程</h2><p>命令式编程：一行一行一次执行，运行非常的慢。<br>符号式编程：计算流程完全定义好之后才被执行。(Theano,Tensorflow)</p>
-<blockquote>
-<p>符号式编程步骤：1.定义计算流程。2.计算流编译成可执行的程序。3.给定输入，调用编译好的程序执行。</p>
-</blockquote>
+<h2 id="mxnet的命令式编程和符号式编程"><a href="#mxnet的命令式编程和符号式编程" class="headerlink" title="mxnet的命令式编程和符号式编程"></a>mxnet的命令式编程和符号式编程</h2><p>命令式编程：一行一行一次执行，运行非常的慢。<br>符号式编程：计算流程完全定义好之后才被执行。(Theano,Tensorflow)<br>符号式编程步骤：1.定义计算流程。2.计算流编译成可执行的程序。3.给定输入，调用编译好的程序执行。</p>
 <h3 id="符号式编程Demo"><a href="#符号式编程Demo" class="headerlink" title="符号式编程Demo"></a>符号式编程Demo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">def add_str():</span><br><span class="line">    return &apos;&apos;&apos;</span><br><span class="line">def add(a, b):</span><br><span class="line">    return a + b</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">def fancy_func_str():</span><br><span class="line">    return &apos;&apos;&apos;</span><br><span class="line">def fancy_func(a, b, c, d):</span><br><span class="line">    e = add(a, b)</span><br><span class="line">    f = add(c, d)</span><br><span class="line">    g = add(e, f)</span><br><span class="line">    return g</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">def evoke_str():</span><br><span class="line">    return add_str() + fancy_func_str() + &apos;&apos;&apos;</span><br><span class="line">print(fancy_func(1, 2, 3, 4))</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">prog = evoke_str()</span><br><span class="line">print(prog)</span><br><span class="line">y = compile(prog, &apos;&apos;, &apos;exec&apos;)</span><br><span class="line">exec(y)</span><br></pre></td></tr></table></figure>
-<blockquote>
 <p>符号式编程优点：1.编译过程中能够看到全部程序，能够做到优化计算。如上列中优化程序：print((1 + 2) + (3 + 4))。2.高效移植，能够将程序变成一个与python无关的格式，能够在非python环境下运行。而命令式编程的优点是方便Debug。Theano,Tensorflow符号式编程。PyTorch使用命令编程。mxnet提倡命令式开发，符号式部署运行。</p>
-</blockquote>
 <h3 id="HybridBlock-和-HybridSequential"><a href="#HybridBlock-和-HybridSequential" class="headerlink" title="HybridBlock 和 HybridSequential"></a>HybridBlock 和 HybridSequential</h3><p>默认情况下是命令式编程方式，当调用hybridize函数后，Gluon会转换成符号式编程。</p>
 <h3 id="获取符号式程序"><a href="#获取符号式程序" class="headerlink" title="获取符号式程序"></a>获取符号式程序</h3><p>net.export(‘my_mlp’)来保存符号式程序和模型参数到硬盘。会生成json和params文件分别为符号式程序和模型参数。<br>MXNet中符号式程序类型是Symbol，还可以给一个Symbol输入量。形式和Tensorflow很相似。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = sym.var(&apos;data&apos;)</span><br><span class="line">net(x)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
 <h3 id="HybridBlock，HybridSequential，Sequential，Block，Dense之间的关系"><a href="#HybridBlock，HybridSequential，Sequential，Block，Dense之间的关系" class="headerlink" title="HybridBlock，HybridSequential，Sequential，Block，Dense之间的关系"></a>HybridBlock，HybridSequential，Sequential，Block，Dense之间的关系</h3><p>Sequential是Block的子类，HybridSequential，Dense类是HybridBlock的子类。hybrid_forward代替forward函数。基于命令式编程的是NDArray类，基于符号式编程的是Symbol类。当函数调用hybridize函数时，运行net(x)会得到符号式程序，之后调用net(x)不会访问python代码，而是直接在c++后端执行符号式程序。</p>
 <h2 id="惰性计算"><a href="#惰性计算" class="headerlink" title="惰性计算"></a>惰性计算</h2><blockquote>
 <p>惰性计算的优点是：能够看到有关变量a的所有计算，从未有更多空间来做优化。例如下面print(a),采用惰性计算能够不计算前两句的赋值语句。<br>MXNet包含两个部分：用户交互的前端和用来执行的后端。前端语言可以用任意一种语言，MXNet程序执行主要发生在C++后端。主要工作流前端MXNet程序会传给后端执行计算，后端通过线程不断收集任务，构造，优化并执行计算图。</p>
-</blockquote>
 <h3 id="简单演示"><a href="#简单演示" class="headerlink" title="简单演示"></a>简单演示</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = nd.ones((1, 2))</span><br><span class="line">b = nd.ones((1, 2))</span><br><span class="line">c = a * b + 2</span><br><span class="line">print(c)</span><br></pre></td></tr></table></figure>
+</blockquote>
 <p><img src="/2018/04/23/mxnet的计算性能/lazy.png" alt=""></p>
 <blockquote>
 <p>前端执行前三个语句，把任务放进后端队列。需要打印时，前端等后端线程把c的结果计算完。可以理解为前端python不参与计算，计算都在后端c++来支持的。更好的一点是惰性计算大部分情况对用户是透明的，只要数据保存在NDArray里，而且使用MXNet提供的运算子，默认多行计算。</p>
-</blockquote>
 <h3 id="立即获取结果"><a href="#立即获取结果" class="headerlink" title="立即获取结果"></a>立即获取结果</h3><pre><code>1.nd.NDArray.wait_to_read等待特定结果完成。
 2.nd.waitall()等待所有前面结果完成
 3.任何方法将内容从NDArray搬运到其他不支持延迟执行的数据结构都会触发等待。asnumpy(),asscalar()可以理解为同步函数。
-</code></pre><blockquote>
-<p>延迟操作会代开更多的内存开销。</p>
+</code></pre><p>延迟操作会代开更多的内存开销。</p>
 </blockquote>
 <h2 id="多GPU训练"><a href="#多GPU训练" class="headerlink" title="多GPU训练"></a>多GPU训练</h2><h3 id="数据并行"><a href="#数据并行" class="headerlink" title="数据并行"></a>数据并行</h3><blockquote>
 <p>数据并行是深度学习里面使用最广泛将任务划分到多设备的办法。原理：多个GPU,每个GPU维护模型参数的复制。将一个批量的样本划分成多块给多个GPU，每个GPU使用分到的数据计算梯度。然后将所有GPU上梯度相加得到这个批量上的整个梯度，用完整梯度对自己维护的模型进行更新。穷人，还没有GPU,想看怎么实现的<a href="http://zh.gluon.ai/chapter_gluon-advances/multiple-gpus-scratch.html" target="_blank" rel="noopener">这里</a></p>
@@ -664,7 +657,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">12.9k</span>
+    <span title="Site words total count">14.1k</span>
   
 </div>
 
@@ -964,26 +957,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

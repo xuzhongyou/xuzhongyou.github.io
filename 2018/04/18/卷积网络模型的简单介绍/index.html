@@ -400,8 +400,8 @@
       
         <blockquote>
 <p>计算机中的神经网络是研究者试图通过人工模拟脑神经元作为学习模型，但是这种模型通过梯度下降来学习，不得而知人脑应该不是这样学习的吧。这块恐怕还需要生物学家做出贡献，才能进一步提升或者说优化神经网络的学习能力。时代造英雄，深度神经网络的崛起不是偶然，随着海量的数据，计算能力更强的硬件支撑，深度神经网络开始展现它强大的学习能力。为什么从Alex Net说起，本人觉得是一个分界线，Alex Net相比之前的网络更大，参数更多，当然取得更好的效果，完胜传统的机器学习方法(ImageNet)。<br>下面简单说下图像方面的几个模型，旨在了解每个网络模型的特点，优点，以及构造的思路。</p>
-</blockquote>
 <h2 id="Alex-Net"><a href="#Alex-Net" class="headerlink" title="Alex Net"></a>Alex Net</h2><p>八层转换：五层卷积，两层全连接，一层输出层。具体的每层的设计看代码(卷积核的大小，池化层的设计)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">from mxnet.gluon import nn</span><br><span class="line"></span><br><span class="line">net = nn.Sequential()</span><br><span class="line">with net.name_scope():</span><br><span class="line">    net.add(</span><br><span class="line">        # 第一阶段</span><br><span class="line">        nn.Conv2D(channels=96, kernel_size=11,</span><br><span class="line">                  strides=4, activation=&apos;relu&apos;),</span><br><span class="line">        nn.MaxPool2D(pool_size=3, strides=2),</span><br><span class="line">        # 第二阶段</span><br><span class="line">        nn.Conv2D(channels=256, kernel_size=5,</span><br><span class="line">                  padding=2, activation=&apos;relu&apos;),</span><br><span class="line">        nn.MaxPool2D(pool_size=3, strides=2),</span><br><span class="line">        # 第三阶段</span><br><span class="line">        nn.Conv2D(channels=384, kernel_size=3,</span><br><span class="line">                  padding=1, activation=&apos;relu&apos;),</span><br><span class="line">        nn.Conv2D(channels=384, kernel_size=3,</span><br><span class="line">                  padding=1, activation=&apos;relu&apos;),</span><br><span class="line">        nn.Conv2D(channels=256, kernel_size=3,</span><br><span class="line">                  padding=1, activation=&apos;relu&apos;),</span><br><span class="line">        nn.MaxPool2D(pool_size=3, strides=2),</span><br><span class="line">        # 第四阶段</span><br><span class="line">        nn.Flatten(),</span><br><span class="line">        nn.Dense(4096, activation=&quot;relu&quot;),</span><br><span class="line">        nn.Dropout(.5),</span><br><span class="line">        # 第五阶段</span><br><span class="line">        nn.Dense(4096, activation=&quot;relu&quot;),</span><br><span class="line">        nn.Dropout(.5),</span><br><span class="line">        # 第六阶段</span><br><span class="line">        nn.Dense(10)</span><br><span class="line">    )</span><br></pre></td></tr></table></figure></p>
+</blockquote>
 <h2 id="VGG"><a href="#VGG" class="headerlink" title="VGG"></a>VGG</h2><p>VGG是有重复结构网络。可以用for loop来快速搭建一个深层次的神经网络。VGG还有一个关键使用很多个3x3的卷积层接上一个池化层。for loop这样的结构。</p>
 <h3 id="通用结构"><a href="#通用结构" class="headerlink" title="通用结构"></a>通用结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from mxnet.gluon import nn</span><br><span class="line"></span><br><span class="line">def vgg_block(num_convs, channels):</span><br><span class="line">    out = nn.Sequential()</span><br><span class="line">    for _ in range(num_convs):</span><br><span class="line">        out.add(</span><br><span class="line">            nn.Conv2D(channels=channels, kernel_size=3,</span><br><span class="line">                      padding=1, activation=&apos;relu&apos;)</span><br><span class="line">        )</span><br><span class="line">    out.add(nn.MaxPool2D(pool_size=2, strides=2))</span><br><span class="line">    return out</span><br></pre></td></tr></table></figure>
 <h3 id="stack通用结构"><a href="#stack通用结构" class="headerlink" title="stack通用结构"></a>stack通用结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def vgg_stack(architecture):</span><br><span class="line">    out = nn.Sequential()</span><br><span class="line">    for (num_convs, channels) in architecture:</span><br><span class="line">        out.add(vgg_block(num_convs, channels))</span><br><span class="line">    return out</span><br></pre></td></tr></table></figure>
@@ -664,7 +664,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">12.9k</span>
+    <span title="Site words total count">14.1k</span>
   
 </div>
 
@@ -964,26 +964,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

@@ -404,12 +404,12 @@
 </ol>
 <h3 id="全连接卷积网络-Fcn"><a href="#全连接卷积网络-Fcn" class="headerlink" title="全连接卷积网络(Fcn)"></a>全连接卷积网络(Fcn)</h3><blockquote>
 <p>卷积网络中，通过卷积层和池化层来减少数据长宽增加数据通道。Fcn是将全连接层转化为卷积层，然后通过反卷积来还原输入效果达到每个像素的分类。(通过论文来进一步了解)</p>
-</blockquote>
 <h4 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h4><ol>
 <li>替换全连接层和池化层成1x1卷积</li>
 <li>添加反卷积转置到需要大小的输出</li>
 <li>权重初始化维预先训练权重</li>
 </ol>
+</blockquote>
 <p><img src="/2018/05/14/语义分割/Fcn.png" alt=""><br>Dense变为1x1的卷积</p>
 
       
@@ -646,7 +646,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">12.9k</span>
+    <span title="Site words total count">14.1k</span>
   
 </div>
 
@@ -946,26 +946,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
