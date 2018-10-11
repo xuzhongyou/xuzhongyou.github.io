@@ -77,7 +77,7 @@
 
 
 
-  <meta name="keywords" content="-mxnet," />
+  <meta name="keywords" content="-GAN," />
 
 
 
@@ -88,20 +88,21 @@
 
 
 
-<meta name="description" content="为什么要选择mxnet呢，主要是被tensorflow弄烦了！不是说tensorflow很难上手，就是来来回回折腾了好多次，换个口味。其次，仰慕李沐大神，国人小骄傲。再其次，接触了一点mxnet之后确实比tensorflow友好些，以后做实验可能mxnet更方便的一点。当然，前期tensorflow踩过的坑让我上手mxnet快多了。  做简单的实验用mxnet的NDARRAY ,AUTOGRAD">
-<meta name="keywords" content="-mxnet">
+<meta name="description" content="DCGAN AND WGAN前言(废话) 今天有个孩子说我好几天没更新了。转念一想，虽然断断续续地完善前一篇GAN也并不是无所作为,但也不能给别人博主很懒的印象啊。再一想，自己当初写博客的目的只是为了记录自己的学习，提出困惑，谈谈自己的理解。可能更多的‘草稿’作用而非教学意义。可，可…也是时候重新开一篇把国庆看的东西好好整理一哈(其实一般是为了整理思路给明天的英文周报)。  DCGAN1.为什么要">
+<meta name="keywords" content="-GAN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mxnet一">
-<meta property="og:url" content="http://yoursite.com/2018/04/10/mxnet一/index.html">
+<meta property="og:title" content="DCGAN_And_WGAN">
+<meta property="og:url" content="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/index.html">
 <meta property="og:site_name" content="from Demon import Angel">
-<meta property="og:description" content="为什么要选择mxnet呢，主要是被tensorflow弄烦了！不是说tensorflow很难上手，就是来来回回折腾了好多次，换个口味。其次，仰慕李沐大神，国人小骄傲。再其次，接触了一点mxnet之后确实比tensorflow友好些，以后做实验可能mxnet更方便的一点。当然，前期tensorflow踩过的坑让我上手mxnet快多了。  做简单的实验用mxnet的NDARRAY ,AUTOGRAD">
+<meta property="og:description" content="DCGAN AND WGAN前言(废话) 今天有个孩子说我好几天没更新了。转念一想，虽然断断续续地完善前一篇GAN也并不是无所作为,但也不能给别人博主很懒的印象啊。再一想，自己当初写博客的目的只是为了记录自己的学习，提出困惑，谈谈自己的理解。可能更多的‘草稿’作用而非教学意义。可，可…也是时候重新开一篇把国庆看的东西好好整理一哈(其实一般是为了整理思路给明天的英文周报)。  DCGAN1.为什么要">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/04/10/mxnet一/mxnet_lineRegress.png">
-<meta property="og:updated_time" content="2018-09-22T15:03:54.455Z">
+<meta property="og:image" content="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/generator.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/batchnorm.png">
+<meta property="og:updated_time" content="2018-10-11T15:20:12.093Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mxnet一">
-<meta name="twitter:description" content="为什么要选择mxnet呢，主要是被tensorflow弄烦了！不是说tensorflow很难上手，就是来来回回折腾了好多次，换个口味。其次，仰慕李沐大神，国人小骄傲。再其次，接触了一点mxnet之后确实比tensorflow友好些，以后做实验可能mxnet更方便的一点。当然，前期tensorflow踩过的坑让我上手mxnet快多了。  做简单的实验用mxnet的NDARRAY ,AUTOGRAD">
-<meta name="twitter:image" content="http://yoursite.com/2018/04/10/mxnet一/mxnet_lineRegress.png">
+<meta name="twitter:title" content="DCGAN_And_WGAN">
+<meta name="twitter:description" content="DCGAN AND WGAN前言(废话) 今天有个孩子说我好几天没更新了。转念一想，虽然断断续续地完善前一篇GAN也并不是无所作为,但也不能给别人博主很懒的印象啊。再一想，自己当初写博客的目的只是为了记录自己的学习，提出困惑，谈谈自己的理解。可能更多的‘草稿’作用而非教学意义。可，可…也是时候重新开一篇把国庆看的东西好好整理一哈(其实一般是为了整理思路给明天的英文周报)。  DCGAN1.为什么要">
+<meta name="twitter:image" content="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/generator.png">
 
 
 
@@ -131,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/10/mxnet一/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/"/>
 
 
 
 
 
-  <title>mxnet一 | from Demon import Angel</title>
+  <title>DCGAN_And_WGAN | from Demon import Angel</title>
   
 
 
@@ -264,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/10/mxnet一/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiaokehu">
@@ -281,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">mxnet一</h1>
+          <h1 class="post-title" itemprop="name headline">DCGAN_And_WGAN</h1>
         
 
         <div class="post-meta">
@@ -293,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T09:39:58+08:00">
-                2018-04-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-11T18:20:07+08:00">
+                2018-10-11
               </time>
             
 
@@ -333,7 +334,7 @@
 
           
           
-             <span id="/2018/04/10/mxnet一/" class="leancloud_visitors" data-flag-title="mxnet一">
+             <span id="/2018/10/11/DCGAN-And-WGAN/" class="leancloud_visitors" data-flag-title="DCGAN_And_WGAN">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -358,7 +359,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,014
+                  1,019
                 </span>
               
 
@@ -374,7 +375,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  4
                 </span>
               
             </div>
@@ -395,27 +396,29 @@
       
 
       
-        <blockquote>
-<p>为什么要选择mxnet呢，主要是被tensorflow弄烦了！不是说tensorflow很难上手，就是来来回回折腾了好多次，换个口味。其次，仰慕李沐大神，国人小骄傲。再其次，接触了一点mxnet之后确实比tensorflow友好些，以后做实验可能mxnet更方便的一点。当然，前期tensorflow踩过的坑让我上手mxnet快多了。</p>
+        <h1 id="DCGAN-AND-WGAN"><a href="#DCGAN-AND-WGAN" class="headerlink" title="DCGAN AND WGAN"></a>DCGAN AND WGAN</h1><h2 id="前言-废话"><a href="#前言-废话" class="headerlink" title="前言(废话)"></a>前言(废话)</h2><blockquote>
+<p>今天有个孩子说我好几天没更新了。转念一想，虽然断断续续地完善前一篇GAN也并不是无所作为,但也不能给别人博主很懒的印象啊。再一想，自己当初写博客的目的只是为了记录自己的学习，提出困惑，谈谈自己的理解。可能更多的‘草稿’作用而非教学意义。可，可…也是时候重新开一篇把国庆看的东西好好整理一哈(其实一般是为了整理思路给明天的英文周报)。</p>
 </blockquote>
-<h2 id="做简单的实验"><a href="#做简单的实验" class="headerlink" title="做简单的实验"></a>做简单的实验</h2><h3 id="用mxnet的NDARRAY-AUTOGRAD就足够了"><a href="#用mxnet的NDARRAY-AUTOGRAD就足够了" class="headerlink" title="用mxnet的NDARRAY ,AUTOGRAD就足够了"></a>用mxnet的NDARRAY ,AUTOGRAD就足够了</h3><p>NDARRAY,AUTOGRAD的使用自己看<br><a href="http://zh.gluon.ai/" target="_blank" rel="noopener">官方教程</a>，中文文档实在写的很厉害，再次崇拜李沐大神。而我只是记录自己学习使用的一些心得和体会</p>
-<h3 id="还是想简单说下自动求导"><a href="#还是想简单说下自动求导" class="headerlink" title="还是想简单说下自动求导"></a>还是想简单说下自动求导</h3><ol>
-<li>关于求变量x的梯度，先用attach_grad函数来申请存储梯度需要的内存</li>
-<li>record函数记录有关变量x的计算</li>
-<li>backward函数对record中进行求梯度，backward的该为标量，如果非标量，可以求和转为标量</li>
+<h2 id="DCGAN"><a href="#DCGAN" class="headerlink" title="DCGAN"></a>DCGAN</h2><h3 id="1-为什么要有DCGAN"><a href="#1-为什么要有DCGAN" class="headerlink" title="1.为什么要有DCGAN?"></a>1.为什么要有DCGAN?</h3><p><a href="https://arxiv.org/abs/1511.06434" target="_blank" rel="noopener">Deep Convolutional Generative Adversarial Network</a>可以从两个方面来说DCGAN为什么会被提出。首先，CNN在监督学习中取得了非常大的成功，无论是在图像分类还是目标检测任务中。那么在非监督学习中，一些人会蠢蠢欲动，是否也能取得不错的效果呢。其次，GAN网络的提出，掀起了generating model 的热浪，然而在上一篇文章中已经分析了GAN网络存在的一些问题。DCGAN能够从网络架构的角度一定程度上解决这个问题。关于GAN的问题，还会在接下来的WGAN的文章中详细解释。</p>
+<h3 id="2-DCGAN-相比GAN有什么改进的地方？"><a href="#2-DCGAN-相比GAN有什么改进的地方？" class="headerlink" title="2.DCGAN 相比GAN有什么改进的地方？"></a>2.DCGAN 相比GAN有什么改进的地方？</h3><p>其实就是充分利用CNN的特点，对卷积网络拓扑做了一些限制，从而使得GAN的训练变得稳定一些。虽然论文里面还说了利用Discriminator做分类任务啊，可以visualize filters学习到了啥，甚至还有一些语义层面的。个人觉得，最大的贡献还是网络架构上。</p>
+<h3 id="3-DCGAN的核心架构是什么样？"><a href="#3-DCGAN的核心架构是什么样？" class="headerlink" title="3.DCGAN的核心架构是什么样？"></a>3.DCGAN的核心架构是什么样？</h3><p><img src="/2018/10/11/DCGAN-And-WGAN/generator.png" alt=""><br>贴的是generator的网络架构，通过deconvolution(大多人认为是反卷积，其实并不正确)。关于discriminator的网络架构就比较简单，更符合正常的CNN架构，当然为了稳定训练，加了一些trick.</p>
+<ol>
+<li>取消CNN的pooling layers</li>
+<li>generator和discriminator使用batchnorm。(今天特意查了一下batchnorm,发现跟自己想的有点差别，在文末会稍微解释一下)</li>
+<li>去掉了fully connected hidden layers</li>
+<li>对于generator,output使用Tanh,其它层使用RELU 激活函数</li>
+<li>对于discriminator 使用LeakyRelu 激活函数</li>
 </ol>
-<h2 id="深度学习最好的入门是线性回归"><a href="#深度学习最好的入门是线性回归" class="headerlink" title="深度学习最好的入门是线性回归"></a>深度学习最好的入门是线性回归</h2><h3 id="构造数据集"><a href="#构造数据集" class="headerlink" title="构造数据集"></a>构造数据集</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">n_examples = 1000</span><br><span class="line">n_inputs = 2</span><br><span class="line">x = nd.random_normal(shape=[n_examples,n_inputs])</span><br><span class="line">true_w = [2,-3.4]</span><br><span class="line">true_b = 4.2</span><br><span class="line">y = x[:,0]*true_w[0]+x[:,1]*true_w[1]+true_b</span><br><span class="line">#给出噪音</span><br><span class="line">y+=.01*nd.random_normal(shape=y.shape)</span><br><span class="line">#打印看看构造的数据</span><br><span class="line">print(&apos;x is &apos;,x[:2,:])</span><br><span class="line">print(&apos;y is &apos;,y[:2])</span><br></pre></td></tr></table></figure>
-<h3 id="构造训练的迭代器-指定batchsize"><a href="#构造训练的迭代器-指定batchsize" class="headerlink" title="构造训练的迭代器,指定batchsize"></a>构造训练的迭代器,指定batchsize</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import random</span><br><span class="line">def data_iter():</span><br><span class="line">    batchsize =10</span><br><span class="line">    idx = list(range(n_examples))</span><br><span class="line">    random.shuffle(idx)</span><br><span class="line">    for i in range(0,n_examples,batchsize):</span><br><span class="line">        j = nd.array(idx[i:min(i+batchsize,n_examples)])</span><br><span class="line">        #构造batchsize为10 的data,label迭代器</span><br><span class="line">        yield nd.take(x,j),nd.take(y,j)</span><br></pre></td></tr></table></figure>
-<h3 id="定参数，并初始化"><a href="#定参数，并初始化" class="headerlink" title="定参数，并初始化"></a>定参数，并初始化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">w = nd.random_normal(shape=[n_inputs,1])</span><br><span class="line">b = nd.zeros((1,))</span><br><span class="line">params = [w,b]</span><br><span class="line">#为变量申请梯度空间</span><br><span class="line">for param in params:</span><br><span class="line">    param.attach_grad()</span><br></pre></td></tr></table></figure>
-<h3 id="网络计算"><a href="#网络计算" class="headerlink" title="网络计算"></a>网络计算</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def net(x):</span><br><span class="line">    return nd.dot(x,w)+b</span><br></pre></td></tr></table></figure>
-<h3 id="定义损失函数"><a href="#定义损失函数" class="headerlink" title="定义损失函数"></a>定义损失函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def squre_loss(yhat,y):</span><br><span class="line">    return (yhat-y.reshape(yhat.shape))**2</span><br></pre></td></tr></table></figure>
-<h3 id="优化器，如何更新参数-这里选梯度下降方法"><a href="#优化器，如何更新参数-这里选梯度下降方法" class="headerlink" title="优化器，如何更新参数,这里选梯度下降方法"></a>优化器，如何更新参数,这里选梯度下降方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def SGD(params,lr):</span><br><span class="line">    for param in params:</span><br><span class="line">        param[:] = param - lr*param/batchsize#data_iter中的batchsize</span><br></pre></td></tr></table></figure>
-<h3 id="开始训练，设置迭代次数"><a href="#开始训练，设置迭代次数" class="headerlink" title="开始训练，设置迭代次数"></a>开始训练，设置迭代次数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">epoch = 5</span><br><span class="line">learning_rate = 0.001</span><br><span class="line">for e in range(epoch):</span><br><span class="line">    total_loss = 0</span><br><span class="line">    for data,label in data_iter():</span><br><span class="line">        with ag.record():</span><br><span class="line">            yhat = net(data)</span><br><span class="line">            loss = squre_loss(yhat,label)</span><br><span class="line">        loss.backward()</span><br><span class="line">        SGD(params,learning_rate)</span><br><span class="line">        total_loss += nd.sum(loss).asscalar()</span><br><span class="line">    print(&apos;After %d epoch,loss id %.10fparams is&apos;%(e+1,total_loss),params)</span><br></pre></td></tr></table></figure>
-<h3 id="真诚的附上运行截图"><a href="#真诚的附上运行截图" class="headerlink" title="真诚的附上运行截图"></a>真诚的附上运行截图</h3><p><img src="/2018/04/10/mxnet一/mxnet_lineRegress.png" alt=""></p>
-<h2 id="给出gluon版本"><a href="#给出gluon版本" class="headerlink" title="给出gluon版本"></a>给出gluon版本</h2><blockquote>
-<p>gluon给出了 构造数据迭代器的api<br>给出了搭建层的Sequential容器，串联各个层，给定输入，容器中的每一层输出将作为下一层的输入，里面的Dense相当于全连接层<br>不需要自己定参数，只需给输出维度<br>给出loss方法<br>给出迭代param的trainer,但是trainer.step传了一个batchsize，使得太小的学习率无法快速收敛，与上一个版本不同。<br>训练部分几乎一下，整体思路就是这些<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">from mxnet import ndarray as nd</span><br><span class="line">from mxnet import autograd as ag</span><br><span class="line">#构造数据集</span><br><span class="line">n_examples = 1000</span><br><span class="line">n_inputs = 2</span><br><span class="line">x = nd.random_normal(shape=[n_examples,n_inputs])</span><br><span class="line">true_w = [2,-3.4]</span><br><span class="line">true_b = 4.2</span><br><span class="line">y = x[:,0]*true_w[0]+x[:,1]*true_w[1]+true_b</span><br><span class="line">#给出噪音</span><br><span class="line">y+=.01*nd.random_normal(shape=y.shape)</span><br><span class="line">#用gluon的好处不用考虑参数，对复杂网络特别友好</span><br><span class="line">from mxnet import gluon</span><br><span class="line">#构造迭代器</span><br><span class="line">batch_size = 10</span><br><span class="line">dataset = gluon.data.ArrayDataset(x,y)</span><br><span class="line">data_iter = gluon.data.DataLoader(dataset,batch_size = batch_size,shuffle=True)</span><br><span class="line">#网络用sequential容器，只需指定输出的维度，初始网络中的参数</span><br><span class="line">net = gluon.nn.Sequential()</span><br><span class="line">net.add(gluon.nn.Dense(1))</span><br><span class="line">net.initialize()</span><br><span class="line">squre_loss = gluon.loss.L2Loss()</span><br><span class="line">trainer = gluon.Trainer(net.collect_params(),&apos;sgd&apos;,&#123;&apos;learning_rate&apos;:0.1&#125;)</span><br><span class="line">#开始训练</span><br><span class="line">epoch = 5</span><br><span class="line">dense = net[0]</span><br><span class="line">for e in range(epoch):</span><br><span class="line">    total_loss = 0</span><br><span class="line">    for data,label in data_iter:</span><br><span class="line">        with ag.record():</span><br><span class="line">            yhat = net(data)</span><br><span class="line">            loss = squre_loss(yhat,label)</span><br><span class="line">        loss.backward()</span><br><span class="line">        trainer.step(batch_size)</span><br><span class="line">        total_loss += nd.sum(loss).asscalar()</span><br><span class="line">    print(&apos;After %d epoch,loss id %.10f params is&apos;%(e+1,total_loss),dense.weight.data(),dense.bias.data())</span><br></pre></td></tr></table></figure></p>
+<h2 id="WGAN"><a href="#WGAN" class="headerlink" title="WGAN"></a>WGAN</h2><h3 id="废话"><a href="#废话" class="headerlink" title="废话"></a>废话</h3><blockquote>
+<p>WGAN应该是我看的时长较长的一篇了，主要还是国庆边看边玩，再加上论文本身涉及的数学证明太多，居然还有拓扑学的知识，真是哔哔…最后还是自己猜。不能说完全理解了WGAN,但是精华部分算是了解了差不多了。</p>
+<h3 id="先说WGAN优点"><a href="#先说WGAN优点" class="headerlink" title="先说WGAN优点"></a>先说WGAN优点</h3><p><a href="https://arxiv.org/abs/1701.07875" target="_blank" rel="noopener">WGAN</a>的优点基本都是针对original GAN提出的。上面说的DCGAN主要从网络架构方面解决GAN的一些训练问题，但是治标不治本啊。WGAN的作者其实花了两篇文章来说明WGAN。第一篇主要‘骂’了GAN，从GAN的‘身世’开始‘骂’。听说你想知道怎么‘骂的’？<a href="https://arxiv.org/abs/1701.04862" target="_blank" rel="noopener">来了</a>。</p>
+<ol>
+<li>解决训练不稳定问题(original GAN的通病)</li>
+<li>解决collapse model,样本多样性缺失</li>
+<li>WGAN的loss能够指导模型训练</li>
+</ol>
 </blockquote>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1.构造数据集(迭代器)<br>2.模型的构造<br>3.定义损失函数<br>4.定义优化器<br>5.迭代训练，更新参数</p>
+<h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h3><h2 id="supplement"><a href="#supplement" class="headerlink" title="supplement"></a>supplement</h2><h4 id="BatchNorm"><a href="#BatchNorm" class="headerlink" title="BatchNorm"></a>BatchNorm</h4><p>在cv中，每一个batch数据都有不同的分布，当数据经过网络，它的数据分布也会发生变化(称为internal covariate shift)还有一个被称为covariate shift，描述的是训练数据和测试数据存在分的差异性。而batchnorm做的是归一化，对数据去相关性，加快训练速度，突出分布相对差异。 但是如果对每一层都做归一化是否可取呢？不然，假设每层都归一化到标准正太分布，可能会导致网络很难去学习输入数据的特征，想学的输入特征都被归一化了。Bathnorm算法提供了一种可训练参数归一化。<br><img src="/2018/10/11/DCGAN-And-WGAN/batchnorm.png" alt="">当$\gamma$为方差$\beta$为均值时，还原到输入。见<a href="https://blog.csdn.net/qq_25737169/article/details/79048516" target="_blank" rel="noopener">详细原理代码可阅</a></p>
 
       
     </div>
@@ -433,7 +436,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mxnet/" rel="tag"># -mxnet</a>
+            <a href="/tags/GAN/" rel="tag"># -GAN</a>
           
         </div>
       
@@ -446,8 +449,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/08/python编码问题/" rel="next" title="python编码问题">
-                <i class="fa fa-chevron-left"></i> python编码问题
+              <a href="/2018/09/22/GAN/" rel="next" title="GAN">
+                <i class="fa fa-chevron-left"></i> GAN
               </a>
             
           </div>
@@ -455,10 +458,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/11/mxnet二多类逻辑回归softmax/" rel="prev" title="mxnet二多类逻辑回归softmax">
-                mxnet二多类逻辑回归softmax <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -617,7 +616,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#做简单的实验"><span class="nav-number">1.</span> <span class="nav-text">做简单的实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用mxnet的NDARRAY-AUTOGRAD就足够了"><span class="nav-number">1.1.</span> <span class="nav-text">用mxnet的NDARRAY ,AUTOGRAD就足够了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#还是想简单说下自动求导"><span class="nav-number">1.2.</span> <span class="nav-text">还是想简单说下自动求导</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度学习最好的入门是线性回归"><span class="nav-number">2.</span> <span class="nav-text">深度学习最好的入门是线性回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造数据集"><span class="nav-number">2.1.</span> <span class="nav-text">构造数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造训练的迭代器-指定batchsize"><span class="nav-number">2.2.</span> <span class="nav-text">构造训练的迭代器,指定batchsize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定参数，并初始化"><span class="nav-number">2.3.</span> <span class="nav-text">定参数，并初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络计算"><span class="nav-number">2.4.</span> <span class="nav-text">网络计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义损失函数"><span class="nav-number">2.5.</span> <span class="nav-text">定义损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化器，如何更新参数-这里选梯度下降方法"><span class="nav-number">2.6.</span> <span class="nav-text">优化器，如何更新参数,这里选梯度下降方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始训练，设置迭代次数"><span class="nav-number">2.7.</span> <span class="nav-text">开始训练，设置迭代次数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#真诚的附上运行截图"><span class="nav-number">2.8.</span> <span class="nav-text">真诚的附上运行截图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给出gluon版本"><span class="nav-number">3.</span> <span class="nav-text">给出gluon版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DCGAN-AND-WGAN"><span class="nav-number">1.</span> <span class="nav-text">DCGAN AND WGAN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言-废话"><span class="nav-number">1.1.</span> <span class="nav-text">前言(废话)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DCGAN"><span class="nav-number">1.2.</span> <span class="nav-text">DCGAN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-为什么要有DCGAN"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.为什么要有DCGAN?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-DCGAN-相比GAN有什么改进的地方？"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.DCGAN 相比GAN有什么改进的地方？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-DCGAN的核心架构是什么样？"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.DCGAN的核心架构是什么样？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WGAN"><span class="nav-number">1.3.</span> <span class="nav-text">WGAN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#废话"><span class="nav-number">1.3.1.</span> <span class="nav-text">废话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#先说WGAN优点"><span class="nav-number">1.3.2.</span> <span class="nav-text">先说WGAN优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#未完待续"><span class="nav-number">1.3.3.</span> <span class="nav-text">未完待续</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#supplement"><span class="nav-number">1.4.</span> <span class="nav-text">supplement</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BatchNorm"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">BatchNorm</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -951,6 +950,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

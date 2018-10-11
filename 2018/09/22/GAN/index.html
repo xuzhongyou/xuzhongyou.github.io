@@ -104,7 +104,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/09/22/GAN/problem-1.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/22/GAN/problem-2.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/22/GAN/result.png">
-<meta property="og:updated_time" content="2018-10-04T10:54:31.597Z">
+<meta property="og:updated_time" content="2018-10-04T14:45:11.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GAN">
 <meta name="twitter:description" content="GAN有关生成模型 对于非监督学习，生成模型指的是找到一个模型生成的分布跟数据的真实分布越接近越好。在接近的同时如果能够抓住真实数据集的重要特征，并能保持高的清晰度(这里指的是图片，当然也有文本的)，可以说这算是一个好的生成模型。举例说，给定一个人脸数据集，训练模型后，测试生成一张人脸照片，并且这张照片好似来自于这个数据集，并且颜色纹理轮廓都较为清晰。 生成模型auto-encoder针对图像训练">
@@ -365,7 +365,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,529
+                  1,539
                 </span>
               
 
@@ -404,15 +404,15 @@
       
         <h1 id="GAN"><a href="#GAN" class="headerlink" title="GAN"></a>GAN</h1><h2 id="有关生成模型"><a href="#有关生成模型" class="headerlink" title="有关生成模型"></a>有关生成模型</h2><blockquote>
 <p>对于非监督学习，生成模型指的是找到一个模型生成的分布跟数据的真实分布越接近越好。在接近的同时如果能够抓住真实数据集的重要特征，并能保持高的清晰度(这里指的是图片，当然也有文本的)，可以说这算是一个好的生成模型。举例说，给定一个人脸数据集，训练模型后，测试生成一张人脸照片，并且这张照片好似来自于这个数据集，并且颜色纹理轮廓都较为清晰。</p>
-<h3 id="生成模型"><a href="#生成模型" class="headerlink" title="生成模型"></a>生成模型</h3><h4 id="auto-encoder"><a href="#auto-encoder" class="headerlink" title="auto-encoder"></a>auto-encoder</h4><p><img src="/2018/09/22/GAN/auto-encoder.png" alt=""><br>针对图像训练：开始训练一个encoder,转化 input 成 code,再训练一个 decoder ，把code转为 image. 训练完结束只需要一个decoder,随机给一个code,自动生成一张图片</p>
+<h3 id="生成模型"><a href="#生成模型" class="headerlink" title="生成模型"></a>生成模型</h3><h4 id="auto-encoder"><a href="#auto-encoder" class="headerlink" title="auto-encoder"></a>auto-encoder</h4><p><img src="/2018/09/22/GAN/auto-encoder.png" alt=""><br>针对图像训练：开始训练一个encoder,转化 input 成 code,再训练一个 decoder ，把code转为 image. 训练完结束只需要一个decoder,随机给一个code,自动生成一张图片。</p>
 <h4 id="VAE"><a href="#VAE" class="headerlink" title="VAE"></a>VAE</h4><p>先占标题</p>
-<h2 id="Idea-of-GAN"><a href="#Idea-of-GAN" class="headerlink" title="Idea of GAN"></a>Idea of GAN</h2><p>在讲述GANS网络之前，先简单谈谈自己的理解，为什么要想出GAN?GAN的优点在哪？<br>分析如下：<br>是否直接训练一个generator,通过极大似然来求解最佳参数呢？假设在真实分布中取出一些数据$x^1,x^2,\ldots,x^m$,生成模型分布为$P_G(X^i;\theta)$,那么这些数据的似然为$L=\prod_{i=1}^m P_G(x^i;\theta)$,最大化该似然函数等价于让generator生成真实图片的概率最大。求解该似然函数 <img src="/2018/09/22/GAN/likelihood.png" alt=""><br>关于减号后面的项和$\theta$无关，添上之后可以理解为等价。最后经过转换可以得到<a href="https://zhuanlan.zhihu.com/p/29321631" target="_blank" rel="noopener">KL-divergence形式</a>，通过最大似然最终可以得到两个分布之间的KL-divergence,<br>那么问题来了$P_G(x;\theta)$计算相当困难，尤其是G是神经网络。接着就是GAN的贡献了。<script type="math/tex">V(G,D)=E_{x-Pdata}logD(x)+E_{x-PG}log(1-D(X))</script>(需要注意的是，此处给出的式子是等价后的式子，没有noise z)通过一个额外的Discriminator来做分类。主要思想就是：Discriminator 判别数据是来自Pdata,还是来自于Pg。当Pg生成的数据较好的时候，Discriminator已经无法正确分辨，此时accuarcy接近50%。<br>接下里如何训练呢？</p>
+<h2 id="Idea-of-GAN"><a href="#Idea-of-GAN" class="headerlink" title="Idea of GAN"></a>Idea of GAN</h2><p>在讲述GANS网络之前，先简单谈谈自己的理解，为什么要想出GAN?GAN的优点在哪？GAN解决了什么样的问题？<br>分析如下：<br>是否直接训练一个generator,通过极大似然来求解最佳参数呢？假设在真实分布中取出一些数据$x^1,x^2,\ldots,x^m$,生成模型分布为$P_G(X^i;\theta)$,那么这些数据的似然为$L=\prod_{i=1}^m P_G(x^i;\theta)$,最大化该似然函数等价于让generator生成真实图片的概率最大。求解该似然函数 <img src="/2018/09/22/GAN/likelihood.png" alt=""><br>关于减号后面的项和$\theta$无关，添上之后可以理解为等价。最后经过转换可以得到<a href="https://zhuanlan.zhihu.com/p/29321631" target="_blank" rel="noopener">KL-divergence形式</a>，通过最大似然最终可以得到两个分布之间的KL-divergence,<br>那么问题来了$P_G(x;\theta)$计算相当困难，尤其是G是神经网络。接着就是GAN的贡献了。<script type="math/tex">V(G,D)=E_{x-Pdata}logD(x)+E_{x-PG}log(1-D(X))</script>(需要注意的是，此处给出的式子是等价后的式子，没有noise z)通过一个额外的Discriminator来做分类。主要思想就是：Discriminator 判别数据是来自Pdata,还是来自于Pg。当Pg生成的数据较好的时候，Discriminator已经无法正确分辨，此时accuarcy接近50%。<br>接下里如何训练呢？</p>
 <h2 id="train-GANS"><a href="#train-GANS" class="headerlink" title="train GANS"></a>train GANS</h2><p>整个策略是，G0的参数先随机生成，固定G，求Max V(G,D)的D*，然后固定D*,min V(G,D*),是一个交替训练的过程。<br>有关D的训练推导比较简单，求期望转化为积分的形式，再对积分号里面的内容进行求导求最大值。</p>
 <script type="math/tex; mode=display">V(G,D)=\int\left[P_{data}logD(x)+P_G log(1-D(x))\right]dx</script><script type="math/tex; mode=display">D*=arg max_D P_{data(x)}logD(X)+P_{G(x)} log(1-Dx)</script><script type="math/tex; mode=display">D*(x)=\frac{P_{data (x)}}{P_{data (x)}+P_G (x)}</script><p>每个D<em>(x)对应的V(G,D)实际上等价于两个分布之间的差距(手打公式太累了)。<img src="/2018/09/22/GAN/opt-D.png" alt=""><br>有关G的训练更简单了min V(G0,D</em>),最小化分布之间的差异，即固定D*，优化G。<br>贴上论文的训练算法：<img src="/2018/09/22/GAN/opt.png" alt=""></p>
 </blockquote>
 <h2 id="Pipline"><a href="#Pipline" class="headerlink" title="Pipline"></a>Pipline</h2><p>回过头再来看看GAN做了什么的事情<br><img src="/2018/09/22/GAN/GAN.PNG" alt=""></p>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="G的更新优化不一定朝着最小的方向。"><a href="#G的更新优化不一定朝着最小的方向。" class="headerlink" title="G的更新优化不一定朝着最小的方向。"></a>G的更新优化不一定朝着最小的方向。</h3><p>从图中可以看得比较明显<br><img src="/2018/09/22/GAN/problem-1.png" alt=""></p>
-<p>根据训练algorithm交替训练，可能在 D0* 的位置取到 $maxV(G0,D0)=V(G0,D0*)$,然后更新G0为G1，可能$V(G1,D0*) &lt; V(G0，D0*)$了，但是不能保证找到一个新的D1* 使得$V(G1,D1*)&gt;V(G0,D0*)$<b>关于这一点理解的不是很好</b></p>
+<p>根据训练algorithm交替训练，可能在 D0* 的位置取到 $maxV(G0,D0)=V(G0,D0*)$,然后更新G0为G1，可能$V(G1,D0*) &lt; V(G0，D0*)$了，但是不能保证找到一个新的D1* 使得$V(G1,D1*)&gt;V(G0,D0*)$<b>关于这一点理解的不是很好。</b></p>
 <h3 id="有关G的目标函数问题"><a href="#有关G的目标函数问题" class="headerlink" title="有关G的目标函数问题"></a>有关G的目标函数问题</h3><p>log(1-D(x)) 作为loss function,在D(x)接近0，梯度很小，在训练初期变得很缓慢。而-log(D(x))也是递减，优势在于D(x)在接近0时，梯度很大，有利于训练，在D(x)越来越大后，梯度减小符合实际需求。</p>
 <h3 id="在训练过程中max-V-G-D-0"><a href="#在训练过程中max-V-G-D-0" class="headerlink" title="在训练过程中max V(G,D)=0"></a>在训练过程中max V(G,D)=0</h3><p>说明JS-divergence 一直是log2,Pdata和Pg没有交集。原因可能是因为:无法真正计算期望和积分，只能随机sample，导致过拟合，D过于强大，将两个数据集完全区别开。<br>办法：加noise,并且随着训练的时间，减少noise，这是由于loss function带来的缺陷。</p>
 <h3 id="model-collapse"><a href="#model-collapse" class="headerlink" title="model collapse"></a>model collapse</h3><p><img src="/2018/09/22/GAN/problem-2.png" alt=""><br>造成这个现象来源于KL-divergence里面的两个分布写反了。为了防止造成无穷大，只学习Pdata分布有的。</p>
@@ -462,6 +462,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/11/DCGAN-And-WGAN/" rel="prev" title="DCGAN_And_WGAN">
+                DCGAN_And_WGAN <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -549,7 +553,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -654,7 +658,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">14.1k</span>
+    <span title="Site words total count">15.2k</span>
   
 </div>
 
