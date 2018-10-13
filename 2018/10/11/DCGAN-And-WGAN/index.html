@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/generator.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/EM.PNG">
 <meta property="og:image" content="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/batchnorm.png">
-<meta property="og:updated_time" content="2018-10-13T10:38:29.023Z">
+<meta property="og:updated_time" content="2018-10-13T10:45:02.672Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DCGAN_And_WGAN">
 <meta name="twitter:description" content="DCGAN AND WGAN前言(废话) 今天有个孩子说我好几天没更新了。转念一想，虽然断断续续地完善前一篇GAN也并不是无所作为,但也不能给别人博主很懒的印象啊。再一想，自己当初写博客的目的只是为了记录自己的学习，提出困惑，谈谈自己的理解。可能更多的‘草稿’作用而非教学意义。可，可…也是时候重新开一篇把国庆看的东西好好整理一哈(其实一般是为了整理思路给明天的英文周报)。  DCGAN1.为什么要">
@@ -360,7 +360,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,354
+                  1,711
                 </span>
               
 
@@ -376,7 +376,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  6
                 </span>
               
             </div>
@@ -421,9 +421,7 @@
 </blockquote>
 <h3 id="GAN的问题"><a href="#GAN的问题" class="headerlink" title="GAN的问题"></a>GAN的问题</h3><h4 id="Discriminator-不能训练的最好"><a href="#Discriminator-不能训练的最好" class="headerlink" title="Discriminator 不能训练的最好"></a>Discriminator 不能训练的最好</h4><p>GAN的论文中，generator的优化函数有两种形式</p>
 <script type="math/tex; mode=display">E_{x~p_g}log\left[(1-D(x))\right])</script><p>但是这种从函数可以看出，训练初期的梯度非常小，于是给出了另一种优化函数，能解决刚开始梯度很小的问题。</p>
-<script type="math/tex; mode=display">-E_{x~p_g}log(D(x)))$$先说第一种的情况下
-在GAN中，给出这样的$$V(G,D)=E_{x~P_r}logD(x)+E_{x~P_g}log\left[(1-D(x))\right]$$最小最大优化公式。固定G，训练D，使得V取得最大值，将当前最优的D\*带入V，可得到两分布之间的divergence,再求V的最小值等价于最小化两分布的误差。给出D\*最大化的结果:$$2JSD(P_r||P_g)-2log2$$那么问题来了，JS divergence能发挥作用的情况是当两分布有可用重叠部分，而在分布无重叠时JS=log2。那么两分布存在重叠的部分会有多大呢，作者在第一篇论文中从拓扑学的角度说明了：当P_r与P_g的支撑集(support)是高维空间中的低维流行(manifold)，那么他们重叠部分测度为0的概率为1。也就是说P_r和P_g其实很难存在有用的重叠，那么无论分布远近，JS divergence永远是log2,导致生成器的梯度为0。有了上面初步分析，可以大概知道为什么GAN那么难训练了。Discriminator 训练的太好，generator的梯度消失，loss降不下去。训练的不好，无法指导generator训练，那就需要找到一个Discriminator训练的不好不差，这个很难去把握。
-对于第二种，直接给出最后的等价形式，关于怎么来的，可参考[这篇](https://zhuanlan.zhihu.com/p/25071913?from_voters_page=true)$$KL(P_g||P_r)-2JS(P_r||P_g)</script><p>该表达式可以看出，既要最小化P_g和P_r之间的KLdivergence,又要最大化他们的JSdivergence，似乎有点矛盾。其次，KLdivergence并不是对称衡量，该式完整形式<script type="math/tex">KL(P_g||P_r)=P_g(x)log\frac{P_g(x)}{P_r(x)}</script>可以看出为了防止kl无穷大，生成器宁愿生成重复的样本，不愿生成缺乏多样性的样本，这种现象就是常见的collapse mode。</p>
+<p><script type="math/tex">-E_{x~p_g}log(D(x)))</script>先说第一种的情况下<br>在GAN中，给出这样的<script type="math/tex">V(G,D)=E_{x~P_r}logD(x)+E_{x~P_g}log\left[(1-D(x))\right]</script>最小最大优化公式。固定G，训练D，使得V取得最大值，将当前最优的D*带入V，可得到两分布之间的divergence,再求V的最小值等价于最小化两分布的误差。给出D*最大化的结果:<script type="math/tex">2JSD(P_r||P_g)-2log2</script>那么问题来了，JS divergence能发挥作用的情况是当两分布有可用重叠部分，而在分布无重叠时JS=log2。那么两分布存在重叠的部分会有多大呢，作者在第一篇论文中从拓扑学的角度说明了：当P_r与P_g的支撑集(support)是高维空间中的低维流行(manifold)，那么他们重叠部分测度为0的概率为1。也就是说P_r和P_g其实很难存在有用的重叠，那么无论分布远近，JS divergence永远是log2,导致生成器的梯度为0。有了上面初步分析，可以大概知道为什么GAN那么难训练了。Discriminator 训练的太好，generator的梯度消失，loss降不下去。训练的不好，无法指导generator训练，那就需要找到一个Discriminator训练的不好不差，这个很难去把握。<br>对于第二种，直接给出最后的等价形式，关于怎么来的，可参考<a href="https://zhuanlan.zhihu.com/p/25071913?from_voters_page=true" target="_blank" rel="noopener">这篇</a><br>$KL(P_g||P_r)-2JS(P_r||P_g)$<br>该表达式可以看出，既要最小化P_g和P_r之间的KLdivergence,又要最大化他们的JSdivergence，似乎有点矛盾。其次，KLdivergence并不是对称衡量，该式完整形式$KL(P_g||P_r)=P_g(x)log\frac{P_g(x)}{P_r(x)}$可以看出为了防止kl无穷大，生成器宁愿生成重复的样本，不愿生成缺乏多样性的样本，这种现象就是常见的collapse mode。</p>
 <h4 id="总结GAN的问题"><a href="#总结GAN的问题" class="headerlink" title="总结GAN的问题"></a>总结GAN的问题</h4><ol>
 <li>divergence 衡量方法不合理(KL，JS divergence)。</li>
 <li>随机的生成分布与真实分布不可忽略的重叠少。<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4></li>
@@ -662,7 +660,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.5k</span>
+    <span title="Site words total count">15.9k</span>
   
 </div>
 
