@@ -7,7 +7,7 @@
 
 <html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -100,11 +100,11 @@
 <meta property="og:image" content="http://yoursite.com/2018/09/22/GAN/likelihood.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/22/GAN/opt-D.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/22/GAN/opt.png">
-<meta property="og:image" content="http://yoursite.com/2018/09/22/GAN/GAN.PNG">
+<meta property="og:image" content="http://yoursite.com/2018/09/22/GAN/pipline.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/22/GAN/problem-1.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/22/GAN/problem-2.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/22/GAN/result.png">
-<meta property="og:updated_time" content="2018-10-04T14:45:11.596Z">
+<meta property="og:updated_time" content="2018-10-13T09:19:55.590Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GAN">
 <meta name="twitter:description" content="GAN有关生成模型 对于非监督学习，生成模型指的是找到一个模型生成的分布跟数据的真实分布越接近越好。在接近的同时如果能够抓住真实数据集的重要特征，并能保持高的清晰度(这里指的是图片，当然也有文本的)，可以说这算是一个好的生成模型。举例说，给定一个人脸数据集，训练模型后，测试生成一张人脸照片，并且这张照片好似来自于这个数据集，并且颜色纹理轮廓都较为清晰。 生成模型auto-encoder针对图像训练">
@@ -144,7 +144,7 @@
 
 
 
-  <title>GAN | from Demon import Angel</title>
+  <title>GAN | from Demon import Angel</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -163,7 +163,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -365,7 +365,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,539
+                  1,537
                 </span>
               
 
@@ -404,17 +404,17 @@
       
         <h1 id="GAN"><a href="#GAN" class="headerlink" title="GAN"></a>GAN</h1><h2 id="有关生成模型"><a href="#有关生成模型" class="headerlink" title="有关生成模型"></a>有关生成模型</h2><blockquote>
 <p>对于非监督学习，生成模型指的是找到一个模型生成的分布跟数据的真实分布越接近越好。在接近的同时如果能够抓住真实数据集的重要特征，并能保持高的清晰度(这里指的是图片，当然也有文本的)，可以说这算是一个好的生成模型。举例说，给定一个人脸数据集，训练模型后，测试生成一张人脸照片，并且这张照片好似来自于这个数据集，并且颜色纹理轮廓都较为清晰。</p>
-<h3 id="生成模型"><a href="#生成模型" class="headerlink" title="生成模型"></a>生成模型</h3><h4 id="auto-encoder"><a href="#auto-encoder" class="headerlink" title="auto-encoder"></a>auto-encoder</h4><p><img src="/2018/09/22/GAN/auto-encoder.png" alt=""><br>针对图像训练：开始训练一个encoder,转化 input 成 code,再训练一个 decoder ，把code转为 image. 训练完结束只需要一个decoder,随机给一个code,自动生成一张图片。</p>
+<h3 id="生成模型"><a href="#生成模型" class="headerlink" title="生成模型"></a>生成模型</h3><h4 id="auto-encoder"><a href="#auto-encoder" class="headerlink" title="auto-encoder"></a>auto-encoder</h4><p><img src="/2018/09/22/GAN/auto-encoder.png" alt=""><br>针对图像训练：开始训练一个encoder，转化input成code，再训练一个 decoder，把code转为image。训练完结束只需要一个decoder，随机给一个code，自动生成一张图片。</p>
 <h4 id="VAE"><a href="#VAE" class="headerlink" title="VAE"></a>VAE</h4><p>先占标题</p>
-<h2 id="Idea-of-GAN"><a href="#Idea-of-GAN" class="headerlink" title="Idea of GAN"></a>Idea of GAN</h2><p>在讲述GANS网络之前，先简单谈谈自己的理解，为什么要想出GAN?GAN的优点在哪？GAN解决了什么样的问题？<br>分析如下：<br>是否直接训练一个generator,通过极大似然来求解最佳参数呢？假设在真实分布中取出一些数据$x^1,x^2,\ldots,x^m$,生成模型分布为$P_G(X^i;\theta)$,那么这些数据的似然为$L=\prod_{i=1}^m P_G(x^i;\theta)$,最大化该似然函数等价于让generator生成真实图片的概率最大。求解该似然函数 <img src="/2018/09/22/GAN/likelihood.png" alt=""><br>关于减号后面的项和$\theta$无关，添上之后可以理解为等价。最后经过转换可以得到<a href="https://zhuanlan.zhihu.com/p/29321631" target="_blank" rel="noopener">KL-divergence形式</a>，通过最大似然最终可以得到两个分布之间的KL-divergence,<br>那么问题来了$P_G(x;\theta)$计算相当困难，尤其是G是神经网络。接着就是GAN的贡献了。<script type="math/tex">V(G,D)=E_{x-Pdata}logD(x)+E_{x-PG}log(1-D(X))</script>(需要注意的是，此处给出的式子是等价后的式子，没有noise z)通过一个额外的Discriminator来做分类。主要思想就是：Discriminator 判别数据是来自Pdata,还是来自于Pg。当Pg生成的数据较好的时候，Discriminator已经无法正确分辨，此时accuarcy接近50%。<br>接下里如何训练呢？</p>
-<h2 id="train-GANS"><a href="#train-GANS" class="headerlink" title="train GANS"></a>train GANS</h2><p>整个策略是，G0的参数先随机生成，固定G，求Max V(G,D)的D*，然后固定D*,min V(G,D*),是一个交替训练的过程。<br>有关D的训练推导比较简单，求期望转化为积分的形式，再对积分号里面的内容进行求导求最大值。</p>
-<script type="math/tex; mode=display">V(G,D)=\int\left[P_{data}logD(x)+P_G log(1-D(x))\right]dx</script><script type="math/tex; mode=display">D*=arg max_D P_{data(x)}logD(X)+P_{G(x)} log(1-Dx)</script><script type="math/tex; mode=display">D*(x)=\frac{P_{data (x)}}{P_{data (x)}+P_G (x)}</script><p>每个D<em>(x)对应的V(G,D)实际上等价于两个分布之间的差距(手打公式太累了)。<img src="/2018/09/22/GAN/opt-D.png" alt=""><br>有关G的训练更简单了min V(G0,D</em>),最小化分布之间的差异，即固定D*，优化G。<br>贴上论文的训练算法：<img src="/2018/09/22/GAN/opt.png" alt=""></p>
+<h2 id="Idea-of-GAN"><a href="#Idea-of-GAN" class="headerlink" title="Idea of GAN"></a>Idea of GAN</h2><p>在讲述GANS网络之前，先简单谈谈自己的理解，为什么要想出GAN?GAN的优点在哪？GAN解决了什么样的问题？<br>分析如下：<br>是否直接训练一个generator，通过极大似然来求解最佳参数呢？假设在真实分布中取出一些数据$x^1,x^2,\ldots,x^m$,生成模型分布为$P_G(X^i;\theta)$，那么这些数据的似然为$L=\prod_{i=1}^m P_G(x^i;\theta)$，最大化该似然函数等价于让generator生成真实图片的概率最大。求解该似然函数 <img src="/2018/09/22/GAN/likelihood.png" alt=""><br>关于减号后面的项和$\theta$无关，添上之后可以理解为等价。最后经过转换可以得到<a href="https://zhuanlan.zhihu.com/p/29321631" target="_blank" rel="noopener">KL-divergence形式</a>，通过最大似然最终可以得到两个分布之间的KL-divergence，那么问题来了$P_G(x;\theta)$计算相当困难，尤其是G是神经网络。接着就是GAN的贡献了。<script type="math/tex">V(G,D)=E_{x-Pdata}logD(x)+E_{x-PG}log(1-D(X))</script>(需要注意的是，此处给出的式子是等价后的式子，没有noise z)通过一个额外的Discriminator来做分类。主要思想就是：Discriminator 判别数据是来自Pdata，还是来自于Pg。当Pg生成的数据较好的时候，Discriminator已经无法正确分辨，此时accuarcy接近50%。<br>接下里如何训练呢？</p>
+<h2 id="train-GANS"><a href="#train-GANS" class="headerlink" title="train GANS"></a>train GANS</h2><p>整个策略是，G0的参数先随机生成，固定G，求Max V(G,D)的D*，然后固定D*，min V(G,D*)，是一个交替训练的过程。<br>有关D的训练推导比较简单，求期望转化为积分的形式，再对积分号里面的内容进行求导求最大值。</p>
+<script type="math/tex; mode=display">V(G,D)=\int\left[P_{data}logD(x)+P_G log(1-D(x))\right]dx</script><script type="math/tex; mode=display">D*=arg max_D P_{data(x)}logD(X)+P_{G(x)} log(1-Dx)</script><script type="math/tex; mode=display">D*(x)=\frac{P_{data (x)}}{P_{data (x)}+P_G (x)}</script><p>每个D*(x)对应的V(G,D)实际上等价于两个分布之间的差距(手打公式太累了)。<img src="/2018/09/22/GAN/opt-D.png" alt=""><br>有关G的训练更简单了min V(G0,D*)，最小化分布之间的差异，即固定D*，优化G。<br>贴上论文的训练算法：<img src="/2018/09/22/GAN/opt.png" alt=""></p>
 </blockquote>
-<h2 id="Pipline"><a href="#Pipline" class="headerlink" title="Pipline"></a>Pipline</h2><p>回过头再来看看GAN做了什么的事情<br><img src="/2018/09/22/GAN/GAN.PNG" alt=""></p>
+<h2 id="Pipline"><a href="#Pipline" class="headerlink" title="Pipline"></a>Pipline</h2><p>回过头再来看看GAN做了什么的事情<br><img src="/2018/09/22/GAN/pipline.png" alt=""></p>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="G的更新优化不一定朝着最小的方向。"><a href="#G的更新优化不一定朝着最小的方向。" class="headerlink" title="G的更新优化不一定朝着最小的方向。"></a>G的更新优化不一定朝着最小的方向。</h3><p>从图中可以看得比较明显<br><img src="/2018/09/22/GAN/problem-1.png" alt=""></p>
-<p>根据训练algorithm交替训练，可能在 D0* 的位置取到 $maxV(G0,D0)=V(G0,D0*)$,然后更新G0为G1，可能$V(G1,D0*) &lt; V(G0，D0*)$了，但是不能保证找到一个新的D1* 使得$V(G1,D1*)&gt;V(G0,D0*)$<b>关于这一点理解的不是很好。</b></p>
-<h3 id="有关G的目标函数问题"><a href="#有关G的目标函数问题" class="headerlink" title="有关G的目标函数问题"></a>有关G的目标函数问题</h3><p>log(1-D(x)) 作为loss function,在D(x)接近0，梯度很小，在训练初期变得很缓慢。而-log(D(x))也是递减，优势在于D(x)在接近0时，梯度很大，有利于训练，在D(x)越来越大后，梯度减小符合实际需求。</p>
-<h3 id="在训练过程中max-V-G-D-0"><a href="#在训练过程中max-V-G-D-0" class="headerlink" title="在训练过程中max V(G,D)=0"></a>在训练过程中max V(G,D)=0</h3><p>说明JS-divergence 一直是log2,Pdata和Pg没有交集。原因可能是因为:无法真正计算期望和积分，只能随机sample，导致过拟合，D过于强大，将两个数据集完全区别开。<br>办法：加noise,并且随着训练的时间，减少noise，这是由于loss function带来的缺陷。</p>
+<p>根据训练algorithm交替训练，可能在 D0* 的位置取到 $maxV(G0,D0)=V(G0,D0*)$，然后更新G0为G1，可能$V(G1,D0*) &lt; V(G0，D0*)$了，但是不能保证找到一个新的D1* 使得$V(G1,D1*)&gt;V(G0,D0*)$<b>关于这一点理解的不是很好。</b></p>
+<h3 id="有关G的目标函数问题"><a href="#有关G的目标函数问题" class="headerlink" title="有关G的目标函数问题"></a>有关G的目标函数问题</h3><p>log(1-D(x)) 作为loss function，在D(x)接近0，梯度很小，在训练初期变得很缓慢。而-log(D(x))也是递减，优势在于D(x)在接近0时，梯度很大，有利于训练，在D(x)越来越大后，梯度减小符合实际需求。</p>
+<h3 id="在训练过程中max-V-G-D-0"><a href="#在训练过程中max-V-G-D-0" class="headerlink" title="在训练过程中max V(G,D)=0"></a>在训练过程中max V(G,D)=0</h3><p>说明JS-divergence 一直是log2，Pdata和Pg没有交集。原因可能是因为:无法真正计算期望和积分，只能随机sample，导致过拟合，D过于强大，将两个数据集完全区别开。<br>办法：加noise，并且随着训练的时间，减少noise，这是由于loss function带来的缺陷。</p>
 <h3 id="model-collapse"><a href="#model-collapse" class="headerlink" title="model collapse"></a>model collapse</h3><p><img src="/2018/09/22/GAN/problem-2.png" alt=""><br>造成这个现象来源于KL-divergence里面的两个分布写反了。为了防止造成无穷大，只学习Pdata分布有的。</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">#encoding=utf-8</span><br><span class="line">from __future__ import print_function</span><br><span class="line">import mxnet as mx</span><br><span class="line">from mxnet import gluon,autograd,nd</span><br><span class="line">from mxnet.gluon import nn</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line">## generating data</span><br><span class="line">ctx = mx.cpu()</span><br><span class="line">X = nd.random_normal(shape=(1000,2))</span><br><span class="line">A = nd.array([[1,2],[-0.1,0.5]])</span><br><span class="line">b = nd.array([1,2])</span><br><span class="line">X = nd.dot(X,A)+b</span><br><span class="line">Y = nd.ones(shape=(1000,1))</span><br><span class="line"></span><br><span class="line">batch_size = 4</span><br><span class="line">real_data = mx.io.NDArrayIter(X,Y,batch_size,shuffle=True)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## define the networks</span><br><span class="line">G = nn.Sequential()</span><br><span class="line">with G.name_scope():</span><br><span class="line">    G.add(nn.Dense(2))</span><br><span class="line">D = nn.Sequential()</span><br><span class="line">with D.name_scope():</span><br><span class="line">    D.add(nn.Dense(5,activation=&apos;tanh&apos;))</span><br><span class="line">    D.add(nn.Dense(3,activation=&apos;tanh&apos;))</span><br><span class="line">    D.add(nn.Dense(2))</span><br><span class="line"></span><br><span class="line">## loss</span><br><span class="line">loss = gluon.loss.SoftmaxCrossEntropyLoss()</span><br><span class="line"></span><br><span class="line">## initialize the networks</span><br><span class="line">G.initialize(mx.init.Normal(0.02),ctx=ctx)</span><br><span class="line">D.initialize(mx.init.Normal(0.02),ctx=ctx)</span><br><span class="line"></span><br><span class="line">trainnerG = gluon.Trainer(G.collect_params(),&apos;adam&apos;,&#123;&apos;learning_rate&apos;:0.01&#125;)</span><br><span class="line">trainnerD = gluon.Trainer(D.collect_params(),&apos;adam&apos;,&#123;&apos;learning_rate&apos;:0.05&#125;)</span><br><span class="line">## labels</span><br><span class="line">real_label =mx.nd.ones((batch_size,),ctx=ctx)</span><br><span class="line">fake_label =mx.nd.zeros((batch_size,),ctx=ctx)</span><br><span class="line"># print(&apos;real_label shape&apos;,real_label.shape)</span><br><span class="line"># print(&apos;fake_label shape&apos;,fake_label.shape)</span><br><span class="line">#about Accuracy u can find in source code</span><br><span class="line">metric = mx.metric.Accuracy()</span><br><span class="line"></span><br><span class="line">#have a habit of setting a stamp</span><br><span class="line">from datetime import datetime</span><br><span class="line">import os</span><br><span class="line">import time</span><br><span class="line">stamp = datetime.now().strftime(&apos;%Y_%m_%d_%H_%m&apos;)</span><br><span class="line">for epoch in range(9):</span><br><span class="line">    tic =time.time()</span><br><span class="line">    #Does it needs to reset</span><br><span class="line">    real_data.reset()</span><br><span class="line">    for i,batch in enumerate(real_data):</span><br><span class="line">        data = batch.data[0].as_in_context(ctx)</span><br><span class="line">        noise = nd.random_normal(shape=(batch_size,2),ctx=ctx)</span><br><span class="line">        with autograd.record():</span><br><span class="line">            r_output = D(data)</span><br><span class="line">            err_r = loss(r_output,real_label)</span><br><span class="line">            fake = G(noise)</span><br><span class="line">            f_output = D(fake.detach())</span><br><span class="line">            err_f = loss(f_output,fake_label)</span><br><span class="line">            errD = err_r + err_f</span><br><span class="line">            errD.backward()</span><br><span class="line">        trainnerD.step(batch_size)</span><br><span class="line">        # print(&apos;r_output shape&apos;,r_output.shape)</span><br><span class="line">        # print(&apos;f_output shape&apos;,f_output.shape)</span><br><span class="line">        metric.update([real_label,],[r_output,])</span><br><span class="line">        metric.update([fake_label,],[f_output,])</span><br><span class="line">        with autograd.record():</span><br><span class="line">            output = D(fake)</span><br><span class="line">            errG = loss(output,real_label)</span><br><span class="line">            errG.backward()</span><br><span class="line">        trainnerG.step(batch_size)</span><br><span class="line">    name,acc = metric.get()</span><br><span class="line">    metric.reset()</span><br><span class="line">    print(&apos;\ntraining acc at epoch &#123;0&#125;:&#123;1&#125;=&#123;2&#125;&apos;.format(epoch,name,acc))</span><br><span class="line">    print(&apos;time:&#123;0&#125;&apos;.format(time.time()-tic))</span><br><span class="line">    noise = nd.random_normal(shape=(100,2),ctx=ctx)</span><br><span class="line">    fake = G(noise)</span><br><span class="line">    plt.scatter(X[:,0].asnumpy(),X[:,1].asnumpy())</span><br><span class="line">    plt.scatter(fake[:,0].asnumpy(),fake[:,1].asnumpy())</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
 <h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p><img src="/2018/09/22/GAN/result.png" alt=""></p>
@@ -658,7 +658,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.2k</span>
+    <span title="Site words total count">15.8k</span>
   
 </div>
 
@@ -946,7 +946,24 @@
         showTime(Counter);
       }
     });
-  </script>
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
@@ -958,26 +975,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
