@@ -97,9 +97,9 @@
 <meta property="og:description" content="DCGAN AND WGAN前言(废话) 今天有个孩子说我好几天没更新了。转念一想，虽然断断续续地完善前一篇GAN也并不是无所作为,但也不能给别人博主很懒的印象啊。再一想，自己当初写博客的目的只是为了记录自己的学习，提出困惑，谈谈自己的理解。可能更多的‘草稿’作用而非教学意义。可，可…也是时候重新开一篇把国庆看的东西好好整理一哈(其实一般是为了整理思路给明天的英文周报)。  DCGAN1.为什么要">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/generator.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/EM.PNG">
+<meta property="og:image" content="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/emdis.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/batchnorm.png">
-<meta property="og:updated_time" content="2018-10-13T10:45:02.672Z">
+<meta property="og:updated_time" content="2018-10-21T11:30:45.092Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DCGAN_And_WGAN">
 <meta name="twitter:description" content="DCGAN AND WGAN前言(废话) 今天有个孩子说我好几天没更新了。转念一想，虽然断断续续地完善前一篇GAN也并不是无所作为,但也不能给别人博主很懒的印象啊。再一想，自己当初写博客的目的只是为了记录自己的学习，提出困惑，谈谈自己的理解。可能更多的‘草稿’作用而非教学意义。可，可…也是时候重新开一篇把国庆看的东西好好整理一哈(其实一般是为了整理思路给明天的英文周报)。  DCGAN1.为什么要">
@@ -426,7 +426,7 @@
 <li>divergence 衡量方法不合理(KL，JS divergence)。</li>
 <li>随机的生成分布与真实分布不可忽略的重叠少。<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4></li>
 <li>加noise,将两个低维流行弥散到高维空间，强行产生有用的重叠，目标使JS发挥作用。</li>
-<li>第一种方法治标不治本，没有从根源出发解决问题。Wasserstein 距离代替JS divergence，解决稳定训练问题，还能根据loss指示训练进程。<h3 id="Wasserstein距离"><a href="#Wasserstein距离" class="headerlink" title="Wasserstein距离"></a>Wasserstein距离</h3>关于Wasserstein的定义，，先截了网上一篇好的博客文章里的。<img src="/2018/10/11/DCGAN-And-WGAN/EM.PNG" alt=""><br>$\inf_{\gamma \sim \pi (P_r,P_g)}$是没法直接求解的。<br>先占坑，后面补</li>
+<li>第一种方法治标不治本，没有从根源出发解决问题。Wasserstein 距离代替JS divergence，解决稳定训练问题，还能根据loss指示训练进程。<h3 id="Wasserstein距离"><a href="#Wasserstein距离" class="headerlink" title="Wasserstein距离"></a>Wasserstein距离</h3>关于Wasserstein的定义，，先截了网上一篇好的博客文章里的。<img src="/2018/10/11/DCGAN-And-WGAN/emdis.png" alt=""><br>$\inf_{\gamma \sim \pi (P_r,P_g)}$是没法直接求解的。<br>先占坑，后面补</li>
 </ol>
 <h2 id="supplement"><a href="#supplement" class="headerlink" title="supplement"></a>supplement</h2><h4 id="BatchNorm"><a href="#BatchNorm" class="headerlink" title="BatchNorm"></a>BatchNorm</h4><p>在cv中，每一个batch数据都有不同的分布，当数据经过网络，它的数据分布也会发生变化(称为internal covariate shift)还有一个被称为covariate shift，描述的是训练数据和测试数据存在分的差异性。而batchnorm做的是归一化，对数据去相关性，加快训练速度，突出分布相对差异。 但是如果对每一层都做归一化是否可取呢？不然，假设每层都归一化到标准正太分布，可能会导致网络很难去学习输入数据的特征，想学的输入特征都被归一化了。Bathnorm算法提供了一种可训练参数归一化。<br><img src="/2018/10/11/DCGAN-And-WGAN/batchnorm.png" alt="">当$\gamma$为方差$\beta$为均值时，还原到输入。见<a href="https://blog.csdn.net/qq_25737169/article/details/79048516" target="_blank" rel="noopener">详细原理代码可阅</a></p>
 
@@ -468,6 +468,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/21/ResNet/" rel="prev" title="ResNet">
+                ResNet <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -550,7 +554,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -572,7 +576,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -655,7 +659,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.9k</span>
+    <span title="Site words total count">16.7k</span>
   
 </div>
 
@@ -817,7 +821,7 @@
 
 ﻿
   
-    //_config.yml文件若没有添加enable: true可删除该判断
+    
 
     
 
