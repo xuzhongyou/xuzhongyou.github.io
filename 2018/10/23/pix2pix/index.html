@@ -77,7 +77,7 @@
 
 
 
-  <meta name="keywords" content="-编码," />
+  <meta name="keywords" content="-GAN," />
 
 
 
@@ -88,18 +88,21 @@
 
 
 
-<meta name="description" content="python中的编码和解码python中的字符串1.python 有两种字符串类型：str和unicode2.str转换成特定编码类型，需要把str转为Unicode，然后由unicode转为特定编码。 unicode和utf-8的区别 utf-8用1-8个字节来保存unicode编码的字符。unicode编码字符集，utf-8字符集编码(编码规则)。 字符集：为每一个字符分配唯一的ID(学名码位">
-<meta name="keywords" content="-编码">
+<meta name="description" content="Pix2Pix 目前在做素描图片的生成，大概就是一张图片生成素描style。其实传统方法用二值化然后增加noise已经能够取得不错的效果(学姐就是这个做的，发了一篇B类的BestPaper)传统方法也会有一个问题：比如素描的阴影向量场的方向是固定的(传统方法生成需要给定一个方向)。想到用神经网络是否能够学习向量场，自动生成一张素描图片并带有丰富的阴影。有关神经网络生成模型：1.用CNN做风格迁移，">
+<meta name="keywords" content="-GAN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python编码问题">
-<meta property="og:url" content="http://yoursite.com/2018/04/08/python编码问题/index.html">
+<meta property="og:title" content="pix2pix">
+<meta property="og:url" content="http://yoursite.com/2018/10/23/pix2pix/index.html">
 <meta property="og:site_name" content="from Demon import Angel">
-<meta property="og:description" content="python中的编码和解码python中的字符串1.python 有两种字符串类型：str和unicode2.str转换成特定编码类型，需要把str转为Unicode，然后由unicode转为特定编码。 unicode和utf-8的区别 utf-8用1-8个字节来保存unicode编码的字符。unicode编码字符集，utf-8字符集编码(编码规则)。 字符集：为每一个字符分配唯一的ID(学名码位">
+<meta property="og:description" content="Pix2Pix 目前在做素描图片的生成，大概就是一张图片生成素描style。其实传统方法用二值化然后增加noise已经能够取得不错的效果(学姐就是这个做的，发了一篇B类的BestPaper)传统方法也会有一个问题：比如素描的阴影向量场的方向是固定的(传统方法生成需要给定一个方向)。想到用神经网络是否能够学习向量场，自动生成一张素描图片并带有丰富的阴影。有关神经网络生成模型：1.用CNN做风格迁移，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-08T09:40:55.448Z">
+<meta property="og:image" content="http://yoursite.com/2018/10/23/pix2pix/introduce.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/23/pix2pix/generator.png">
+<meta property="og:updated_time" content="2018-10-23T14:30:11.889Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python编码问题">
-<meta name="twitter:description" content="python中的编码和解码python中的字符串1.python 有两种字符串类型：str和unicode2.str转换成特定编码类型，需要把str转为Unicode，然后由unicode转为特定编码。 unicode和utf-8的区别 utf-8用1-8个字节来保存unicode编码的字符。unicode编码字符集，utf-8字符集编码(编码规则)。 字符集：为每一个字符分配唯一的ID(学名码位">
+<meta name="twitter:title" content="pix2pix">
+<meta name="twitter:description" content="Pix2Pix 目前在做素描图片的生成，大概就是一张图片生成素描style。其实传统方法用二值化然后增加noise已经能够取得不错的效果(学姐就是这个做的，发了一篇B类的BestPaper)传统方法也会有一个问题：比如素描的阴影向量场的方向是固定的(传统方法生成需要给定一个方向)。想到用神经网络是否能够学习向量场，自动生成一张素描图片并带有丰富的阴影。有关神经网络生成模型：1.用CNN做风格迁移，">
+<meta name="twitter:image" content="http://yoursite.com/2018/10/23/pix2pix/introduce.png">
 
 
 
@@ -129,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/08/python编码问题/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/23/pix2pix/"/>
 
 
 
 
 
-  <title>python编码问题 | from Demon import Angel</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>pix2pix | from Demon import Angel</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -262,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/08/python编码问题/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/23/pix2pix/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiaokehu">
@@ -279,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python编码问题</h1>
+          <h1 class="post-title" itemprop="name headline">pix2pix</h1>
         
 
         <div class="post-meta">
@@ -291,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-08T15:24:27+08:00">
-                2018-04-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-23T16:49:17+08:00">
+                2018-10-23
               </time>
             
 
@@ -314,8 +317,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Question/" itemprop="url" rel="index">
-                    <span itemprop="name">-Question</span>
+                  <a href="/categories/DeepLearning/" itemprop="url" rel="index">
+                    <span itemprop="name">-DeepLearning</span>
                   </a>
                 </span>
 
@@ -331,7 +334,7 @@
 
           
           
-             <span id="/2018/04/08/python编码问题/" class="leancloud_visitors" data-flag-title="python编码问题">
+             <span id="/2018/10/23/pix2pix/" class="leancloud_visitors" data-flag-title="pix2pix">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -356,7 +359,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  431
+                  853
                 </span>
               
 
@@ -372,7 +375,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -393,17 +396,30 @@
       
 
       
-        <h2 id="python中的编码和解码"><a href="#python中的编码和解码" class="headerlink" title="python中的编码和解码"></a>python中的编码和解码</h2><h3 id="python中的字符串"><a href="#python中的字符串" class="headerlink" title="python中的字符串"></a>python中的字符串</h3><p>1.python 有两种字符串类型：str和unicode<br>2.str转换成特定编码类型，需要把str转为Unicode，然后由unicode转为特定编码。</p>
-<h3 id="unicode和utf-8的区别"><a href="#unicode和utf-8的区别" class="headerlink" title="unicode和utf-8的区别"></a>unicode和utf-8的区别</h3><blockquote>
-<p>utf-8用1-8个字节来保存unicode编码的字符。unicode编码字符集，utf-8字符集编码(编码规则)。</p>
-<h4 id="字符集：为每一个字符分配唯一的ID-学名码位"><a href="#字符集：为每一个字符分配唯一的ID-学名码位" class="headerlink" title="字符集：为每一个字符分配唯一的ID(学名码位)"></a>字符集：为每一个字符分配唯一的ID(学名码位)</h4><h4 id="编码规则：将字符转为字节序列"><a href="#编码规则：将字符转为字节序列" class="headerlink" title="编码规则：将字符转为字节序列"></a>编码规则：将字符转为字节序列</h4><p>unicode字符集为每一个字符分配了一个码位，例如「知」的码位是 30693，记作 U+77E5（30693 的十六进制为 0x77E5）。<br>UTF-8 顾名思义，是一套以 8 位为一个编码单位的可变长编码。会将一个码位编码为 1 到 4 个字节(变长编码方式)</p>
+        <h1 id="Pix2Pix"><a href="#Pix2Pix" class="headerlink" title="Pix2Pix"></a>Pix2Pix</h1><blockquote>
+<p>目前在做素描图片的生成，大概就是一张图片生成素描style。其实传统方法用二值化然后增加noise已经能够取得不错的效果(学姐就是这个做的，发了一篇B类的BestPaper)传统方法也会有一个问题：比如素描的阴影向量场的方向是固定的(传统方法生成需要给定一个方向)。想到用神经网络是否能够学习向量场，自动生成一张素描图片并带有丰富的阴影。有关神经网络生成模型：1.用CNN做风格迁移，一张图提取内容一张图提取颜色纹理。2.用GAN来生成图片主要就是conditional GAN了。本文所说的Pix2Pix是conditional GAN的一种了。</p>
 </blockquote>
-<h3 id="上代码更直观"><a href="#上代码更直观" class="headerlink" title="上代码更直观"></a>上代码更直观</h3><p>unicode 转为gb2312<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding=UTF-8 -*-</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    s = u&apos;中国&apos;</span><br><span class="line">    s_gb = s.encode(&apos;gb2312&apos;)</span><br></pre></td></tr></table></figure></p>
-<p>utf-8 转为unicode<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#coding=UTF-8</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    s = u&apos;中国&apos;</span><br><span class="line">    #s为unicode先转为utf-8</span><br><span class="line">    s_utf8 =  s.encode(&apos;UTF-8&apos;)</span><br><span class="line">    assert(s_utf8.decode(&apos;utf-8&apos;) == s)</span><br></pre></td></tr></table></figure></p>
-<p>普通的str转为unicode<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#coding=UTF-8</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    s = &apos;中国&apos;</span><br><span class="line">    su = u&apos;中国&apos;&apos;</span><br><span class="line">    #s为unicode先转为utf-8</span><br><span class="line">    #因为s为所在的.py(# -*- coding=UTF-8 -*-)编码为utf-8</span><br><span class="line">    s_unicode =  s.decode(&apos;UTF-8&apos;)</span><br><span class="line">    assert(s_unicode == su)</span><br><span class="line">    #s转为gb2312:先转为unicode再转为gb2312</span><br><span class="line">    s.decode(&apos;utf-8&apos;).encode(&apos;gb2312&apos;)</span><br></pre></td></tr></table></figure></p>
-<p>python 编码检测<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import chardet</span><br><span class="line">chardet.detect(rawdata)</span><br></pre></td></tr></table></figure></p>
-<p>需要注意的是p2,p3在编码上有差别<br>p2的bytes是str,p3bytes,str混用会报错<br>字符串和bytes之间的转换：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    s = u&apos;中国&apos;</span><br><span class="line">    #s为unicode先转为utf-8</span><br><span class="line">    s_utf8 = s.encode(&apos;gb2312&apos;)</span><br><span class="line">    print(s_utf8)</span><br><span class="line">    print(str(s_utf8,encoding=&apos;gb2312&apos;))</span><br><span class="line">    # assert(s_utf8.decode(&apos;utf-8&apos;) == s)</span><br></pre></td></tr></table></figure></p>
-
+<h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><ul>
+<li>Pix2Pix是一个图像翻译模型，训练的数据集必须一对(一个原始图片，一个生成图片)，相对应的同一篇作者Cycle GAN。pix2pix原论文<a href="https://arxiv.org/abs/1611.07004" target="_blank" rel="noopener">Image-to-Image Translation with Conditional Adversarial Networks</a>。</li>
+<li>论文开头，作者说了该模型的优势：在图形学，图像处理中，一张图片到另一张图片的各种转换需要指定的算法，而pix2pix可以general-purpose。此处贴一张论文里面生成效果图片。<br><img src="/2018/10/23/pix2pix/introduce.png" alt=""></li>
+</ul>
+<h2 id="比较original-GAN和conditional-GAN"><a href="#比较original-GAN和conditional-GAN" class="headerlink" title="比较original GAN和conditional GAN"></a>比较original GAN和conditional GAN</h2><ul>
+<li>original GAN学习的是将一个vector noize $z$,转化为image $y$。<script type="math/tex; mode=display">G:z\rightarrow y</script></li>
+<li>conditional GAN学习的是将一个vector noise $z$ + image $x$转为<script type="math/tex; mode=display">G:{x,z}\rightarrow y</script></li>
+<li>original GAN的objective function<script type="math/tex; mode=display">V(G,D)=E_{x\sim p_x}logD(x)+E_{x\sim p_g}log(1-D(x))</script></li>
+<li>conditional GAN的objective function<script type="math/tex; mode=display">L_{cGAN}(G,D)=E_{x,y}logD(x,y)+E_{x,z}log(1-D(x,G(x,z)))</script></li>
+<li>关于两种的GAN的优化方法其实没有本质差异：$argmin_Gmax_DL_{cGAN}(G,D)$,先找到D*更新Discriminator的参数,在最小化$V(G,D*)$更新Generator的参数。</li>
+</ul>
+<h2 id="conditional-GAN的小trick"><a href="#conditional-GAN的小trick" class="headerlink" title="conditional GAN的小trick"></a>conditional GAN的小trick</h2><p>多次试验，研究？反正就是说加入一些传统的loss在conditional GAN中往往能取得比较好的效果。从loss的公式也可以看出，loss能控制Generator生成的图片能够骗过Discriminator,还能控制生成的图片更能接近原图片。</p>
+<script type="math/tex; mode=display">L_{L1}=E_{x,y,z}[||y-G(x,z)||_1]</script><p>那改进的conditional GAN的objective function变成了</p>
+<script type="math/tex; mode=display">G*=argmin_Gmax_DL{cGAN}(G,D)+\lambda L_{L1}(G)</script><h2 id="Network-architectures"><a href="#Network-architectures" class="headerlink" title="Network architectures"></a>Network architectures</h2><p>Generator和Discriminator使用了convolution-BatchNorm-Relu的架构，论文里直接给了这样的架构，在写网络的时候清晰很多。</p>
+<h3 id="Generator-with-skips"><a href="#Generator-with-skips" class="headerlink" title="Generator with skips"></a>Generator with skips</h3><ul>
+<li>imageToimage问题：高分辨率的转换，input和output在surface appearance的差异。关于Generator网络结构很多，其中encoder-decoder网络：它是逐渐做下采样，到瓶颈层结束，然后反转做上采样。这会有一个问题，信息会传遍encoder-decoder的每一层包括瓶颈层，但是图片转换问题中，有很多low-level information在input和output之间是共享的需要直接传递，比如颜色，边缘的位置。</li>
+<li>在pixtopix中Generator用的是U-net,可以解决信息的直接传递问题。共有n层，layer i层和n-i层是连接的。<br>上图比较清晰：<img src="/2018/10/23/pix2pix/generator.png" alt=""><h3 id="Discriminator-PatchGAN"><a href="#Discriminator-PatchGAN" class="headerlink" title="Discriminator (PatchGAN)"></a>Discriminator (PatchGAN)</h3></li>
+<li>之前的研究实验表明L1 loss,L2 loss尽管生成的图像比较blurry,但是它们比较准确地抓住了low-frequency,那么我们整个框架就不需要全部学习了。</li>
+<li>能够有方法让Discriminator只专注于high-frequency,而low-frequency则交给L1。如何专注于high-frequency,尽可能地去判别一些局部照片。实际操作，无论input多大，将其切分多个固定大小的Patch,输入Discriminator去判断。这样有一个很大的优势Discriminator的输入变小，计算量减小，运行速度快。</li>
+</ul>
+<h3 id="后面的等做完实验再更新"><a href="#后面的等做完实验再更新" class="headerlink" title="后面的等做完实验再更新"></a>后面的等做完实验再更新</h3>
       
     </div>
     
@@ -420,7 +436,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/编码/" rel="tag"># -编码</a>
+            <a href="/tags/GAN/" rel="tag"># -GAN</a>
           
         </div>
       
@@ -433,8 +449,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/04/Tensorflow三/" rel="next" title="Tensorflow三">
-                <i class="fa fa-chevron-left"></i> Tensorflow三
+              <a href="/2018/10/21/ResNet/" rel="next" title="ResNet">
+                <i class="fa fa-chevron-left"></i> ResNet
               </a>
             
           </div>
@@ -442,10 +458,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/10/mxnet一/" rel="prev" title="mxnet一">
-                mxnet一 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -599,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python中的编码和解码"><span class="nav-number">1.</span> <span class="nav-text">python中的编码和解码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#python中的字符串"><span class="nav-number">1.1.</span> <span class="nav-text">python中的字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unicode和utf-8的区别"><span class="nav-number">1.2.</span> <span class="nav-text">unicode和utf-8的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字符集：为每一个字符分配唯一的ID-学名码位"><span class="nav-number">1.2.1.</span> <span class="nav-text">字符集：为每一个字符分配唯一的ID(学名码位)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编码规则：将字符转为字节序列"><span class="nav-number">1.2.2.</span> <span class="nav-text">编码规则：将字符转为字节序列</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上代码更直观"><span class="nav-number">1.3.</span> <span class="nav-text">上代码更直观</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pix2Pix"><span class="nav-number">1.</span> <span class="nav-text">Pix2Pix</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单介绍"><span class="nav-number">1.1.</span> <span class="nav-text">简单介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比较original-GAN和conditional-GAN"><span class="nav-number">1.2.</span> <span class="nav-text">比较original GAN和conditional GAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conditional-GAN的小trick"><span class="nav-number">1.3.</span> <span class="nav-text">conditional GAN的小trick</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-architectures"><span class="nav-number">1.4.</span> <span class="nav-text">Network architectures</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Generator-with-skips"><span class="nav-number">1.4.1.</span> <span class="nav-text">Generator with skips</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Discriminator-PatchGAN"><span class="nav-number">1.4.2.</span> <span class="nav-text">Discriminator (PatchGAN)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后面的等做完实验再更新"><span class="nav-number">1.4.3.</span> <span class="nav-text">后面的等做完实验再更新</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
