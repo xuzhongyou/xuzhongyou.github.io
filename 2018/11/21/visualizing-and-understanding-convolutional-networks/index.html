@@ -77,7 +77,7 @@
 
 
 
-  <meta name="keywords" content="-编码," />
+  <meta name="keywords" content="-CNN," />
 
 
 
@@ -88,18 +88,24 @@
 
 
 
-<meta name="description" content="python中的编码和解码python中的字符串1.python 有两种字符串类型：str和unicode2.str转换成特定编码类型，需要把str转为Unicode，然后由unicode转为特定编码。 unicode和utf-8的区别 utf-8用1-8个字节来保存unicode编码的字符。unicode编码字符集，utf-8字符集编码(编码规则)。 字符集：为每一个字符分配唯一的ID(学名码位">
-<meta name="keywords" content="-编码">
+<meta name="description" content="最近这段日子发现看论文好多看不懂，从Precomputed Real-Time Texture Synthesis with Markovian Generative Adversarial Networks到同一作者的Combining Markov Random Fields and Convolutional Neural Networks for Image Synthesis.看完知道">
+<meta name="keywords" content="-CNN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python编码问题">
-<meta property="og:url" content="http://yoursite.com/2018/04/08/python编码问题/index.html">
+<meta property="og:title" content="visualizing-and-understanding-convolutional-networks">
+<meta property="og:url" content="http://yoursite.com/2018/11/21/visualizing-and-understanding-convolutional-networks/index.html">
 <meta property="og:site_name" content="from Demon import Angel">
-<meta property="og:description" content="python中的编码和解码python中的字符串1.python 有两种字符串类型：str和unicode2.str转换成特定编码类型，需要把str转为Unicode，然后由unicode转为特定编码。 unicode和utf-8的区别 utf-8用1-8个字节来保存unicode编码的字符。unicode编码字符集，utf-8字符集编码(编码规则)。 字符集：为每一个字符分配唯一的ID(学名码位">
+<meta property="og:description" content="最近这段日子发现看论文好多看不懂，从Precomputed Real-Time Texture Synthesis with Markovian Generative Adversarial Networks到同一作者的Combining Markov Random Fields and Convolutional Neural Networks for Image Synthesis.看完知道">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-08T09:40:55.448Z">
+<meta property="og:image" content="http://yoursite.com/2018/11/21/visualizing-and-understanding-convolutional-networks/deconvnet.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/21/visualizing-and-understanding-convolutional-networks/unpooling.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/21/visualizing-and-understanding-convolutional-networks/layer1.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/21/visualizing-and-understanding-convolutional-networks/layer2.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/21/visualizing-and-understanding-convolutional-networks/layer3.png">
+<meta property="og:updated_time" content="2018-11-21T13:07:51.149Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python编码问题">
-<meta name="twitter:description" content="python中的编码和解码python中的字符串1.python 有两种字符串类型：str和unicode2.str转换成特定编码类型，需要把str转为Unicode，然后由unicode转为特定编码。 unicode和utf-8的区别 utf-8用1-8个字节来保存unicode编码的字符。unicode编码字符集，utf-8字符集编码(编码规则)。 字符集：为每一个字符分配唯一的ID(学名码位">
+<meta name="twitter:title" content="visualizing-and-understanding-convolutional-networks">
+<meta name="twitter:description" content="最近这段日子发现看论文好多看不懂，从Precomputed Real-Time Texture Synthesis with Markovian Generative Adversarial Networks到同一作者的Combining Markov Random Fields and Convolutional Neural Networks for Image Synthesis.看完知道">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/21/visualizing-and-understanding-convolutional-networks/deconvnet.png">
 
 
 
@@ -129,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/08/python编码问题/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/11/21/visualizing-and-understanding-convolutional-networks/"/>
 
 
 
 
 
-  <title>python编码问题 | from Demon import Angel</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>visualizing-and-understanding-convolutional-networks | from Demon import Angel</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -262,7 +268,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/08/python编码问题/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/21/visualizing-and-understanding-convolutional-networks/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiaokehu">
@@ -279,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python编码问题</h1>
+          <h1 class="post-title" itemprop="name headline">visualizing-and-understanding-convolutional-networks</h1>
         
 
         <div class="post-meta">
@@ -291,8 +297,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-08T15:24:27+08:00">
-                2018-04-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-21T16:29:14+08:00">
+                2018-11-21
               </time>
             
 
@@ -314,8 +320,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Question/" itemprop="url" rel="index">
-                    <span itemprop="name">-Question</span>
+                  <a href="/categories/DeepLearning/" itemprop="url" rel="index">
+                    <span itemprop="name">-DeepLearning</span>
                   </a>
                 </span>
 
@@ -331,7 +337,7 @@
 
           
           
-             <span id="/2018/04/08/python编码问题/" class="leancloud_visitors" data-flag-title="python编码问题">
+             <span id="/2018/11/21/visualizing-and-understanding-convolutional-networks/" class="leancloud_visitors" data-flag-title="visualizing-and-understanding-convolutional-networks">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -356,7 +362,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  431
+                  1,189
                 </span>
               
 
@@ -372,7 +378,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  4
                 </span>
               
             </div>
@@ -393,16 +399,22 @@
       
 
       
-        <h2 id="python中的编码和解码"><a href="#python中的编码和解码" class="headerlink" title="python中的编码和解码"></a>python中的编码和解码</h2><h3 id="python中的字符串"><a href="#python中的字符串" class="headerlink" title="python中的字符串"></a>python中的字符串</h3><p>1.python 有两种字符串类型：str和unicode<br>2.str转换成特定编码类型，需要把str转为Unicode，然后由unicode转为特定编码。</p>
-<h3 id="unicode和utf-8的区别"><a href="#unicode和utf-8的区别" class="headerlink" title="unicode和utf-8的区别"></a>unicode和utf-8的区别</h3><blockquote>
-<p>utf-8用1-8个字节来保存unicode编码的字符。unicode编码字符集，utf-8字符集编码(编码规则)。</p>
-<h4 id="字符集：为每一个字符分配唯一的ID-学名码位"><a href="#字符集：为每一个字符分配唯一的ID-学名码位" class="headerlink" title="字符集：为每一个字符分配唯一的ID(学名码位)"></a>字符集：为每一个字符分配唯一的ID(学名码位)</h4><h4 id="编码规则：将字符转为字节序列"><a href="#编码规则：将字符转为字节序列" class="headerlink" title="编码规则：将字符转为字节序列"></a>编码规则：将字符转为字节序列</h4><p>unicode字符集为每一个字符分配了一个码位，例如「知」的码位是 30693，记作 U+77E5（30693 的十六进制为 0x77E5）。<br>UTF-8 顾名思义，是一套以 8 位为一个编码单位的可变长编码。会将一个码位编码为 1 到 4 个字节(变长编码方式)</p>
+        <blockquote>
+<p>最近这段日子发现看论文好多看不懂，从Precomputed Real-Time Texture Synthesis with Markovian Generative Adversarial Networks到同一作者的Combining Markov Random Fields and Convolutional Neural Networks for Image Synthesis.看完知道前者解决的问题是用Deep Markovian models做text synthesis带来的相当大的计算花费。后者做的是利用Markov Random Fields结合CNN做imgae Synthesis.虽然通读了下来，但是说到细节还是蒙圈的，主要问题出在概率图模型—Markov。这个本身就是难点，算是Markov在视觉上的应用。也大致了解了一些概率图知识，有点难入门。科研嘛，如果死脑筋，一直死磕会崩溃的。关于本篇想要解读的文章，是在上面两篇的文献中提到的，其实之前就很想了解，所以既然看不懂那两篇，就用这篇Visualizing and Understanding Convolutional Networks来调剂一哈吧，也许看完对CNN有一个新的认识。大概就是这么个心里路程！关于这篇我读的还挺细的，但是不打算系统的说明，就将其中的核心拎出来。</p>
 </blockquote>
-<h3 id="上代码更直观"><a href="#上代码更直观" class="headerlink" title="上代码更直观"></a>上代码更直观</h3><p>unicode 转为gb2312<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding=UTF-8 -*-</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    s = u&apos;中国&apos;</span><br><span class="line">    s_gb = s.encode(&apos;gb2312&apos;)</span><br></pre></td></tr></table></figure></p>
-<p>utf-8 转为unicode<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#coding=UTF-8</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    s = u&apos;中国&apos;</span><br><span class="line">    #s为unicode先转为utf-8</span><br><span class="line">    s_utf8 =  s.encode(&apos;UTF-8&apos;)</span><br><span class="line">    assert(s_utf8.decode(&apos;utf-8&apos;) == s)</span><br></pre></td></tr></table></figure></p>
-<p>普通的str转为unicode<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#coding=UTF-8</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    s = &apos;中国&apos;</span><br><span class="line">    su = u&apos;中国&apos;&apos;</span><br><span class="line">    #s为unicode先转为utf-8</span><br><span class="line">    #因为s为所在的.py(# -*- coding=UTF-8 -*-)编码为utf-8</span><br><span class="line">    s_unicode =  s.decode(&apos;UTF-8&apos;)</span><br><span class="line">    assert(s_unicode == su)</span><br><span class="line">    #s转为gb2312:先转为unicode再转为gb2312</span><br><span class="line">    s.decode(&apos;utf-8&apos;).encode(&apos;gb2312&apos;)</span><br></pre></td></tr></table></figure></p>
-<p>python 编码检测<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import chardet</span><br><span class="line">chardet.detect(rawdata)</span><br></pre></td></tr></table></figure></p>
-<p>需要注意的是p2,p3在编码上有差别<br>p2的bytes是str,p3bytes,str混用会报错<br>字符串和bytes之间的转换：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    s = u&apos;中国&apos;</span><br><span class="line">    #s为unicode先转为utf-8</span><br><span class="line">    s_utf8 = s.encode(&apos;gb2312&apos;)</span><br><span class="line">    print(s_utf8)</span><br><span class="line">    print(str(s_utf8,encoding=&apos;gb2312&apos;))</span><br><span class="line">    # assert(s_utf8.decode(&apos;utf-8&apos;) == s)</span><br></pre></td></tr></table></figure></p>
+<h1 id="Visualization"><a href="#Visualization" class="headerlink" title="Visualization"></a>Visualization</h1><p>CNN一直被人垢以‘黑盒’模型，很难从数学的角度完整地解释，但是一些研究者尝试通过模型的可视化探究CNN到底学了些什么？这里的可视化指的是Filter(卷积核)。可视化的工作分为两大类：</p>
+<ul>
+<li>非参数化：指的是不分析CNN模型的参数，而是通过网络前向传播，对于指定的卷积核，可视化最大图片响应。本篇要说的可视化就是该类。</li>
+<li>参数化：从参数出发，通过分析Filter的参数，使用参数构造图像。</li>
+</ul>
+<h2 id="Deconvnet"><a href="#Deconvnet" class="headerlink" title="Deconvnet"></a>Deconvnet</h2><p>这篇论文探究的是在任意层中怎样的输入能够刺激产生feature map。具体的做法是：通过Deconvolutional Network将激活的feature反向映射到输入的像素空间。（这里的输入不是前层，而是input image。提醒一点的是：这里的Deconvolutional Network于作者之前发的Adative Deconvolutional Networks for Mid and High Level Feature Learning 里面提到的反卷积网络不同，本篇可视化论文只是作为prob来帮助理解CNN，没有非监督学习的任务。）<br><img src="/2018/11/21/visualizing-and-understanding-convolutional-networks/deconvnet.png" alt=""><br>Deconvnet主要的三个操作</p>
+<h3 id="Unpooling"><a href="#Unpooling" class="headerlink" title="Unpooling"></a>Unpooling</h3><p>max pooling操作是不可逆的，但是可以选择近似逼近：通过一组switch变量来记录每一个pooling的最大值的位置。在deconvnet过程中，unpooling操作根据switch来重构Maps,如上图底部彩色信息部分。在作者之前的那篇非监督学习任务的Deconvnet网络中可以清楚看到unpooling是如何实现的。只不过当时用的三维池化操作。<br><img src="/2018/11/21/visualizing-and-understanding-convolutional-networks/unpooling.png" alt=""></p>
+<h3 id="Rectification"><a href="#Rectification" class="headerlink" title="Rectification"></a>Rectification</h3><p>Rectification控制feature maps总是正的，如果用的是relu非线性函数，那么他的逆过程仍然是relu,同样保证逆过程中每层feature reconstruction仍然是正的。</p>
+<h3 id="Filtering"><a href="#Filtering" class="headerlink" title="Filtering"></a>Filtering</h3><p>这里主要说的是卷积的逆运算，deconvnet使用同样Filter的转置作为逆过程。</p>
+<h3 id="summarize-Deconvnet"><a href="#summarize-Deconvnet" class="headerlink" title="summarize Deconvnet"></a>summarize Deconvnet</h3><p>想要可视化每层学到的内容，需要从下往上依次计算，直到对应input pixl。例如想要layer5的可视化结果，经过layer4,layer3,layer2,layer1统统需要invert。作者把这个Deconvet的过程近似理解为backpropping一个strong activation。相当于计算$\frac{\partial h}{\partial X_n}$ $h$表示激活的feature map，$X_n$表示input image。</p>
+<h3 id="feature-visualizatioon"><a href="#feature-visualizatioon" class="headerlink" title="feature visualizatioon"></a>feature visualizatioon</h3><p>对应每一层可视化的结果。<br><img src="/2018/11/21/visualizing-and-understanding-convolutional-networks/layer1.png" alt=""><br><img src="/2018/11/21/visualizing-and-understanding-convolutional-networks/layer2.png" alt=""><br><img src="/2018/11/21/visualizing-and-understanding-convolutional-networks/layer3.png" alt=""><br>从可视化的结果我们大概知道了CNN的分层特性：第二层捕捉颜色纹理信息，第三层复杂的不变性，第四层展示了显著变化，类别开始具体，第五层显示了更加清晰的整个对象。</p>
+<h3 id="for-what"><a href="#for-what" class="headerlink" title="for what"></a>for what</h3><p>有了可视化的结果，我们可以观察学习到的特征。从而改良模型。本文通过可视化发现浅层丢失了许多像素信息，AlexNet的基础上，缩小卷积核的尺寸和步长，立马超过了AlexNet的效果。除此之外，该方法探究卷积操作对平移缩放具有很好的不变性，而对于旋转的不变性较差。这方面能找到的内容还挺多的，基本就是CNN能取得好的效果的原因。</p>
+<h2 id="conclusion"><a href="#conclusion" class="headerlink" title="conclusion"></a>conclusion</h2><p>大概就这样吧，虽然细节还是有一些模糊，但是总体大概就是这个样子。花了一天半时间弄完这篇论文，可视化不是我的重点，但是有一天如果想要回过头去进一步理解还是会回过头来看的。方向还是得明确，主要还是图像生成，主要还是用最近技术GAN,所以还是要多看看GAN的文章。</p>
 
       
     </div>
@@ -420,7 +432,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/编码/" rel="tag"># -编码</a>
+            <a href="/tags/CNN/" rel="tag"># -CNN</a>
           
         </div>
       
@@ -433,8 +445,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/04/Tensorflow三/" rel="next" title="Tensorflow三">
-                <i class="fa fa-chevron-left"></i> Tensorflow三
+              <a href="/2018/11/10/PRML-Homework/" rel="next" title="PRML-Homework">
+                <i class="fa fa-chevron-left"></i> PRML-Homework
               </a>
             
           </div>
@@ -442,10 +454,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/10/mxnet一/" rel="prev" title="mxnet一">
-                mxnet一 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -599,7 +607,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#python中的编码和解码"><span class="nav-number">1.</span> <span class="nav-text">python中的编码和解码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#python中的字符串"><span class="nav-number">1.1.</span> <span class="nav-text">python中的字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unicode和utf-8的区别"><span class="nav-number">1.2.</span> <span class="nav-text">unicode和utf-8的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字符集：为每一个字符分配唯一的ID-学名码位"><span class="nav-number">1.2.1.</span> <span class="nav-text">字符集：为每一个字符分配唯一的ID(学名码位)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编码规则：将字符转为字节序列"><span class="nav-number">1.2.2.</span> <span class="nav-text">编码规则：将字符转为字节序列</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上代码更直观"><span class="nav-number">1.3.</span> <span class="nav-text">上代码更直观</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Visualization"><span class="nav-number">1.</span> <span class="nav-text">Visualization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Deconvnet"><span class="nav-number">1.1.</span> <span class="nav-text">Deconvnet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Unpooling"><span class="nav-number">1.1.1.</span> <span class="nav-text">Unpooling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rectification"><span class="nav-number">1.1.2.</span> <span class="nav-text">Rectification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Filtering"><span class="nav-number">1.1.3.</span> <span class="nav-text">Filtering</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#summarize-Deconvnet"><span class="nav-number">1.1.4.</span> <span class="nav-text">summarize Deconvnet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#feature-visualizatioon"><span class="nav-number">1.1.5.</span> <span class="nav-text">feature visualizatioon</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-what"><span class="nav-number">1.1.6.</span> <span class="nav-text">for what</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">1.2.</span> <span class="nav-text">conclusion</span></a></li></ol></li></ol></div>
             
 
           </div>

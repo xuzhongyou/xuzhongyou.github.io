@@ -101,7 +101,8 @@
 <meta property="og:image" content="http://yoursite.com/2018/11/10/PRML-Homework/tui.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/10/PRML-Homework/X.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/10/PRML-Homework/dan.png">
-<meta property="og:updated_time" content="2018-11-11T14:15:13.131Z">
+<meta property="og:image" content="http://yoursite.com/2018/11/10/PRML-Homework/LDA.PNG">
+<meta property="og:updated_time" content="2018-11-21T13:12:49.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PRML-Homework">
 <meta name="twitter:description" content="Purpose 这两周感觉效率偏低，GAN的论文看的迷迷糊糊还没有完全弄清楚，加上最近沉迷吃鸡，没有那个精力，心态（主要原因）去好好整一篇博客。所以…打算换个project来缓一缓断更的节奏。这个project是打算作为模式识别机器学习课程的一篇报告。说起这个课脑袋就很疼，一只脚踏入了挂科的深渊，希望自己能够吸取教训。这个project是kaggle上的一个竞赛，有7万刀。虽然已经结束了内容也比较">
@@ -362,7 +363,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,062
+                  3,569
                 </span>
               
 
@@ -378,7 +379,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7
+                  13
                 </span>
               
             </div>
@@ -406,13 +407,37 @@
 <h3 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h3><ul>
 <li>并行式集成学习方法的一种，假如采样出$T$个含$m$个训练样本的采样集，然后基于每个采样集训练出基学习器，再将基学习器结合。</li>
 <li>Bagging是对分类任务使用简单投票法，对回归使用简单平均法，票数 相同随机选择一个。</li>
-<li>Bagging和Adaboost有一个不同的地方，标准Adaboost只适用于二分类任务，Bagging能够不改地用于多分类和回归任务。<br>看下训练算法：<br><img src="/2018/11/10/PRML-Homework/Bagging.png" alt=""><h3 id="Decision-Tree"><a href="#Decision-Tree" class="headerlink" title="Decision Tree"></a>Decision Tree</h3>做决策的树形模型，一般的，一棵决策树包含一个根节点，若干个内部节点和若干个叶节点。叶节点对应于决策结果，其他结点对应熟悉你个测试，每个结点包含的样本集合根据属性测试的结果被划分到子节点中，根节点包含样本全集。基本思想‘分而治之’，基本思想如下：<br><img src="/2018/11/10/PRML-Homework/decision_tree.png" alt=""></li>
+<li>Bagging和Adaboost有一个不同的地方，标准Adaboost只适用于二分类任务，Bagging能够不改地用于多分类和回归任务。<br>看下训练算法：<br><img src="/2018/11/10/PRML-Homework/Bagging.png" alt=""><h3 id="Decision-Tree"><a href="#Decision-Tree" class="headerlink" title="Decision Tree"></a>Decision Tree</h3><blockquote>
+<p>关于决策树算法这块，这边不打算展开叙述（直观理解还是需要例子加以辅助，推荐周志华的西瓜书，浅显易懂）。只说明大体上决策树的组成和重要的知识点。</p>
+</blockquote>
+</li>
 </ul>
+<p>做决策的树形模型，一般的，一棵决策树包含一个根节点，若干个内部节点和若干个叶节点。叶节点对应于决策结果，其他结点对应熟悉你个测试，每个结点包含的样本集合根据属性测试的结果被划分到子节点中，根节点包含样本全集。基本思想‘分而治之’，基本思想如下：<br><img src="/2018/11/10/PRML-Homework/decision_tree.png" alt=""></p>
+<h4 id="purity"><a href="#purity" class="headerlink" title="purity"></a>purity</h4><p>根据算法可知，构建决策树的重点在于属性的划分。属性的划分依据是结点的纯度，希望决策树的分支结点包含的样本尽可能属于同一类别，即纯度越高越好。纯度有不同的衡量标准：</p>
+<h5 id="information-gain"><a href="#information-gain" class="headerlink" title="information gain"></a>information gain</h5><p>information entropy信息熵，信息量的期望，度量样本集合纯度最常用的指标。信息量：事件发生带来的信息大小（一个事件发生的概率越大包含的信息量越少）。对于集合$D$,信息熵的定义为：</p>
+<script type="math/tex; mode=display">Ent(D)=-\sum_{k=1}^{|y|}p_klog_2p_k</script><p>$Ent(D)$的值越小，则D的纯度越高。<br>假定离散属性$\alpha$有$V$个可能的取值${\alpha^1,\alpha^2,…,\alpha^V}$,若使用$\alpha$对样本集划分，则会产生$V$个分支结点，其中第$v$个分支结点包含了$D$中所有在属性$\alpha$上取值为$\alpha^v$的样本，记为$D_v$。考虑到不同的分支节点包含的样本数不同，给分支节点赋予权重$\partial{|D^v|}{|D|}$,样本数越多的分支结点的影响越大，则属性$\alpha$对样本集$D$进行划分所获得的信息增益为：</p>
+<script type="math/tex; mode=display">Gain(D,\alpha)=Ent(D)-\sum_{v=1}^V\partial{|D^v|}{|D|}Ent(D^v)</script><p>这里信息增益越大，一直意味着按照属性$\alpha$来进行划分所获得的‘纯度提升’越大。那么选择属性的原则按照$\alpha^*=argmax Gain(D,\alpha)$ID3决策树就是按照信息增益为准则来选择划分属性。</p>
+<h5 id="gain-ratio"><a href="#gain-ratio" class="headerlink" title="gain ratio"></a>gain ratio</h5><p>刚才说到的信息增益有一个问题，信息增益准则对可取值数目较多的属性有所偏好。大概的理解是 ：每个属性分支结点包含的样本少，则说明纯度大。例如将数据的编号作为划分属性，每个属性分支节点只有一个样本，纯度达到最大，然而这样的决策树泛化能力为0。因此有些决策树使用增益率来选择最有划分属性。如：C4.5。增益率定义为：</p>
+<script type="math/tex; mode=display">Gain_ratio(D,\alpha)=\frac{Gain(D,\alpha)}{IV(\alpha)}</script><p>其中</p>
+<script type="math/tex; mode=display">IV(\alpha)=-\sum_{v=1}^V\frac{|D^v|}{|D|}log_2\frac{|D^v|}{|D|}</script><p>称为属性$\alpha$的固有值，属性$\alpha$可能取值数目越多（$V$越大），则$IV(\alpha)$的值越大。</p>
+<h5 id="gini-index"><a href="#gini-index" class="headerlink" title="gini index"></a>gini index</h5><p>基尼指数是CART决策树。</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+Gini(D) &= \sum_{k=1}^{|y|}\sum_{k^'\neq{k}p_kp_{k'} \\
+&=1-\sum_{k=1}^{|y|}p_k^2
+\end{eqnarray}</script><p>直观上$Gini(D)$表示的意义是：从数据集$D$中随机抽取两个样本，其类别标记不一致的概率，$Gini(D)$越小，则数据集$D$的纯度越高。属性$\alpha$的基尼指数定义为</p>
+<script type="math/tex; mode=display">Gini_index(D,\alpha)=\sum_{v=1}^V\frac{|D^v|}{|D|}Gini(D^v)</script><h4 id="pruning"><a href="#pruning" class="headerlink" title="pruning"></a>pruning</h4><p>减枝是决策树学习为了防止过拟合的手段，主要原因是，为了正确分类样本，划分过程不断重复，造成决策分支过多样本学得太好而导致。决策树的减枝基本策略“预减枝”，“后剪枝”。</p>
+<ul>
+<li>预减枝：在决策树生成过程中，对每个结点在划分前先进行估计，若当前结点的划分布恩那个带来决策树泛化性能提升，则停止划分将该节点标记为叶节点</li>
+<li>后剪枝则是先从训练集生成一棵完整的决策树，然后自底而上地对非叶子结点进行考察，若将该结点对一个的子树替换成叶结点能带来决策树泛化性能提升，则将该子树替换成叶节点。<br>上面说的两种减枝方法比较抽象，可以参考周志华的西瓜书，有例子能够更加直观。</li>
+</ul>
+<h4 id="continuous-values"><a href="#continuous-values" class="headerlink" title="continuous values"></a>continuous values</h4><p>遇到连续属性，应该如何划分属性呢？C4.5采用的是二分法对连续值进行处理。给定样本集$D$,假定$\alpha$在$D$上出现了$n$个不同的取值，将这些值从小到大进行排序，记为${\alpha^1,\alpha^2,…,\alpha^n}$,基于划分点$t$可将$D$分为子集$D_t^-$和$D_t^+$，前者包含属性$\alpha$上取值不大于$t$的样本，后者表示大于$t$的样本。在连续属性$\alpha$上可考察包含$n-1$个元素划分集合：</p>
+<script type="math/tex; mode=display">T_a=\{\frac{\alpha_i+\alpha_{i+1}}{2}|1\leq{i}\leq{n-1}\}</script><p>划分后计算划分依据标标准，与其他属性一起比较。需注意的是，于离散属性不同，若当前结点划分属性为连续属性，该属性还可作为其后代结点的划分属性。</p>
 <h3 id="Random-Forest"><a href="#Random-Forest" class="headerlink" title="Random Forest"></a>Random Forest</h3><ul>
 <li>RF是Bagging的一个扩展变体，RF的基学习器是一个决策树。但是RF在Bagginig的基础上，在决策树的训练过程中引入了随机属性选择。</li>
 <li>传统decision tree在选择划分属性的原则是当前属性结点的属性集合中选择一个最优属性，在RF中，对每个基决策树的每个结点，从该结点的属性集合中随机选择包含$k$个属性的子集，再从子集中选择一个最优属性用于划分，参$k$控制了随机性的引入程度，推荐是$k=log_2d$。</li>
 <li>RF思想简单，容易实现，计算开销小，却有展现除强大的性能。RF对Bagging做了小改动，不仅有来自样本的扰动（Bagging），还有属性的扰动（Decision Tree)这样使得集成的泛化性能可通过个体学习器之间差异度进一步提升。</li>
-<li>RF和Bagging的收敛性相似，但是RF的起始性能往往较差，但是岁个学习器的数目增多RF能够收敛到更低的泛化误差。</li>
+<li>RF和Bagging的收敛性相似，但是RF的起始性能往往较差，但是随着学习器的数目增多RF能够收敛到更低的泛化误差。</li>
 </ul>
 <h4 id="combined-strategy"><a href="#combined-strategy" class="headerlink" title="combined strategy"></a>combined strategy</h4><p>学习器的结合策略的好处：</p>
 <ul>
@@ -453,6 +478,12 @@
 <script type="math/tex; mode=display">p(y=1|x)=\frac{e^{w^Tx+b}}{1+e^{w^Tx+b}}</script><script type="math/tex; mode=display">p(y=0|x)=\frac{1}{1+e^{w^Tx+b}}</script><p>通过‘极大似然法’来估计$w,b$</p>
 <script type="math/tex; mode=display">l(w,b)=\sum_{i=1}^mlnp(y_i|x_i;w,b)</script><p>令每个样本属于器真实标记的概率越大越好，进一步将上式中的似然项改写（为了方便$\beta=(w,b),x=(x,1)$）$,则$w^Tx+b$简写为$\beta{^T}x$</p>
 <script type="math/tex; mode=display">p(y_i|x_i;w,b)=y_ip_1(x_i,\beta)+(1-y_i)p_0(x_i,\beta)</script><p>是不是有点交叉熵的感觉，留下一个伏笔。</p>
+<h2 id="Linear-Discriminant-Analysis"><a href="#Linear-Discriminant-Analysis" class="headerlink" title="Linear Discriminant Analysis"></a>Linear Discriminant Analysis</h2><blockquote>
+<p>本来不打算写这个方法的，但是比较简单，那就一笔带过吧。</p>
+</blockquote>
+<p>LDA不严格的来说就是‘Fisher判别分析’，思想比较简单：给定训练集，设法将样例投影到一条直线（对应二维来说），目标是：同类的投影点尽可能靠近，异类的点尽可能远离。对于测试样本，先投影再根据投影点的位置来确定新样本的类别。如图：<br><img src="/2018/11/10/PRML-Homework/LDA.PNG" alt=""></p>
+<h3 id="Math-representation"><a href="#Math-representation" class="headerlink" title="Math representation"></a>Math representation</h3><p>对于数据集$D$，二分类任务为例：有$X_i,\mu_i,\sum_i$分别表示第i类示例的集合，均值向量，协方差矩阵。若将数据投影到直线$w$上，则两类样本的中心在直线上的投影分别为$w_T\mu_0$和$w_T\mu_1$,对于所有样本点投影，样本的协方差分别为$w^T\sum_0w$和$w^T\sum_1w$。上述同类样本点的投影点应该尽可能接近，意味着投影点的协方差尽可能小，即：$w^T\sum_0w+w^T\sum_1w$尽可能小。异类样本投影点尽可能远离，意味着异类中心点之间的距离尽可能大，即$||w_T\mu_0-w_T\mu_1||_2^2$。有了这样的分析，可能到目标函数：</p>
+<script type="math/tex; mode=display">J=\frac{||w_T\mu_0-w_T\mu_1||_2^2}{w^T\sum_0w+w^T\sum_1w}</script><p>最大化J即为所求。<br>剩下的一些就是在编程序时减少计算的量的求解，用到的知识：矩阵性质，拉格朗日乘子法，奇异值分解。参考周志华的西瓜书。</p>
 <h2 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h2><p>占坑</p>
 
       
@@ -493,6 +524,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/21/visualizing-and-understanding-convolutional-networks/" rel="prev" title="visualizing-and-understanding-convolutional-networks">
+                visualizing-and-understanding-convolutional-networks <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -575,7 +610,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -646,7 +681,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Purpose"><span class="nav-number">1.</span> <span class="nav-text">Purpose</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bagging-and-RandomForest"><span class="nav-number">2.1.</span> <span class="nav-text">Bagging and RandomForest</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bagging"><span class="nav-number">2.1.1.</span> <span class="nav-text">Bagging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Decision-Tree"><span class="nav-number">2.1.2.</span> <span class="nav-text">Decision Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Random-Forest"><span class="nav-number">2.1.3.</span> <span class="nav-text">Random Forest</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#combined-strategy"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">combined strategy</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Liner-model"><span class="nav-number">2.2.</span> <span class="nav-text">Liner model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-Regression"><span class="nav-number">2.2.1.</span> <span class="nav-text">Linear Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logistic-Regression"><span class="nav-number">2.2.2.</span> <span class="nav-text">Logistic Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Logistic-Regression-Advantage"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">Logistic Regression Advantage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Logistic-Regression-and-loglikehood"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">Logistic Regression and loglikehood</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVM"><span class="nav-number">2.3.</span> <span class="nav-text">SVM</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Purpose"><span class="nav-number">1.</span> <span class="nav-text">Purpose</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bagging-and-RandomForest"><span class="nav-number">2.1.</span> <span class="nav-text">Bagging and RandomForest</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bagging"><span class="nav-number">2.1.1.</span> <span class="nav-text">Bagging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Decision-Tree"><span class="nav-number">2.1.2.</span> <span class="nav-text">Decision Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#purity"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">purity</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#information-gain"><span class="nav-number">2.1.2.1.1.</span> <span class="nav-text">information gain</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#gain-ratio"><span class="nav-number">2.1.2.1.2.</span> <span class="nav-text">gain ratio</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#gini-index"><span class="nav-number">2.1.2.1.3.</span> <span class="nav-text">gini index</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pruning"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">pruning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#continuous-values"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">continuous values</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Random-Forest"><span class="nav-number">2.1.3.</span> <span class="nav-text">Random Forest</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#combined-strategy"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">combined strategy</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Liner-model"><span class="nav-number">2.2.</span> <span class="nav-text">Liner model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-Regression"><span class="nav-number">2.2.1.</span> <span class="nav-text">Linear Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logistic-Regression"><span class="nav-number">2.2.2.</span> <span class="nav-text">Logistic Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Logistic-Regression-Advantage"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">Logistic Regression Advantage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Logistic-Regression-and-loglikehood"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">Logistic Regression and loglikehood</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Discriminant-Analysis"><span class="nav-number">2.3.</span> <span class="nav-text">Linear Discriminant Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Math-representation"><span class="nav-number">2.3.1.</span> <span class="nav-text">Math representation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVM"><span class="nav-number">2.4.</span> <span class="nav-text">SVM</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -680,7 +715,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">21.2k</span>
+    <span title="Site words total count">23.9k</span>
   
 </div>
 
