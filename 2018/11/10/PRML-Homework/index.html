@@ -102,7 +102,8 @@
 <meta property="og:image" content="http://yoursite.com/2018/11/10/PRML-Homework/X.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/10/PRML-Homework/dan.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/10/PRML-Homework/LDA.PNG">
-<meta property="og:updated_time" content="2018-11-21T13:12:49.460Z">
+<meta property="og:image" content="http://yoursite.com/2018/11/10/PRML-Homework/PCA.png">
+<meta property="og:updated_time" content="2018-11-26T13:54:40.644Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PRML-Homework">
 <meta name="twitter:description" content="Purpose 这两周感觉效率偏低，GAN的论文看的迷迷糊糊还没有完全弄清楚，加上最近沉迷吃鸡，没有那个精力，心态（主要原因）去好好整一篇博客。所以…打算换个project来缓一缓断更的节奏。这个project是打算作为模式识别机器学习课程的一篇报告。说起这个课脑袋就很疼，一只脚踏入了挂科的深渊，希望自己能够吸取教训。这个project是kaggle上的一个竞赛，有7万刀。虽然已经结束了内容也比较">
@@ -363,7 +364,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,569
+                  3,911
                 </span>
               
 
@@ -379,7 +380,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  13
+                  14
                 </span>
               
             </div>
@@ -424,7 +425,7 @@
 <script type="math/tex; mode=display">
 \begin{eqnarray}
 Gini(D) &= \sum_{k=1}^{|y|}\sum_{k^'\neq{k}p_kp_{k'} \\
-&=1-\sum_{k=1}^{|y|}p_k^2
+ &= 1-\sum_{k=1}^{|y|}p_k^2
 \end{eqnarray}</script><p>直观上$Gini(D)$表示的意义是：从数据集$D$中随机抽取两个样本，其类别标记不一致的概率，$Gini(D)$越小，则数据集$D$的纯度越高。属性$\alpha$的基尼指数定义为</p>
 <script type="math/tex; mode=display">Gini_index(D,\alpha)=\sum_{v=1}^V\frac{|D^v|}{|D|}Gini(D^v)</script><h4 id="pruning"><a href="#pruning" class="headerlink" title="pruning"></a>pruning</h4><p>减枝是决策树学习为了防止过拟合的手段，主要原因是，为了正确分类样本，划分过程不断重复，造成决策分支过多样本学得太好而导致。决策树的减枝基本策略“预减枝”，“后剪枝”。</p>
 <ul>
@@ -485,6 +486,15 @@ Gini(D) &= \sum_{k=1}^{|y|}\sum_{k^'\neq{k}p_kp_{k'} \\
 <h3 id="Math-representation"><a href="#Math-representation" class="headerlink" title="Math representation"></a>Math representation</h3><p>对于数据集$D$，二分类任务为例：有$X_i,\mu_i,\sum_i$分别表示第i类示例的集合，均值向量，协方差矩阵。若将数据投影到直线$w$上，则两类样本的中心在直线上的投影分别为$w_T\mu_0$和$w_T\mu_1$,对于所有样本点投影，样本的协方差分别为$w^T\sum_0w$和$w^T\sum_1w$。上述同类样本点的投影点应该尽可能接近，意味着投影点的协方差尽可能小，即：$w^T\sum_0w+w^T\sum_1w$尽可能小。异类样本投影点尽可能远离，意味着异类中心点之间的距离尽可能大，即$||w_T\mu_0-w_T\mu_1||_2^2$。有了这样的分析，可能到目标函数：</p>
 <script type="math/tex; mode=display">J=\frac{||w_T\mu_0-w_T\mu_1||_2^2}{w^T\sum_0w+w^T\sum_1w}</script><p>最大化J即为所求。<br>剩下的一些就是在编程序时减少计算的量的求解，用到的知识：矩阵性质，拉格朗日乘子法，奇异值分解。参考周志华的西瓜书。</p>
 <h2 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h2><p>占坑</p>
+<h1 id="Dimension-reduction"><a href="#Dimension-reduction" class="headerlink" title="Dimension reduction"></a>Dimension reduction</h1><ul>
+<li>提供点的坐标进行降维 PCA</li>
+<li>点之间的距离矩阵 MDS</li>
+</ul>
+<h2 id="MDS"><a href="#MDS" class="headerlink" title="MDS"></a>MDS</h2><p>由原始样本的距离矩阵 D 到样本的内积矩阵 B ，然后对 B 进行特征值分解，得到小于等于N个特征值和特征矩阵，构造降维后的样本矩阵 Z。</p>
+<h2 id="Linear-Dimension-reduction"><a href="#Linear-Dimension-reduction" class="headerlink" title="Linear Dimension reduction"></a>Linear Dimension reduction</h2><script type="math/tex; mode=display">Z = W^Tx</script><p>$z_i$是原属性向量$x_i$在新坐标系${w_1,w_2,\cdots,w_d}$中的向量坐标。新空间中的属性是原空间属性的线性组合。这是线性降维的基本形式，不同线性降维对低维子空间的性质有不同的要求，相当于对$W$有不同的约束。</p>
+<h2 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h2><p>Principal Component Analysis 从最近重构性或者最大可分性都能得到主成成分分析的推导。最大可分性：样本点$x_i$在新空间中超平面上的投影是$W_TX_i$,若所有样本点的投影尽可能分来，应使得投影后样本点的方差最大化。投影后的样本方差</p>
+<script type="math/tex; mode=display">\sum_iW^Tx_ix_i^TW</script><p>优化函数变为：</p>
+<script type="math/tex; mode=display">max_W \quad tr(W^TXX^TW)</script><script type="math/tex; mode=display">s.t. W^TW=I</script><p><img src="/2018/11/10/PRML-Homework/PCA.png" alt=""><br>只需对协方差矩阵$XX^T$进行特征值分解，将求得的特征值排序,再取$d$个特征值对应的特征向量构成$W$,即为主成成分的解。降维后的维度$d$,或者用开销较小的分类器子在交叉验证中选取。</p>
 
       
     </div>
@@ -610,7 +620,7 @@ Gini(D) &= \sum_{k=1}^{|y|}\sum_{k^'\neq{k}p_kp_{k'} \\
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -681,7 +691,7 @@ Gini(D) &= \sum_{k=1}^{|y|}\sum_{k^'\neq{k}p_kp_{k'} \\
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Purpose"><span class="nav-number">1.</span> <span class="nav-text">Purpose</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bagging-and-RandomForest"><span class="nav-number">2.1.</span> <span class="nav-text">Bagging and RandomForest</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bagging"><span class="nav-number">2.1.1.</span> <span class="nav-text">Bagging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Decision-Tree"><span class="nav-number">2.1.2.</span> <span class="nav-text">Decision Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#purity"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">purity</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#information-gain"><span class="nav-number">2.1.2.1.1.</span> <span class="nav-text">information gain</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#gain-ratio"><span class="nav-number">2.1.2.1.2.</span> <span class="nav-text">gain ratio</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#gini-index"><span class="nav-number">2.1.2.1.3.</span> <span class="nav-text">gini index</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pruning"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">pruning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#continuous-values"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">continuous values</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Random-Forest"><span class="nav-number">2.1.3.</span> <span class="nav-text">Random Forest</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#combined-strategy"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">combined strategy</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Liner-model"><span class="nav-number">2.2.</span> <span class="nav-text">Liner model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-Regression"><span class="nav-number">2.2.1.</span> <span class="nav-text">Linear Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logistic-Regression"><span class="nav-number">2.2.2.</span> <span class="nav-text">Logistic Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Logistic-Regression-Advantage"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">Logistic Regression Advantage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Logistic-Regression-and-loglikehood"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">Logistic Regression and loglikehood</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Discriminant-Analysis"><span class="nav-number">2.3.</span> <span class="nav-text">Linear Discriminant Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Math-representation"><span class="nav-number">2.3.1.</span> <span class="nav-text">Math representation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVM"><span class="nav-number">2.4.</span> <span class="nav-text">SVM</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Purpose"><span class="nav-number">1.</span> <span class="nav-text">Purpose</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bagging-and-RandomForest"><span class="nav-number">2.1.</span> <span class="nav-text">Bagging and RandomForest</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bagging"><span class="nav-number">2.1.1.</span> <span class="nav-text">Bagging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Decision-Tree"><span class="nav-number">2.1.2.</span> <span class="nav-text">Decision Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#purity"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">purity</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#information-gain"><span class="nav-number">2.1.2.1.1.</span> <span class="nav-text">information gain</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#gain-ratio"><span class="nav-number">2.1.2.1.2.</span> <span class="nav-text">gain ratio</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#gini-index"><span class="nav-number">2.1.2.1.3.</span> <span class="nav-text">gini index</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pruning"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">pruning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#continuous-values"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">continuous values</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Random-Forest"><span class="nav-number">2.1.3.</span> <span class="nav-text">Random Forest</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#combined-strategy"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">combined strategy</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Liner-model"><span class="nav-number">2.2.</span> <span class="nav-text">Liner model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-Regression"><span class="nav-number">2.2.1.</span> <span class="nav-text">Linear Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logistic-Regression"><span class="nav-number">2.2.2.</span> <span class="nav-text">Logistic Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Logistic-Regression-Advantage"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">Logistic Regression Advantage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Logistic-Regression-and-loglikehood"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">Logistic Regression and loglikehood</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Discriminant-Analysis"><span class="nav-number">2.3.</span> <span class="nav-text">Linear Discriminant Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Math-representation"><span class="nav-number">2.3.1.</span> <span class="nav-text">Math representation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVM"><span class="nav-number">2.4.</span> <span class="nav-text">SVM</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dimension-reduction"><span class="nav-number">3.</span> <span class="nav-text">Dimension reduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MDS"><span class="nav-number">3.1.</span> <span class="nav-text">MDS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Dimension-reduction"><span class="nav-number">3.2.</span> <span class="nav-text">Linear Dimension reduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PCA"><span class="nav-number">3.3.</span> <span class="nav-text">PCA</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -715,7 +725,7 @@ Gini(D) &= \sum_{k=1}^{|y|}\sum_{k^'\neq{k}p_kp_{k'} \\
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">23.9k</span>
+    <span title="Site words total count">25.0k</span>
   
 </div>
 

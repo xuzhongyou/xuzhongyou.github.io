@@ -88,22 +88,21 @@
 
 
 
-<meta name="description" content="DCGAN AND WGAN前言(废话) 今天有个孩子说我好几天没更新了。转念一想，虽然断断续续地完善前一篇GAN也并不是无所作为,但也不能给别人博主很懒的印象啊。再一想，自己当初写博客的目的只是为了记录自己的学习，提出困惑，谈谈自己的理解。可能更多的‘草稿’作用而非教学意义。可，可…也是时候重新开一篇把国庆看的东西好好整理一哈(其实一般是为了整理思路给明天的英文周报)。  DCGAN1.为什么要">
+<meta name="description" content="LAPGAN 之后看的论文应该还是会回到GAN这个方向，本篇说的是 Deep Generative Image Models using a Laplacian Pyramid of Adversarial Networks。 LAPGAN作为一个参数式生成模型，能够生成高质量的natural image。主要的做法是在Laplacian pyramid的框架下使用一系列的卷积网络，以一种从粗糙到">
 <meta name="keywords" content="-GAN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DCGAN_And_WGAN">
-<meta property="og:url" content="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/index.html">
+<meta property="og:title" content="LAPGAN">
+<meta property="og:url" content="http://yoursite.com/2018/11/23/LAPGAN/index.html">
 <meta property="og:site_name" content="from Demon import Angel">
-<meta property="og:description" content="DCGAN AND WGAN前言(废话) 今天有个孩子说我好几天没更新了。转念一想，虽然断断续续地完善前一篇GAN也并不是无所作为,但也不能给别人博主很懒的印象啊。再一想，自己当初写博客的目的只是为了记录自己的学习，提出困惑，谈谈自己的理解。可能更多的‘草稿’作用而非教学意义。可，可…也是时候重新开一篇把国庆看的东西好好整理一哈(其实一般是为了整理思路给明天的英文周报)。  DCGAN1.为什么要">
+<meta property="og:description" content="LAPGAN 之后看的论文应该还是会回到GAN这个方向，本篇说的是 Deep Generative Image Models using a Laplacian Pyramid of Adversarial Networks。 LAPGAN作为一个参数式生成模型，能够生成高质量的natural image。主要的做法是在Laplacian pyramid的框架下使用一系列的卷积网络，以一种从粗糙到">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/generator.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/emdis.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/batchnorm.png">
-<meta property="og:updated_time" content="2018-10-21T11:30:45.092Z">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/LAPGAN/pyramid_3.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/23/LAPGAN/LAPGAN.PNG">
+<meta property="og:updated_time" content="2018-11-23T12:51:44.883Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DCGAN_And_WGAN">
-<meta name="twitter:description" content="DCGAN AND WGAN前言(废话) 今天有个孩子说我好几天没更新了。转念一想，虽然断断续续地完善前一篇GAN也并不是无所作为,但也不能给别人博主很懒的印象啊。再一想，自己当初写博客的目的只是为了记录自己的学习，提出困惑，谈谈自己的理解。可能更多的‘草稿’作用而非教学意义。可，可…也是时候重新开一篇把国庆看的东西好好整理一哈(其实一般是为了整理思路给明天的英文周报)。  DCGAN1.为什么要">
-<meta name="twitter:image" content="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/generator.png">
+<meta name="twitter:title" content="LAPGAN">
+<meta name="twitter:description" content="LAPGAN 之后看的论文应该还是会回到GAN这个方向，本篇说的是 Deep Generative Image Models using a Laplacian Pyramid of Adversarial Networks。 LAPGAN作为一个参数式生成模型，能够生成高质量的natural image。主要的做法是在Laplacian pyramid的框架下使用一系列的卷积网络，以一种从粗糙到">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/23/LAPGAN/pyramid_3.png">
 
 
 
@@ -133,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/11/23/LAPGAN/"/>
 
 
 
 
 
-  <title>DCGAN_And_WGAN | from Demon import Angel</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>LAPGAN | from Demon import Angel</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -266,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/11/DCGAN-And-WGAN/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/LAPGAN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiaokehu">
@@ -283,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">DCGAN_And_WGAN</h1>
+          <h1 class="post-title" itemprop="name headline">LAPGAN</h1>
         
 
         <div class="post-meta">
@@ -295,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-11T18:20:07+08:00">
-                2018-10-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-23T15:46:12+08:00">
+                2018-11-23
               </time>
             
 
@@ -335,7 +334,7 @@
 
           
           
-             <span id="/2018/10/11/DCGAN-And-WGAN/" class="leancloud_visitors" data-flag-title="DCGAN_And_WGAN">
+             <span id="/2018/11/23/LAPGAN/" class="leancloud_visitors" data-flag-title="LAPGAN">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -360,7 +359,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,711
+                  806
                 </span>
               
 
@@ -376,7 +375,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  3
                 </span>
               
             </div>
@@ -397,38 +396,17 @@
       
 
       
-        <h1 id="DCGAN-AND-WGAN"><a href="#DCGAN-AND-WGAN" class="headerlink" title="DCGAN AND WGAN"></a>DCGAN AND WGAN</h1><h2 id="前言-废话"><a href="#前言-废话" class="headerlink" title="前言(废话)"></a>前言(废话)</h2><blockquote>
-<p>今天有个孩子说我好几天没更新了。转念一想，虽然断断续续地完善前一篇GAN也并不是无所作为,但也不能给别人博主很懒的印象啊。再一想，自己当初写博客的目的只是为了记录自己的学习，提出困惑，谈谈自己的理解。可能更多的‘草稿’作用而非教学意义。可，可…也是时候重新开一篇把国庆看的东西好好整理一哈(其实一般是为了整理思路给明天的英文周报)。</p>
+        <h1 id="LAPGAN"><a href="#LAPGAN" class="headerlink" title="LAPGAN"></a>LAPGAN</h1><blockquote>
+<p>之后看的论文应该还是会回到GAN这个方向，本篇说的是 Deep Generative Image Models using a Laplacian Pyramid of Adversarial Networks。 LAPGAN作为一个参数式生成模型，能够生成高质量的natural image。主要的做法是在Laplacian pyramid的框架下使用一系列的卷积网络，以一种从粗糙到精细的方式生成图片。</p>
 </blockquote>
-<h2 id="DCGAN"><a href="#DCGAN" class="headerlink" title="DCGAN"></a>DCGAN</h2><h3 id="1-为什么要有DCGAN"><a href="#1-为什么要有DCGAN" class="headerlink" title="1.为什么要有DCGAN?"></a>1.为什么要有DCGAN?</h3><p><a href="https://arxiv.org/abs/1511.06434" target="_blank" rel="noopener">Deep Convolutional Generative Adversarial Network</a>可以从两个方面来说DCGAN为什么会被提出。首先，CNN在监督学习中取得了非常大的成功，无论是在图像分类还是目标检测任务中。那么在非监督学习中，一些人会蠢蠢欲动，是否也能取得不错的效果呢？其次，GAN网络的提出，掀起了generating model 的热浪，然而在上一篇文章中已经分析了GAN网络存在的一些问题。DCGAN能够从网络架构的角度一定程度上解决这个问题。关于GAN的问题，还会在接下来的WGAN的文章中详细解释。</p>
-<h3 id="2-DCGAN-相比GAN有什么改进的地方？"><a href="#2-DCGAN-相比GAN有什么改进的地方？" class="headerlink" title="2.DCGAN 相比GAN有什么改进的地方？"></a>2.DCGAN 相比GAN有什么改进的地方？</h3><p>其实就是充分利用CNN的特点，对卷积网络拓扑做了一些限制，从而使得GAN的训练变得稳定一些。虽然论文里面还说了利用Discriminator做分类任务啊，可以visualize filters学习到了啥，甚至还有一些语义层面的。个人觉得，最大的贡献还是网络架构上。</p>
-<h3 id="3-DCGAN的核心架构是什么样？"><a href="#3-DCGAN的核心架构是什么样？" class="headerlink" title="3.DCGAN的核心架构是什么样？"></a>3.DCGAN的核心架构是什么样？</h3><p><img src="/2018/10/11/DCGAN-And-WGAN/generator.png" alt=""><br>贴的是generator的网络架构，通过deconvolution(大多人认为是反卷积，其实并不正确)。关于discriminator的网络架构就比较简单，更符合正常的CNN架构，当然为了稳定训练，加了一些trick.</p>
-<ol>
-<li>取消CNN的pooling layers</li>
-<li>generator和discriminator使用batchnorm。(今天特意查了一下batchnorm,发现跟自己想的有点差别，在文末会稍微解释一下)</li>
-<li>去掉了fully connected hidden layers</li>
-<li>对于generator,output使用Tanh,其它层使用RELU 激活函数</li>
-<li>对于discriminator 使用LeakyRelu 激活函数</li>
-</ol>
-<h2 id="WGAN"><a href="#WGAN" class="headerlink" title="WGAN"></a>WGAN</h2><h3 id="废话"><a href="#废话" class="headerlink" title="废话"></a>废话</h3><blockquote>
-<p>WGAN应该是我看的时长较长的一篇了，主要还是国庆边看边玩，再加上论文本身涉及的数学证明太多，居然还有拓扑学的知识，真是哔哔…最后还是自己菜。不能说完全理解了WGAN,但是精华部分算是了解了差不多了。</p>
-<h3 id="先说WGAN优点"><a href="#先说WGAN优点" class="headerlink" title="先说WGAN优点"></a>先说WGAN优点</h3><p><a href="https://arxiv.org/abs/1701.07875" target="_blank" rel="noopener">WGAN</a>的优点基本都是针对original GAN提出的。上面说的DCGAN主要从网络架构方面解决GAN的一些训练问题，但是治标不治本啊。WGAN的作者其实花了两篇文章来说明WGAN。第一篇主要’骂’了GAN，从GAN的’身世’开始’骂’。听说你想知道怎么’骂的’？<a href="https://arxiv.org/abs/1701.04862" target="_blank" rel="noopener">来了</a>。</p>
-<ol>
-<li>解决训练不稳定问题(original GAN的通病)</li>
-<li>解决collapse model,样本多样性缺失</li>
-<li>WGAN的loss能够指导模型训练</li>
-</ol>
-</blockquote>
-<h3 id="GAN的问题"><a href="#GAN的问题" class="headerlink" title="GAN的问题"></a>GAN的问题</h3><h4 id="Discriminator-不能训练的最好"><a href="#Discriminator-不能训练的最好" class="headerlink" title="Discriminator 不能训练的最好"></a>Discriminator 不能训练的最好</h4><p>GAN的论文中，generator的优化函数有两种形式</p>
-<script type="math/tex; mode=display">E_{x~p_g}log\left[(1-D(x))\right])</script><p>但是这种从函数可以看出，训练初期的梯度非常小，于是给出了另一种优化函数，能解决刚开始梯度很小的问题。</p>
-<p><script type="math/tex">-E_{x~p_g}log(D(x)))</script>先说第一种的情况下<br>在GAN中，给出这样的<script type="math/tex">V(G,D)=E_{x~P_r}logD(x)+E_{x~P_g}log\left[(1-D(x))\right]</script>最小最大优化公式。固定G，训练D，使得V取得最大值，将当前最优的D*带入V，可得到两分布之间的divergence,再求V的最小值等价于最小化两分布的误差。给出D*最大化的结果:<script type="math/tex">2JSD(P_r||P_g)-2log2</script>那么问题来了，JS divergence能发挥作用的情况是当两分布有可用重叠部分，而在分布无重叠时JS=log2。那么两分布存在重叠的部分会有多大呢，作者在第一篇论文中从拓扑学的角度说明了：当P_r与P_g的支撑集(support)是高维空间中的低维流行(manifold)，那么他们重叠部分测度为0的概率为1。也就是说P_r和P_g其实很难存在有用的重叠，那么无论分布远近，JS divergence永远是log2,导致生成器的梯度为0。有了上面初步分析，可以大概知道为什么GAN那么难训练了。Discriminator 训练的太好，generator的梯度消失，loss降不下去。训练的不好，无法指导generator训练，那就需要找到一个Discriminator训练的不好不差，这个很难去把握。<br>对于第二种，直接给出最后的等价形式，关于怎么来的，可参考<a href="https://zhuanlan.zhihu.com/p/25071913?from_voters_page=true" target="_blank" rel="noopener">这篇</a><br>$KL(P_g||P_r)-2JS(P_r||P_g)$<br>该表达式可以看出，既要最小化P_g和P_r之间的KLdivergence,又要最大化他们的JSdivergence，似乎有点矛盾。其次，KLdivergence并不是对称衡量，该式完整形式$KL(P_g||P_r)=P_g(x)log\frac{P_g(x)}{P_r(x)}$可以看出为了防止kl无穷大，生成器宁愿生成重复的样本，不愿生成缺乏多样性的样本，这种现象就是常见的collapse mode。</p>
-<h4 id="总结GAN的问题"><a href="#总结GAN的问题" class="headerlink" title="总结GAN的问题"></a>总结GAN的问题</h4><ol>
-<li>divergence 衡量方法不合理(KL，JS divergence)。</li>
-<li>随机的生成分布与真实分布不可忽略的重叠少。<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4></li>
-<li>加noise,将两个低维流行弥散到高维空间，强行产生有用的重叠，目标使JS发挥作用。</li>
-<li>第一种方法治标不治本，没有从根源出发解决问题。Wasserstein 距离代替JS divergence，解决稳定训练问题，还能根据loss指示训练进程。<h3 id="Wasserstein距离"><a href="#Wasserstein距离" class="headerlink" title="Wasserstein距离"></a>Wasserstein距离</h3>关于Wasserstein的定义，，先截了网上一篇好的博客文章里的。<img src="/2018/10/11/DCGAN-And-WGAN/emdis.png" alt=""><br>$\inf_{\gamma \sim \pi (P_r,P_g)}$是没法直接求解的。<br>先占坑，后面补</li>
-</ol>
-<h2 id="supplement"><a href="#supplement" class="headerlink" title="supplement"></a>supplement</h2><h4 id="BatchNorm"><a href="#BatchNorm" class="headerlink" title="BatchNorm"></a>BatchNorm</h4><p>在cv中，每一个batch数据都有不同的分布，当数据经过网络，它的数据分布也会发生变化(称为internal covariate shift)还有一个被称为covariate shift，描述的是训练数据和测试数据存在分的差异性。而batchnorm做的是归一化，对数据去相关性，加快训练速度，突出分布相对差异。 但是如果对每一层都做归一化是否可取呢？不然，假设每层都归一化到标准正太分布，可能会导致网络很难去学习输入数据的特征，想学的输入特征都被归一化了。Bathnorm算法提供了一种可训练参数归一化。<br><img src="/2018/10/11/DCGAN-And-WGAN/batchnorm.png" alt="">当$\gamma$为方差$\beta$为均值时，还原到输入。见<a href="https://blog.csdn.net/qq_25737169/article/details/79048516" target="_blank" rel="noopener">详细原理代码可阅</a></p>
+<h2 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h2><p>利用natural image的multi-scale结构建立多个生成模型，每个生成模型根据Laplacian pyramid里面的scale抓取图片的信息，其中生成模型通过GAN来训练。有一句话作者多次强调也是本篇论文的核心思想：‘A key point in our work is giving up any ‘global’ notion of fidelity,and instead breaking the generation into plausible successive refinements’大概说的是不关注全局下的保真度，只关注连续优化情况下每一次生成的真实性。作者在论文的discussion部分还说了利用这种相似的思想来做简单网络的修改就能取得不错的效果。</p>
+<h2 id="structure"><a href="#structure" class="headerlink" title="structure"></a>structure</h2><p>samples生成是以一种 coarse-to-fine 的方式，开始时是一些低频 residual 信息，下一层采样是根据 residual 对 band-pass 结构的作用，后面的采样采用同样方法，直到生成图片。换句话说：从粗糙级别，通过不断的上采样加上 residual 最后生成完整图像（这边比较难翻译，后面会慢慢解释）。</p>
+<h3 id="Laplacian-Pyramid"><a href="#Laplacian-Pyramid" class="headerlink" title="Laplacian Pyramid"></a>Laplacian Pyramid</h3><p>Laplacian pyramid 是一种线性可逆图像表示方式，由一组 band-pass（带通）图像，间隔一个八度，加上一个低频 residual。先解释一下后面要用到的符号。$d(\cdot)$是对image I downsample 操作，$u(\cdot)$upsample 对应downsample。Gaussian pyramid $G(I)=[I_0,I_1,\dots,I_K], I_0=I$,$h_k$表示 Gaussian pyramid 中相邻level 之间的差值。</p>
+<script type="math/tex; mode=display">h_k=G_k(I)-U(G_{k+1}(I))=I_k-u(I_{k+1})</script><p>需要注意的是最后一层$h_K$不是difference image,而是低频residual。即$h_K=I_K$。那么$I_k$构造可循环成：</p>
+<script type="math/tex; mode=display">I_k=u(I_{k+1})+h_k</script><p>开始时$I_k=h_K$,重构目标是$I=I_0$,</p>
+<h3 id="LAPGAN-1"><a href="#LAPGAN-1" class="headerlink" title="LAPGAN"></a>LAPGAN</h3><p>LAGAN 结合了CGAN(条件GAN)和Laplacian pyramid representation。在LAPGAN中，训练${G_0,\dots,G_k}$个卷积生成模型，分别对应着$h_k$的分布，结合生成器，上式可改写为：</p>
+<script type="math/tex; mode=display">\tilde{I_k}=u(\tilde{I_{k+1}})+h_k=u(\tilde{I_{k+1}})+G_k(z_k,u(\tilde{I_{k+1}}))</script><p>G表示生成器，一般令$I_{K+1}=0$,且对于最后一层G_K,它可以直接生成$I_K$:$I_K=G_K(z_K)$,有了上面的分析，贴出pyramid with 3的生成模型sample 图。<br><img src="/2018/11/23/LAPGAN/pyramid_3.png" alt=""></p>
+<p>整个模型是如何训练的呢？论文中关于$h_k$的生成有两种方式(论文中说的是随机等概率选择一种)：一种通过标准表达$h_k=G_k(I)-U(G_{k+1}(I))=I_k-u(I_{k+1})$，另外一种G_k生成：$\tilde{h_k}=G_k(z_k,u(I_{k+1}))$。对于判别器除了最后一个scale,因为采用的是CGAN训练，有两个参数，一个属upsampling之后的low-pass $l_k$,另一个参数由$l_k$通过上说的那种方式生成$h_k$或$\tilde{h_k}$分别对应的是real和generated,接着就是GAN的训练策咯先最大话再最小化（不展开）。接下来的每个scale,都按照此结构方式直到最后一层，最后一层使用标准的GAN即可，从下图可以看出整个网络训练过程。<br><img src="/2018/11/23/LAPGAN/LAPGAN.PNG" alt=""></p>
 
       
     </div>
@@ -459,8 +437,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/22/GAN/" rel="next" title="GAN">
-                <i class="fa fa-chevron-left"></i> GAN
+              <a href="/2018/11/21/visualizing-and-understanding-convolutional-networks/" rel="next" title="visualizing-and-understanding-convolutional-networks">
+                <i class="fa fa-chevron-left"></i> visualizing-and-understanding-convolutional-networks
               </a>
             
           </div>
@@ -468,10 +446,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/21/ResNet/" rel="prev" title="ResNet">
-                ResNet <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -625,7 +599,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DCGAN-AND-WGAN"><span class="nav-number">1.</span> <span class="nav-text">DCGAN AND WGAN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言-废话"><span class="nav-number">1.1.</span> <span class="nav-text">前言(废话)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DCGAN"><span class="nav-number">1.2.</span> <span class="nav-text">DCGAN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-为什么要有DCGAN"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.为什么要有DCGAN?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-DCGAN-相比GAN有什么改进的地方？"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.DCGAN 相比GAN有什么改进的地方？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-DCGAN的核心架构是什么样？"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.DCGAN的核心架构是什么样？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WGAN"><span class="nav-number">1.3.</span> <span class="nav-text">WGAN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#废话"><span class="nav-number">1.3.1.</span> <span class="nav-text">废话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#先说WGAN优点"><span class="nav-number">1.3.2.</span> <span class="nav-text">先说WGAN优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GAN的问题"><span class="nav-number">1.3.3.</span> <span class="nav-text">GAN的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Discriminator-不能训练的最好"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">Discriminator 不能训练的最好</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结GAN的问题"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">总结GAN的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决办法"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wasserstein距离"><span class="nav-number">1.3.4.</span> <span class="nav-text">Wasserstein距离</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#supplement"><span class="nav-number">1.4.</span> <span class="nav-text">supplement</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BatchNorm"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">BatchNorm</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LAPGAN"><span class="nav-number">1.</span> <span class="nav-text">LAPGAN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#idea"><span class="nav-number">1.1.</span> <span class="nav-text">idea</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#structure"><span class="nav-number">1.2.</span> <span class="nav-text">structure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Laplacian-Pyramid"><span class="nav-number">1.2.1.</span> <span class="nav-text">Laplacian Pyramid</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LAPGAN-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">LAPGAN</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
